@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2818270028085215127}
   - component: {fileID: 2818270028085215114}
   - component: {fileID: 2818270028085215125}
-  m_Layer: 22
+  m_Layer: 0
   m_Name: LiquidClippingPlane
   m_TagString: Untagged
   m_Icon: {fileID: 0}

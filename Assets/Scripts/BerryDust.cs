@@ -9,7 +9,5 @@ namespace Catacombs.Base
     {
         public BerryTypes berryDustType;
         public Color berryColor;
-
-        //All of script's content moved to base class (ContainableItem)
     }
 }

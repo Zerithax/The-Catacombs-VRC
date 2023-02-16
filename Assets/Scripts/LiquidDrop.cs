@@ -1,5 +1,4 @@
 ﻿
-using BestHTTP.SecureProtocol.Org.BouncyCastle.Asn1.Esf;
 using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;
@@ -12,6 +11,7 @@ namespace Catacombs.Base
         None = 0,
         Water = 1,
         Oil = 2,
+        BlueberryJuice = 3
     }
 
     public class LiquidDrop : ContainableItem
@@ -22,6 +22,8 @@ namespace Catacombs.Base
         [SerializeField] private float targetSpeed;
         [SerializeField] private float momentumScale = 1.01f;
         [SerializeField] private TrailRenderer trailRend;
+
+        [HideInInspector] public GameObject containerSpawnedFrom;
 
         private Vector3 lastPos = Vector3.zero;
         private Vector3 curPos = Vector3.zero;
@@ -37,6 +39,16 @@ namespace Catacombs.Base
             }
 
             lastPos = curPos;
+        }
+
+        public void DelayedKill()
+        {
+            Destroy(gameObject);
+        }
+
+        public void DelayedEnable()
+        {
+            GetComponent<Collider>().enabled = true;
         }
 
         protected override void AdditionalTriggerEnter(Collider other) { if (hideWhenContained) trailRend.emitting = false; }

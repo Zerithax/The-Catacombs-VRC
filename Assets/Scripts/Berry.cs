@@ -68,18 +68,15 @@ namespace Catacombs.Base
                     parentObject.transform.localScale -= new Vector3(shrinkSpeed, shrinkSpeed, shrinkSpeed);
 
                     //Auto destroy if too small
-                    if (parentObject.transform.localScale.x <= berrySizeIntervals[1].x) Destroy(parentObject);
+                    //if (parentObject.transform.localScale.x <= berrySizeIntervals[1].x) Destroy(parentObject);
 
                     //At every equal interval of baseScale, SpawnDust()
                     for (int i = berrySizeIntervals.Length - 1; i > 0; i--)
                     {
-                        Debug.Log(i);
                         if ((float)Math.Round(parentObject.transform.localScale.x, 3) == (float)Math.Round(berrySizeIntervals[i].x, 3))
                         {
-                            //Change this to spawn liquid OR dust depending on which is selected
                             if (spawnBerryDust) SpawnDust();
                             if (spawnLiquidDrop) SpawnDrop();
-                            SpawnDust();
                             break;
                         }
                     }
@@ -91,7 +88,10 @@ namespace Catacombs.Base
 
         private void SpawnDust()
         {
-            //Spawn Dust at Berry location (TODO: pick a random spot around the berry?)
+            //Spawn Dust at Berry location (TODO: pick a random spot above + around the berry?)
+
+            //Pick heighest & furthest mesh edge from center
+
             GameObject newDust = Instantiate(berryDustPrefab);
             newDust.transform.position = transform.position;
             newDust.transform.parent = parentObject.transform.parent;
@@ -104,9 +104,7 @@ namespace Catacombs.Base
             newDust.GetComponent<Renderer>().material.color = new Color((dustColor.r * 2 + Color.green.r) / 3, (dustColor.g * 2 + Color.green.g) / 3, (dustColor.b * 2 + Color.green.b) / 3);
 
             BerryDust newDustComp = newDust.GetComponent<BerryDust>();
-            Debug.Log($"Setting new dust's berry type to {berryType}");
             newDustComp.berryDustType = berryType;
-            Debug.Log($"Set to: {newDustComp.berryDustType}");
             newDustComp.berryColor = dustColor;
 
             ShrinkBerry();
@@ -123,7 +121,7 @@ namespace Catacombs.Base
             Debug.Log($"Spawned {newDrop.name}");
 
             newDrop.GetComponent<Renderer>().material.color = liquidColor;
-            newDrop.GetComponent<TrailRenderer>().material.color = liquidColor;
+            newDrop.GetComponent<TrailRenderer>().material.SetColor("_EmissionColor", liquidColor);
 
             LiquidDrop newDropComp = newDrop.GetComponent<LiquidDrop>();
             newDropComp.liquidType = liquidType;
@@ -133,6 +131,7 @@ namespace Catacombs.Base
 
         private void ShrinkBerry()
         {
+            Debug.Log($"Shrinking {name} from {curBerrySize} to {curBerrySize - 1}");
             curBerrySize--;
             if (curBerrySize <= 1 || parentObject.transform.localScale.x < 0)
             {

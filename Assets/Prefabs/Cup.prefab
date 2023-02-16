@@ -162,6 +162,45 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2499538901553571586, guid: e1d4ddd14eac3af40b207b1212f3be72, type: 3}
+--- !u!1 &1832458793097510568
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1326186154765558452}
+  - component: {fileID: 5682480767694215469}
+  m_Layer: 0
+  m_Name: CupSpout
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1326186154765558452
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832458793097510568}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5625636597877167860}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &5682480767694215469
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832458793097510568}
+  m_Mesh: {fileID: -7332251469930645052, guid: 160dfa09d327d2546897158fecc816d9, type: 3}
 --- !u!1 &2196823661821947316
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,6 +287,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5361491418315480231}
+  - {fileID: 1326186154765558452}
   - {fileID: 3180606758446713075}
   - {fileID: 7843800574465441315}
   - {fileID: 7942496397038392554}
@@ -535,7 +575,7 @@ Transform:
   - {fileID: 5971956303537103489}
   - {fileID: 609344462863129834}
   m_Father: {fileID: 5625636597877167860}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4914199802527271394
 GameObject:
@@ -691,7 +731,7 @@ Transform:
   - {fileID: 6681281568808390344}
   - {fileID: 450994215055588969}
   m_Father: {fileID: 5625636597877167860}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &611028543551920453
 MeshFilter:
@@ -1098,7 +1138,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5625636597877167860}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5383449538682638477
 MeshFilter:
@@ -1183,9 +1223,13 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _udonSharpBackingUdonBehaviour: {fileID: 1828567579676017740}
+  liquidDropPrefab: {fileID: 1447690598607725664, guid: 0bedf82cc1bea9b408a21322e2d88ed0,
+    type: 3}
+  containerRend: {fileID: 7945103397599373400}
+  containerSpout: {fileID: 1832458793097510568}
   maxLiquidParts: 8
   curLiquidParts: 0
-  containerRend: {fileID: 7945103397599373400}
+  timeToPour: 0.5
   liquidClippingPlane: {fileID: 5361491418315480229}
   planeNormal: {x: 0, y: 0, z: 0}
   planePosition: {x: 0, y: 0, z: 0}
@@ -1951,15 +1995,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00c794e9084bd514c83aa5198ce18f42, type: 3}
---- !u!4 &5361491418315480231 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2818270028085215127, guid: 00c794e9084bd514c83aa5198ce18f42,
-    type: 3}
-  m_PrefabInstance: {fileID: 7888997722439148336}
-  m_PrefabAsset: {fileID: 0}
 --- !u!23 &5361491418315480229 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2818270028085215125, guid: 00c794e9084bd514c83aa5198ce18f42,
+    type: 3}
+  m_PrefabInstance: {fileID: 7888997722439148336}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5361491418315480231 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2818270028085215127, guid: 00c794e9084bd514c83aa5198ce18f42,
     type: 3}
   m_PrefabInstance: {fileID: 7888997722439148336}
   m_PrefabAsset: {fileID: 0}

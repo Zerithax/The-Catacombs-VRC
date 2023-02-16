@@ -411,7 +411,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 562882195274937167}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8842709015042156077
 MeshFilter:
@@ -496,13 +496,17 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _udonSharpBackingUdonBehaviour: {fileID: 2944466384320349522}
+  liquidDropPrefab: {fileID: 1447690598607725664, guid: 0bedf82cc1bea9b408a21322e2d88ed0,
+    type: 3}
+  containerRend: {fileID: 5262290912052490089}
+  containerSpout: {fileID: 7693701297070285681}
   maxLiquidParts: 3
   curLiquidParts: 0
-  containerRend: {fileID: 5262290912052490089}
+  timeToPour: 0.5
   liquidClippingPlane: {fileID: 438393162769414752}
   planeNormal: {x: 0, y: 0, z: 0}
   planePosition: {x: 0, y: 0, z: 0}
-  clippingPlaneMaxHeight: 0.13755
+  clippingPlaneMaxHeight: 0.1329
   clippingPlaneMinHeight: 0.0312
   containedLiquids: 
   containedBerries: 
@@ -565,6 +569,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 438393162769414754}
+  - {fileID: 3465905212410637042}
   - {fileID: 6133288144358668210}
   - {fileID: 545878473869197382}
   m_Father: {fileID: 0}
@@ -840,6 +845,45 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 0
   m_Mesh: {fileID: 2686437872939465383, guid: b854a5cef2d4afb469d894e8c0e27e3b, type: 3}
+--- !u!1 &7693701297070285681
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3465905212410637042}
+  - component: {fileID: 6332194417511429516}
+  m_Layer: 0
+  m_Name: Mortar Spout
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3465905212410637042
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7693701297070285681}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 562882195274937167}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &6332194417511429516
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7693701297070285681}
+  m_Mesh: {fileID: 6503912814959553850, guid: b854a5cef2d4afb469d894e8c0e27e3b, type: 3}
 --- !u!1 &8091182853807393564
 GameObject:
   m_ObjectHideFlags: 0
@@ -934,7 +978,7 @@ Transform:
   - {fileID: 319893876499977504}
   - {fileID: 411891702118118652}
   m_Father: {fileID: 562882195274937167}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9052419878074556271
 GameObject:
@@ -1030,7 +1074,7 @@ PrefabInstance:
     - target: {fileID: 2818270028085215127, guid: 00c794e9084bd514c83aa5198ce18f42,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.13755
+      value: 0.125
       objectReference: {fileID: 0}
     - target: {fileID: 2818270028085215127, guid: 00c794e9084bd514c83aa5198ce18f42,
         type: 3}
@@ -1074,15 +1118,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00c794e9084bd514c83aa5198ce18f42, type: 3}
---- !u!23 &438393162769414752 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 2818270028085215125, guid: 00c794e9084bd514c83aa5198ce18f42,
-    type: 3}
-  m_PrefabInstance: {fileID: 2380713063330514421}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &438393162769414754 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2818270028085215127, guid: 00c794e9084bd514c83aa5198ce18f42,
+    type: 3}
+  m_PrefabInstance: {fileID: 2380713063330514421}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &438393162769414752 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2818270028085215125, guid: 00c794e9084bd514c83aa5198ce18f42,
     type: 3}
   m_PrefabInstance: {fileID: 2380713063330514421}
   m_PrefabAsset: {fileID: 0}

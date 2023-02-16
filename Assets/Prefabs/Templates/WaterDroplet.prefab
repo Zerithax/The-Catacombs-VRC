@@ -248,6 +248,7 @@ MonoBehaviour:
   targetSpeed: 0.75
   momentumScale: 1.08
   trailRend: {fileID: 7077597631202213410}
+  containerSpawnedFrom: {fileID: 0}
 --- !u!114 &8016258200088921986
 MonoBehaviour:
   m_ObjectHideFlags: 0
