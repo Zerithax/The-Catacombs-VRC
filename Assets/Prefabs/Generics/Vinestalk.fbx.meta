@@ -1,12 +1,14 @@
 fileFormatVersion: 2
-guid: 3425e2123769ede4e88a6a6aaf3a48b4
+guid: e171873afba96324f99ecdbcbb6d5fef
 ModelImporter:
   serializedVersion: 19301
-  internalIDToNameTable:
+  internalIDToNameTable: []
+  externalObjects:
   - first:
-      74: -623603649343465320
-    second: Scene
-  externalObjects: {}
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Berry Leaf
+    second: {fileID: 2100000, guid: 630457b8951055847a90222d6174c84b, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -85,7 +87,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: 
+    rootMotionBoneName: Sprout Stage
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
@@ -93,7 +95,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
