@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 055ce9bfd4f47f440adde5714a300157, type: 3}
+  m_Name: Arieberry
+  m_EditorClassIdentifier: 
+  elementTypeId: 2
+  elementColor: {r: 0.3584906, g: 0.01183696, b: 0.15319528, a: 1}
+  canDespawn: 1
+  killVelocity: 10
+  despawnTime: 60
+  canCreatePrecipitate: 1
+  elementPrecipitateType: 1
+  ElementPrecipitatePrefab: {fileID: 168277037723220031, guid: 30fe8e48d081c624181abc1f666640c4,
+    type: 3}
+  shrinkSpeed: 0.001
+  elementPrecipitateAmount: 2
+  scaleVelocity: 0
+  targetVelocity: 0
+  momentumScale: 1.01
+  canCreateSpawner: 1
+  ElementSpawnerPrefab: {fileID: 3574748055319837922, guid: f6046cee4dad79f4e92f77f667692b1a,
+    type: 3}
+  elementSpawnerGrowTime: 180
+  BaseElementPrefab: {fileID: 1871503638817367044, guid: 274468afc980c6849815840892b7ba40,
+    type: 3}
+  elementSpawnTime: 30
+  seedGrowChance: 0.2

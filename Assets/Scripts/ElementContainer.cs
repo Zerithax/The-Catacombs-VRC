@@ -3,14 +3,13 @@ using UnityEngine;
 using System;
 using VRC.SDKBase;
 using VRC.Udon;
-using UnityEditorInternal;
-using UnityEngine.Rendering.PostProcessing;
+using Argus.ItemSystem;
 
-namespace Catacombs.Base
+namespace Catacombs.ElementSystem.Runtime
 {
-    //Containers are any objects that will be able to hold other items in them
-    //Contanable items currently only consists of Dusts and Liquids, but may be expanded upon as needed
-    public class Container : UdonSharpBehaviour
+    //Element Containers are any objects that will be able to hold RuntimeElements in them (if marked Containable)
+    //Current Elements/Drops: Berries, Dusts, Liquids
+    public class ElementContainer : UdonSharpBehaviour
     {
         [SerializeField] private GameObject liquidDropPrefab;
         [SerializeField] private Renderer containerRend;
@@ -29,7 +28,6 @@ namespace Catacombs.Base
         private float pourTimer;
 
 
-
         [Header("Clipping Plane")]
         [SerializeField] private Renderer liquidClippingPlane;
         public Vector3 planeNormal;
@@ -39,16 +37,17 @@ namespace Catacombs.Base
 
 
         [Header("Recipe Containers")]
-        [SerializeField] private LiquidTypes[] containedLiquids = new LiquidTypes[0];
-        [SerializeField] private BerryTypes[] containedBerries = new BerryTypes[0];
+        [SerializeField] private bool canMixElements = true;
+        [SerializeField] private ElementTypes[] containedLiquids = new ElementTypes[0];
+        [SerializeField] private ElementTypes[] containedElements = new ElementTypes[0];
 
         void Start()
         {
             if (containerRend == null) containerRend = GetComponent<Renderer>();
             containerSpoutFilter = containerSpout.GetComponent<MeshFilter>();
 
-            containedLiquids = new LiquidTypes[maxLiquidParts];
-            containedBerries = new BerryTypes[maxLiquidParts];
+            containedLiquids = new ElementTypes[maxLiquidParts];
+            containedElements = new ElementTypes[maxLiquidParts];
 
             Transform planeTransform = liquidClippingPlane.transform;
             if (planeTransform.localPosition.y != 0) clippingPlaneMaxHeight = planeTransform.localPosition.y;
@@ -93,56 +92,48 @@ namespace Catacombs.Base
                     Debug.Log($"[{name}] has tipped enough to pour!");
                     pourTimer = 0;
 
-
-                    GameObject newDrop = Instantiate(liquidDropPrefab);
-                    Color liquidColor = containerRend.material.GetColor("_CrossColor");
-
-                    //Loop through all vertices of spout mesh, then position berry at the lowest one!
-                    Vector3[] spoutVertices = containerSpoutFilter.mesh.vertices;
+                    //lowestVert, the literal lowest vertex of the spout mesh, indicates which way the container is tilted
                     Vector3 lowestVert = new Vector3(0, Mathf.Infinity, 0);
 
-                    foreach (Vector3 vert in spoutVertices)
+                    foreach (Vector3 vert in containerSpoutFilter.mesh.vertices)
                     {
                         Vector3 vertGlobal = transform.TransformPoint(vert);
                         if (vertGlobal.y < lowestVert.y) lowestVert = vertGlobal;
                     }
 
+                    //After getting verts from Mesh Filter the actual obj instance's transform must be manually added
                     lowestVert += containerSpoutFilter.transform.localPosition;
-                    newDrop.transform.position = lowestVert;
 
-                    newDrop.name = $"{transform.parent.name} Drop";
-                    Debug.Log($"Spawned {newDrop.name}");
+                    Instantiate(liquidDropPrefab, lowestVert, Quaternion.identity, transform.parent);
 
-                    LiquidDrop newDropComp = newDrop.GetComponent<LiquidDrop>();
-                    newDropComp.containerSpawnedFrom = gameObject;
-                    newDropComp.liquidType = containedLiquids[0];
-
-                    newDrop.GetComponent<Renderer>().material.color = liquidColor;
-                    newDrop.GetComponent<TrailRenderer>().material.SetColor("_EmissionColor", liquidColor);                 
-
-                    curLiquidParts--;
-
-                    //If we still have any liquid, lower the clipping plane by 1, otherwise move it away and stop updating until needed
-                    if (curLiquidParts > 0) liquidClippingPlane.transform.localPosition = new Vector3(0, (clippingPlaneMaxHeight - clippingPlaneMinHeight) / maxLiquidParts * curLiquidParts + clippingPlaneMinHeight, 0);
-                    else
-                    {
-                        liquidClippingPlane.transform.position = new Vector3(liquidClippingPlane.transform.position.x, transform.position.y - 1, liquidClippingPlane.transform.position.z);
-
-                        //Manually call to make sure the system recognizes it's moved away
-                        UpdateShaderProperties();
-                    }
-
-                    for (int i = containedLiquids.Length - 1; i > 0; i--)
-                    {
-                        if (containedLiquids[i] != LiquidTypes.None)
-                        {
-                            containedLiquids[i] = LiquidTypes.None;
-                            break;
-                        }
-                    }
+                    DrainLiquid();
                 }
             }
             else pourTimer = 0;
+        }
+
+        private void DrainLiquid()
+        {
+            curLiquidParts--;
+
+            //If we still have any liquid, lower the clipping plane by 1, otherwise move it away and stop updating until needed
+            if (curLiquidParts > 0) liquidClippingPlane.transform.localPosition = new Vector3(0, (clippingPlaneMaxHeight - clippingPlaneMinHeight) / maxLiquidParts * curLiquidParts + clippingPlaneMinHeight, 0);
+            else
+            {
+                liquidClippingPlane.transform.position = new Vector3(liquidClippingPlane.transform.position.x, transform.position.y - 1, liquidClippingPlane.transform.position.z);
+
+                //Manually call to make sure the system recognizes it's moved away
+                UpdateShaderProperties();
+            }
+
+            for (int i = containedLiquids.Length - 1; i > 0; i--)
+            {
+                if (containedLiquids[i] != ElementTypes.None)
+                {
+                    containedLiquids[i] = ElementTypes.None;
+                    break;
+                }
+            }
         }
 
         private void UpdateShaderProperties()
@@ -166,10 +157,10 @@ namespace Catacombs.Base
             //If a Water object enters the collider...
             if (other.gameObject.layer == 4)
             {
-                LiquidDrop liquidComp = other.GetComponent<LiquidDrop>();
+                ElementPrecipitate elementPrecipitate = other.GetComponent<ElementPrecipitate>();
 
                 //Reject liquid drops that came from us!
-                if (liquidComp.containerSpawnedFrom == gameObject) return;
+                //if (elementPrecipitate.containerSpawnedFrom == gameObject) return;
 
                 if (curLiquidParts < maxLiquidParts)
                 {
@@ -186,7 +177,7 @@ namespace Catacombs.Base
                         containerRend.material.SetColor("_Color", curLiquidColor);
                         liquidClippingPlane.material.color = curLiquidColor;
                     }
-                    else if (liquidComp.liquidType != containedLiquids[0]) return;
+                    else if (elementPrecipitate.elementTypeId != containedLiquids[0]) return;
 
                     curLiquidParts++;
 
@@ -194,16 +185,17 @@ namespace Catacombs.Base
                     {
                         if (containedLiquids[i] == 0)
                         {
-                            containedLiquids[i] = liquidComp.liquidType;
+                            containedLiquids[i] = elementPrecipitate.elementTypeId;
                             break;
                         }
                     }
                 }
 
                 //ALWAYS destroy liquids that enter containers, even if already full
-                liquidComp.itemRend.enabled = false;
-                liquidComp.rb.isKinematic = true;
-                liquidComp.SendCustomEventDelayedSeconds("DelayedKill", 1);
+                elementPrecipitate.elementRenderer.enabled = false;
+                elementPrecipitate.rb.isKinematic = true;
+                elementPrecipitate.GetComponent<Collider>().enabled = false;
+                elementPrecipitate.SendCustomEventDelayedSeconds(nameof(ElementPrecipitate._DelayedKill), 1);
             }
         }
 
@@ -213,8 +205,8 @@ namespace Catacombs.Base
             if (other.gameObject.layer == 24)
             {
                 //We only currently care if a Berry Dust item is in the container
-                BerryDust dustComp = other.GetComponent<BerryDust>();
-                if (dustComp == null) return;
+                ElementPrecipitate elementPrecipitate = other.GetComponent<ElementPrecipitate>();
+                if (elementPrecipitate == null) return;
 
                 //If the container is at least a third full of liquid, it can absorb Dust!
                 if (curLiquidParts >= (float)maxLiquidParts / 3)
@@ -227,12 +219,12 @@ namespace Catacombs.Base
                         dustParts++;
                         for (int i = 0; i < containedLiquids.Length; i++)
                         {
-                            if (containedBerries[i] == 0)
+                            if (containedElements[i] == 0)
                             {
-                                containedBerries[i] = dustComp.berryDustType;
+                                containedElements[i] = elementPrecipitate.elementTypeId;
 
                                 //Each time a berry is added to the recipe list, divide total color by the average of all colors added
-                                curLiquidColor += dustComp.berryColor;
+                                curLiquidColor += elementPrecipitate.elementColor;
                                 containerRend.material.SetColor("_CrossColor", curLiquidColor / totalColors);
                                 containerRend.material.SetColor("_Color", curLiquidColor / totalColors);
 

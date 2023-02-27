@@ -1,11 +1,13 @@
-﻿using UdonSharp;
+﻿using Argus.ItemSystem;
+using UdonSharp;
 using UnityEngine;
 
-namespace Catacombs.Base
+namespace Catacombs.ElementSystem.Runtime
 {
     public class LiquidSpring : UdonSharpBehaviour
     {
-        [SerializeField] private GameObject liquidToSpawn;
+        [SerializeField] private ElementTypeManager elementTypeManager;
+        [SerializeField] private ElementTypes elementToSpawn;
         [SerializeField] private int spawnCountdown;
 
         private float timer;
@@ -16,9 +18,12 @@ namespace Catacombs.Base
 
             if (timer > spawnCountdown)
             {
-                GameObject newDroplet = Instantiate(liquidToSpawn, transform.position, Quaternion.identity, transform);
-                newDroplet.transform.position = transform.position;
                 timer = 0;
+                ElementPrecipitate newDroplet = Instantiate(elementTypeManager.elementTypeData[(int)elementToSpawn].ElementPrecipitatePrefab, transform.position, Quaternion.identity, transform).GetComponent<ElementPrecipitate>();
+
+                newDroplet.elementTypeManager = elementTypeManager;
+                newDroplet.elementTypeId = elementToSpawn;
+
             }
         }
     }

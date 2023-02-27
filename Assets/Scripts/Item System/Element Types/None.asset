@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 055ce9bfd4f47f440adde5714a300157, type: 3}
+  m_Name: None
+  m_EditorClassIdentifier: 
+  elementTypeId: 0
+  elementColor: {r: 1, g: 0, b: 0.77993584, a: 1}
+  canDespawn: 1
+  killVelocity: 20
+  despawnTime: 5
+  canCreatePrecipitate: 1
+  elementPrecipitateType: 1
+  ElementPrecipitatePrefab: {fileID: 168277037723220031, guid: 30fe8e48d081c624181abc1f666640c4,
+    type: 3}
+  shrinkSpeed: 0.001
+  elementPrecipitateAmount: 10
+  scaleVelocity: 1
+  targetVelocity: 5
+  momentumScale: 1.01
+  canCreateSpawner: 0
+  ElementSpawnerPrefab: {fileID: 0}
+  elementSpawnerGrowTime: 0
+  BaseElementPrefab: {fileID: 0}
+  elementSpawnTime: 0
