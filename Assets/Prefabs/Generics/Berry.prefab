@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 4510620284303573068}
   - component: {fileID: 2748595220727213868}
   m_Layer: 24
-  m_Name: BerryScript
+  m_Name: ElementScript
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -283,6 +283,7 @@ MonoBehaviour:
   elementColor: {r: 0, g: 0, b: 0, a: 0}
   parentObject: {fileID: 1871503638817367044}
   rb: {fileID: 713857383010192886}
+  physicsCollider: {fileID: 3993374336005587834}
   itemMass: 0
   isColliding: 0
   isGrounded: 0
@@ -299,9 +300,10 @@ MonoBehaviour:
   precipitateType: 0
   shrinkSpeed: 0.001
   parentElementSpawner: {fileID: 0}
+  seedGrowChance: 0
   elementSpawnerPrefab: {fileID: 0}
   canCreateSpawners: 0
-  berryLeaves: {fileID: 7745967128787703059}
+  elementLeaves: {fileID: 7745967128787703059}
   seedPodPrefab: {fileID: 6647423906080684150, guid: 32b1811c43c122d45a586f72ec67dd1b,
     type: 3}
 --- !u!114 &2748595220727213868

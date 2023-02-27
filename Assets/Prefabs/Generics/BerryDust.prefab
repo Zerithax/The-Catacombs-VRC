@@ -139,6 +139,7 @@ MonoBehaviour:
   elementColor: {r: 0, g: 0, b: 0, a: 0}
   parentObject: {fileID: 168277037723220031}
   rb: {fileID: 4142087598570756353}
+  physicsCollider: {fileID: 9113429645519561472}
   itemMass: 0
   isColliding: 0
   isGrounded: 0

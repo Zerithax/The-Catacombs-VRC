@@ -27,7 +27,7 @@ MonoBehaviour:
   targetVelocity: 0.5
   momentumScale: 1.05
   canCreateSpawner: 1
-  ElementSpawnerPrefab: {fileID: 3574748055319837922, guid: f6046cee4dad79f4e92f77f667692b1a,
+  ElementSpawnerPrefab: {fileID: 2800183236413200083, guid: 6f1bed9474956e14e8982a4824fff354,
     type: 3}
   elementSpawnerGrowTime: 30
   BaseElementPrefab: {fileID: 1871503638817367044, guid: 274468afc980c6849815840892b7ba40,

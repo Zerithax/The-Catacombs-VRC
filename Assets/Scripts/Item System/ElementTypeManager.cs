@@ -11,17 +11,6 @@ using Argus.ItemSystem.Editor;
 
 namespace Argus.ItemSystem
 {
-    public enum ElementTypes
-    {
-        None = 0,
-        Linkberry = 1,
-        Arieberry = 2,
-        Blueberry = 3,
-        Water = 4,
-        Oil = 5,
-        TestType = 6
-    }
-
     public class ElementTypeManager : UdonSharpBehaviour
     {
         //A list of instantiated ElementData objects containing each ElementType ScriptableObject's Element details

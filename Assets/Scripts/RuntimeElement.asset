@@ -131,7 +131,7 @@ MonoBehaviour:
       Data: 8|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: Argus.ItemSystem.ElementTypes, Assembly-CSharp
+      Data: Catacombs.ElementSystem.Runtime.ElementTypes, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 

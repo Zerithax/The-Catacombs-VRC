@@ -7,6 +7,16 @@ using VRC.Udon;
 
 namespace Catacombs.ElementSystem.Runtime
 {
+    public enum ElementTypes
+    {
+        None = 0,
+        Linkberry = 1,
+        Arieberry = 2,
+        Blueberry = 3,
+        Water = 4,
+        Oil = 5
+    }
+
     public class RuntimeElement : UdonSharpBehaviour
     {
         //These should already be set for pre-placed Element Prefabs
@@ -60,7 +70,7 @@ namespace Catacombs.ElementSystem.Runtime
 
             AdditionalStart();
 
-            if (elementTypeManager != null) PullElementType();
+            if (elementTypeManager.elementTypeData[0] != null) PullElementType();
             else SendCustomEventDelayedFrames(nameof(PullElementType), 5);
         }
 

@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Catacombs.ElementSystem.Runtime
 {
+    //TODO: Rewrite this as ElementDispenser, the script that manages dispensing Elements (optionally from an inventory, for future Element Storage Containers)
+    //ElementDispenser should have a toggle to decide whether or not it dispenses BaseElements or an Elements' Precipitate (like a LiquidSpring)
+
     public class LiquidSpring : UdonSharpBehaviour
     {
         [SerializeField] private ElementTypeManager elementTypeManager;

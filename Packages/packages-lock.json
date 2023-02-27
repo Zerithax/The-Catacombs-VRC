@@ -192,6 +192,12 @@
         "com.unity.textmeshpro": "2.1.6"
       }
     },
+    "dev.onevr.vrworldtoolkit": {
+      "version": "file:dev.onevr.vrworldtoolkit",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,
