@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8889365963102612516}
   - component: {fileID: 360556659406004892}
   - component: {fileID: 8016258200088921986}
-  m_Layer: 4
+  m_Layer: 24
   m_Name: LiquidDroplet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,7 +209,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &360556659406004892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,22 +237,25 @@ MonoBehaviour:
   elementColor: {r: 0, g: 0, b: 0, a: 0}
   parentObject: {fileID: 1447690598607725664}
   rb: {fileID: 8889365963102612516}
+  physicsCollider: {fileID: 0}
   itemMass: 0
-  isColliding: 0
+  isCollidingSurface: 0
   isGrounded: 0
   canDespawn: 1
   despawnTime: 60
   startTimeout: 0
-  timer: 0
   killVelocity: Infinity
+  isContained: 0
   hideWhenContained: 1
   elementRenderer: {fileID: 1087556216202200501}
-  isContained: 0
+  parentContainer: {fileID: 0}
   elementPrecipitateType: 0
-  minimumSpeed: 1
-  targetSpeed: 0
-  momentumScale: 1.01
+  minimumVelocity: 0
+  maximumVelocity: Infinity
+  velocityMultiplier: 0.01
   trailRend: {fileID: 7077597631202213410}
+  precipitateCreatesSpawner: 0
+  SpawnerPrefab: {fileID: 0}
 --- !u!114 &8016258200088921986
 MonoBehaviour:
   m_ObjectHideFlags: 0

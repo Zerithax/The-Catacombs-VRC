@@ -205,27 +205,33 @@ MonoBehaviour:
   rb: {fileID: 5007192523341276273}
   physicsCollider: {fileID: 315229263322363875}
   itemMass: 0
-  isColliding: 0
+  isCollidingSurface: 0
   isGrounded: 0
   canDespawn: 0
   despawnTime: 60
   startTimeout: 0
-  timer: 0
   killVelocity: Infinity
+  isContained: 0
   hideWhenContained: 0
   elementRenderer: {fileID: 0}
-  isContained: 0
-  ElementPrefabToSpawn: {fileID: 0}
-  elementSpawnerGrowthPeriod: 0
-  elementSpawnTime: 0
+  parentContainer: {fileID: 0}
+  growthPeriod: 0
   matured: 0
   parentSpawnPlot: {fileID: 0}
-  spawnerAnim: {fileID: 9053717121359344131}
+  grownObjectAnim: {fileID: 0}
+  growthStages:
+  - GrowthStageOne
+  - GrowthStageTwo
+  isRooted: 1
+  isCollidingGrowthPlot: 0
+  collidingGrowthPlot: {fileID: 0}
+  elementSpawnTime: 0
   elementSpawnPoints:
   - {fileID: 1694356574985493781}
   - {fileID: 1791373055456490875}
   - {fileID: 3466114393097367733}
   elementsSpawned: []
+  roomToSpawnElements: 1
 --- !u!114 &1675393744298976040
 MonoBehaviour:
   m_ObjectHideFlags: 0
