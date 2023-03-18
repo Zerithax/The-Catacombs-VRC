@@ -1,6 +1,7 @@
 ﻿using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;
+using Catacombs.Base;
 
 public class ElevatorLift : UdonSharpBehaviour
 {
@@ -14,6 +15,8 @@ public class ElevatorLift : UdonSharpBehaviour
     [SerializeField] private float playerResponseDelay = 3f;
     [UdonSynced] private bool elevatorLerping;
     [UdonSynced] private bool reachedSafetyNet;
+
+    [SerializeField] private bool editorOverride;
 
     [Header("Station")]
     [SerializeField] private bool useStation;
@@ -126,6 +129,8 @@ public class ElevatorLift : UdonSharpBehaviour
                 liftStation.UseStation(playerTracker.localPlayer);
                 playerTracker.localPlayer.TeleportTo(enterPos, enterRot);
             }
+
+            if (editorOverride) playerTracker.localPlayer.TeleportTo(new Vector3(transform.position.x, liftMinHeight, transform.position.z) + transform.forward, transform.rotation);
         }
     }
 
