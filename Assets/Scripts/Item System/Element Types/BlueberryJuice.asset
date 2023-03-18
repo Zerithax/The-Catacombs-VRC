@@ -10,27 +10,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 055ce9bfd4f47f440adde5714a300157, type: 3}
-  m_Name: Blueberry
+  m_Name: BlueberryJuice
   m_EditorClassIdentifier: 
-  elementTypeId: 3
-  elementColor: {r: 0.19607843, g: 0.1764706, b: 0.5019608, a: 1}
+  elementTypeId: 6
+  elementColor: {r: 0.1499305, g: 0.137362, b: 0.346, a: 1}
   canDespawn: 1
   despawnTime: 60
-  killVelocity: 10
-  canCreatePrecipitate: 1
+  killVelocity: Infinity
+  canCreatePrecipitate: 0
   elementPrecipitateType: 2
   ElementPrecipitatePrefab: {fileID: 1447690598607725664, guid: 0bedf82cc1bea9b408a21322e2d88ed0,
     type: 3}
   shrinkSpeed: 0.001
   elementPrecipitateAmount: 3
-  minimumVelocity: 0.1
-  maximumVelocity: 0.5
+  minimumVelocity: 0
+  maximumVelocity: Infinity
   velocityMultiplier: 0.01
-  canCreateSpawner: 1
-  seedGrowChance: 10
-  elementSpawnerGrowTime: 10
-  elementSpawnTime: 1
-  ElementSpawnerPrefab: {fileID: 2800183236413200083, guid: 6f1bed9474956e14e8982a4824fff354,
-    type: 3}
-  BaseElementPrefab: {fileID: 1871503638817367044, guid: 274468afc980c6849815840892b7ba40,
-    type: 3}
+  canCreateSpawner: 0
+  seedGrowChance: 0
+  elementSpawnerGrowTime: 0
+  elementSpawnTime: 0
+  ElementSpawnerPrefab: {fileID: 0}
+  BaseElementPrefab: {fileID: 0}
+  elementIsPotion: 1
+  elementEffectPrimingTrigger: 1
+  effectPrimingThreshold: 100
+  effectUseTrigger: 1
+  ingestedEffect: 1
+  ingestedEffectStrength: 3
+  ingestedEffectDuration: 30
+  GrownObjectPrefab: {fileID: 0}
+  growTime: 0

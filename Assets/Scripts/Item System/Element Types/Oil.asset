@@ -23,10 +23,12 @@ MonoBehaviour:
     type: 3}
   shrinkSpeed: 0.001
   elementPrecipitateAmount: 10
-  scaleVelocity: 0
-  targetVelocity: 0
-  momentumScale: 1.01
+  minimumVelocity: 0.1
+  maximumVelocity: 0.4
+  velocityMultiplier: 0.01
   canCreateSpawner: 0
   ElementSpawnerPrefab: {fileID: 0}
   elementSpawnerGrowTime: 0
+  BaseElementPrefab: {fileID: 0}
   elementSpawnTime: 0
+  seedGrowChance: 0

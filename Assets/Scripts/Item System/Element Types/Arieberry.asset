@@ -23,9 +23,9 @@ MonoBehaviour:
     type: 3}
   shrinkSpeed: 0.001
   elementPrecipitateAmount: 2
-  scaleVelocity: 0
-  targetVelocity: 0
-  momentumScale: 1.01
+  minimumVelocity: 0
+  maximumVelocity: Infinity
+  velocityMultiplier: 0.01
   canCreateSpawner: 1
   ElementSpawnerPrefab: {fileID: 2800183236413200083, guid: 6f1bed9474956e14e8982a4824fff354,
     type: 3}

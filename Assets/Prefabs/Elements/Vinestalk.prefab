@@ -215,14 +215,20 @@ MonoBehaviour:
   hideWhenContained: 0
   elementRenderer: {fileID: 0}
   parentContainer: {fileID: 0}
-  growthPeriod: 0
-  matured: 0
-  parentSpawnPlot: {fileID: 0}
+  isPotion: 0
+  primingTrigger: 0
+  primingThreshold: 0
+  useTrigger: 0
+  hideDebugsOverride: 0
   grownObjectAnim: {fileID: 0}
-  growthStages:
-  - GrowthStageOne
-  - GrowthStageTwo
+  parentSpawnPlot: {fileID: 0}
   isRooted: 1
+  growthPeriod: 0
+  curGrowthTime: 0
+  growthStageStateNames:
+  - GrowthStage1
+  - GrowthStage2
+  matured: 0
   isCollidingGrowthPlot: 0
   collidingGrowthPlot: {fileID: 0}
   elementSpawnTime: 0

@@ -15,6 +15,9 @@ namespace Argus.ItemSystem.Editor
         {
             AllItems = null;
             GetAllElementTypes();
+
+            AllPotions = null;
+            GetAllPotionRecipes();
         }
 
         private static List<ElementType> AllItems;
@@ -27,6 +30,18 @@ namespace Argus.ItemSystem.Editor
             AllItems = assets.Select(AssetDatabase.GUIDToAssetPath).Select(AssetDatabase.LoadAssetAtPath<ElementType>).OrderBy(i => i.elementTypeId).ToList();
 
             return AllItems;
+        }
+
+        private static List<PotionRecipe> AllPotions;
+
+        public static List<PotionRecipe> GetAllPotionRecipes()
+        {
+            if (AllPotions != null) return AllPotions.OrderBy(i => i.potionRecipeId).ToList();
+
+            string[] assets = AssetDatabase.FindAssets($"t:{nameof(PotionRecipe)}");
+            AllPotions = assets.Select(AssetDatabase.GUIDToAssetPath).Select(AssetDatabase.LoadAssetAtPath<PotionRecipe>).OrderBy(i => i.potionRecipeId).ToList();
+
+            return AllPotions;
         }
     }
 }
