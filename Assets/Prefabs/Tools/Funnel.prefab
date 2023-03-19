@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5037929778310767828}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 1952649149840466951}
   - component: {fileID: 3074695797410056354}
   - component: {fileID: 4031042353906598983}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: FunnelCollider2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 8344542405194212499}
   - component: {fileID: 1593404259253255869}
   - component: {fileID: 2451578253510882069}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: FunnelCollider4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +153,7 @@ GameObject:
   - component: {fileID: 6720542663674304119}
   - component: {fileID: 4493180534528446660}
   - component: {fileID: 3384092453469391880}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: FunnelCollider1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 8483070431154079195}
   - component: {fileID: 2898152181907186952}
   - component: {fileID: 4644599882308863286}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: FunnelCollider3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

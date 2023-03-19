@@ -124,7 +124,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.75
+  m_Time: 0.375
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -232,15 +232,15 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _udonSharpBackingUdonBehaviour: {fileID: 8016258200088921986}
+  parentObject: {fileID: 1447690598607725664}
+  rb: {fileID: 8889365963102612516}
+  physicsCollider: {fileID: 5276813846137720445}
+  isCollidingSurface: 0
+  isGrounded: 0
+  itemMass: 0
   elementTypeManager: {fileID: 0}
   elementTypeId: 0
   elementColor: {r: 0, g: 0, b: 0, a: 0}
-  parentObject: {fileID: 1447690598607725664}
-  rb: {fileID: 8889365963102612516}
-  physicsCollider: {fileID: 0}
-  itemMass: 0
-  isCollidingSurface: 0
-  isGrounded: 0
   canDespawn: 1
   despawnTime: 60
   startTimeout: 0
@@ -249,13 +249,22 @@ MonoBehaviour:
   hideWhenContained: 1
   elementRenderer: {fileID: 1087556216202200501}
   parentContainer: {fileID: 0}
+  hideDebugsOverride: 0
   elementPrecipitateType: 0
   minimumVelocity: 0
   maximumVelocity: Infinity
   velocityMultiplier: 0.01
   trailRend: {fileID: 7077597631202213410}
-  precipitateCreatesSpawner: 0
-  SpawnerPrefab: {fileID: 0}
+  isPotion: 0
+  precipitateIsPrimed: 0
+  primingTrigger: 0
+  primingThreshold: 0
+  useTrigger: 0
+  ingestedEffect: 0
+  ingestedEffectStrength: 0
+  ingestedEffectDuration: 0
+  GrownObjectPrefab: {fileID: 0}
+  growTime: 0
 --- !u!114 &8016258200088921986
 MonoBehaviour:
   m_ObjectHideFlags: 0

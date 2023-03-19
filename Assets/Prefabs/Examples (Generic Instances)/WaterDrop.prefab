@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 7077597631202213410}
   - component: {fileID: 5276813846137720445}
   - component: {fileID: 8889365963102612516}
-  - component: {fileID: 535009479738261884}
-  - component: {fileID: 8016258200088921986}
+  - component: {fileID: 5790755764520350318}
+  - component: {fileID: 243225282631357570}
   m_Layer: 4
   m_Name: WaterDrop
   m_TagString: Untagged
@@ -209,8 +209,8 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &535009479738261884
+  m_CollisionDetection: 3
+--- !u!114 &5790755764520350318
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -219,7 +219,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1447690598607725664}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8031d3efdab1ddb4eb18ce9c6319f253, type: 3}
+  m_Script: {fileID: 11500000, guid: 87a14830924e656429693a744c0cc7fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
@@ -231,26 +231,36 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  _udonSharpBackingUdonBehaviour: {fileID: 8016258200088921986}
+  _udonSharpBackingUdonBehaviour: {fileID: 243225282631357570}
   parentObject: {fileID: 1447690598607725664}
   rb: {fileID: 8889365963102612516}
+  physicsCollider: {fileID: 5276813846137720445}
   itemMass: 0
-  isColliding: 0
+  isCollidingSurface: 0
   isGrounded: 0
-  despawnTime: 5
+  elementTypeManager: {fileID: 0}
+  elementTypeId: 0
+  elementColor: {r: 0, g: 0, b: 0, a: 0}
+  canDespawn: 1
+  despawnTime: 60
   startTimeout: 0
-  timer: 0
   killVelocity: Infinity
-  hideWhenContained: 1
-  itemRend: {fileID: 1087556216202200501}
   isContained: 0
-  liquidType: 1
-  liquidColor: {r: 0.30588236, g: 0.6666667, b: 0.972549, a: 1}
-  targetSpeed: 0.75
-  momentumScale: 1.08
-  trailRend: {fileID: 7077597631202213410}
-  containerSpawnedFrom: {fileID: 0}
---- !u!114 &8016258200088921986
+  hideWhenContained: 0
+  elementRenderer: {fileID: 0}
+  parentContainer: {fileID: 0}
+  hideDebugsOverride: 0
+  elementPrecipitateType: 0
+  minimumVelocity: 0
+  maximumVelocity: Infinity
+  velocityMultiplier: 0.01
+  trailRend: {fileID: 0}
+  isPotion: 0
+  precipitateIsPrimed: 0
+  primingTrigger: 0
+  primingThreshold: 0
+  useTrigger: 0
+--- !u!114 &243225282631357570
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -270,9 +280,9 @@ MonoBehaviour:
   AllowCollisionOwnershipTransfer: 0
   Reliable: 0
   _syncMethod: 2
-  serializedProgramAsset: {fileID: 11400000, guid: 9828c13bb4ea2514598dbaef94c1bbf6,
+  serializedProgramAsset: {fileID: 11400000, guid: 0d334a0a59b3c2e48b05f616b07a550b,
     type: 2}
-  programSource: {fileID: 11400000, guid: 7c4657ff41c565c4ca89c4e505c06b69, type: 2}
+  programSource: {fileID: 11400000, guid: aa64d0a5a57830444b4c4932c782d627, type: 2}
   serializedPublicVariablesBytesString: Ai8AAAAAATIAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAFQAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AAAAAAAYBAAAAAAAAACcBBAAAAHQAeQBwAGUAAWgAAABTAHkAcwB0AGUAbQAuAEMAbwBsAGwAZQBjAHQAaQBvAG4AcwAuAEcAZQBuAGUAcgBpAGMALgBMAGkAcwB0AGAAMQBbAFsAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4ALgBJAG4AdABlAHIAZgBhAGMAZQBzAC4ASQBVAGQAbwBuAFYAYQByAGkAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AXQBdACwAIABtAHMAYwBvAHIAbABpAGIAAQEJAAAAVgBhAHIAaQBhAGIAbABlAHMALwEAAAABaAAAAFMAeQBzAHQAZQBtAC4AQwBvAGwAbABlAGMAdABpAG8AbgBzAC4ARwBlAG4AZQByAGkAYwAuAEwAaQBzAHQAYAAxAFsAWwBWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAEkAbgB0AGUAcgBmAGEAYwBlAHMALgBJAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlACwAIABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgBdAF0ALAAgAG0AcwBjAG8AcgBsAGkAYgABAAAABgEAAAAAAAAAAi8CAAAAAUkAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAGAAMQBbAFsAUwB5AHMAdABlAG0ALgBJAG4AdAAzADIALAAgAG0AcwBjAG8AcgBsAGkAYgBdAF0ALAAgAFYAUgBDAC4AVQBkAG8AbgAuAEMAbwBtAG0AbwBuAAIAAAAGAgAAAAAAAAAnAQQAAAB0AHkAcABlAAEXAAAAUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwAsACAAbQBzAGMAbwByAGwAaQBiACcBCgAAAFMAeQBtAGIAbwBsAE4AYQBtAGUAAR8AAABfAF8AXwBVAGQAbwBuAFMAaABhAHIAcABCAGUAaABhAHYAaQBvAHUAcgBWAGUAcgBzAGkAbwBuAF8AXwBfACcBBAAAAHQAeQBwAGUAARYAAABTAHkAcwB0AGUAbQAuAEkAbgB0ADMAMgAsACAAbQBzAGMAbwByAGwAaQBiABcBBQAAAFYAYQBsAHUAZQACAAAABwUHBQcF
   publicVariablesUnityEngineObjects: []
   publicVariablesSerializationDataFormat: 0

@@ -1,5 +1,7 @@
-﻿
-using Argus.ItemSystem;
+﻿using Argus.ItemSystem;
+using Argus.ItemSystem.Editor;
+using System.ComponentModel;
+using System.Linq;
 using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;
@@ -7,48 +9,39 @@ using VRC.Udon;
 
 namespace Catacombs.ElementSystem.Runtime
 {
-    public enum ElementTypes
-    {
-        None = 0,
-        Linkberry = 1,
-        Arieberry = 2,
-        Blueberry = 3,
-        Water = 4,
-        Oil = 5
-    }
-
     public class RuntimeElement : UdonSharpBehaviour
     {
-        //These should already be set for pre-placed Element Prefabs
-        [Header("Element Type Settings")]
-        public ElementTypeManager elementTypeManager;
-        public ElementTypes elementTypeId;
-        public Color elementColor;
-
         [Header("Req. Item Fields")]
         public GameObject parentObject;
         public Rigidbody rb;
         public Collider physicsCollider;
+        public bool isCollidingSurface = false;
+        public bool isGrounded = false;
         [HideInInspector] public float itemMass;
-        [HideInInspector] public bool isColliding = false;
-        [HideInInspector] public bool isGrounded = false;
+
+        [Header("Element Type Settings")]
+        //This should already be set for pre-placed Element Prefabs
+        public ElementTypeManager elementTypeManager;
+        public ElementTypes elementTypeId;
+        public Color elementColor;
+        private bool elementInitialized;
 
         [Header("Death Settings")]
         public bool canDespawn = true;
         [Min(2)] public int despawnTime = 60;
         [HideInInspector] public bool startTimeout = false;
-        [HideInInspector] public float timer;
         public float killVelocity = Mathf.Infinity;
 
-        private int totalDeathLoops;
-        private int curDeathLoop;
-        private int recursiveDeathDelay = 1;
         private float lastLandTime;
+        private float lastInteractTime;
 
         [Header("Containment Settings")]
+        public bool isContained;
         public bool hideWhenContained;
         public Renderer elementRenderer;
-        public bool isContained;
+        [SerializeField] protected ElementContainer parentContainer;
+
+        [HideInInspector] public bool hideDebugsOverride;
 
         private void Start()
         {
@@ -58,35 +51,41 @@ namespace Catacombs.ElementSystem.Runtime
 
             itemMass = rb.mass;
 
-            if (canDespawn)
+            _PullElementType();
+        }
+
+        private void Update() { if (elementInitialized) AdditionalUpdate(); }
+
+        [RecursiveMethod]
+        public virtual bool _PullElementType()
+        {
+            if (!elementTypeManager.isInitialized)
             {
-                int startingDeathLoops = 2;
-
-                while (despawnTime / startingDeathLoops > 5) startingDeathLoops += 2;
-
-                totalDeathLoops = startingDeathLoops;
-                recursiveDeathDelay = despawnTime / totalDeathLoops;
+                Log("Element Type Manager not yet initialized, trying again in 0.2 sec...");
+                SendCustomEventDelayedSeconds(nameof(_PullElementType), 0.2f);
+                return false;
             }
+
+            ElementData elementData = elementTypeManager.elementDataObjs[(int)elementTypeId];
+
+            parentObject.name = $"{elementData.name.Remove(elementData.name.Length - 8)}";
+
+            elementColor = elementData.elementColor;
+            despawnTime = elementData.despawnTime;
+
+            //if (Time.time < 1) parentObject.name = $"{elementData.name} {parentObject.name}";
+            //else parentObject.name = $"{elementData.name} {parentObject.name.Remove(parentObject.name.Length - 7)}";
+
+            //parentObject.name = Time.time < 1 ? $"{elementData.name} {parentObject.name}" : $"{elementData.name} {parentObject.name.Remove(parentObject.name.Length - 15)}";
 
             AdditionalStart();
 
-            if (elementTypeManager.elementTypeData[0] != null) PullElementType();
-            else SendCustomEventDelayedFrames(nameof(PullElementType), 5);
+            elementInitialized = true;
+
+            return true;
         }
 
-        private void Update() { AdditionalUpdate(); }
-
-        //If this doesn't work, make Element Spawners put the elementTypeId in their name, that way objects can retrieve their own IDs then rename themselves without the extra numbers
-        public virtual void PullElementType()
-        {
-            if (elementTypeManager == null)
-            {
-                SendCustomEventDelayedFrames(nameof(PullElementType), 5);
-                return;
-            }
-
-            elementColor = elementTypeManager.elementTypeData[(int)elementTypeId].elementColor;
-        }
+        public void _RecursiveBounceTest() { SendCustomEventDelayedSeconds(nameof(_PullElementType), 0.1f); }
 
         protected virtual void AdditionalStart() { }
 
@@ -102,22 +101,8 @@ namespace Catacombs.ElementSystem.Runtime
 
         public virtual void _DelayedKill() { Destroy(parentObject); }
 
-        //TODO: for some reason the recursive bit doesn't actually seem to be running (compare only runs once?)
-        [RecursiveMethod]
-        private void _RecursiveDeathTimer()
-        {
-            Log($"Comparing {lastLandTime + (recursiveDeathDelay * curDeathLoop) - Time.time} <= 0.05");
-
-            if (lastLandTime + (recursiveDeathDelay * curDeathLoop) - Time.time <= 0.05f)
-            {
-                if (curDeathLoop == totalDeathLoops) Destroy(gameObject);
-
-                Log($"[{parentObject.name}] Death loop {curDeathLoop}");
-
-                curDeathLoop++;
-                SendCustomEventDelayedSeconds(nameof(_RecursiveDeathTimer), recursiveDeathDelay);
-            }
-        }
+        public void OnCollisionEnter(Collision collision) { ParentCollisionEnter(collision); }
+        private void OnCollisionExit(Collision collision) { ParentCollisionExit(collision); }
 
         //Called when parentObject OnCollision (if exists)
         public void ParentCollisionEnter(Collision collision)
@@ -125,65 +110,80 @@ namespace Catacombs.ElementSystem.Runtime
             if (collision == null || collision.gameObject == null) return;
 
             //Instantly die if smashing into a surface at a velocity higher than killVelocity
-            if (!isColliding && rb.velocity.magnitude > killVelocity)
+            if (!isCollidingSurface && rb.velocity.magnitude > killVelocity)
             {
-                Log($"{parentObject.name} smashed into something too hard");
-                Destroy(gameObject);
+                Log($"Smashed into something too hard");
+                Destroy(parentObject);
             }
 
-            //Initiate death countdown if on Environment
-            if (canDespawn)
+            if (collision.collider.gameObject.layer == 11)
             {
-                if (collision.collider.gameObject.layer == 11)
+                isGrounded = true;
+
+                //Initiate despawn countdown
+                if (canDespawn)
                 {
+                    lastLandTime = Time.time;
+                    lastInteractTime = lastLandTime;
+
                     if (!isContained)
                     {
-                        lastLandTime = Time.time;
-
-                        Log($"Starting Death timer...");
-                        _RecursiveDeathTimer();
+                        Log($"Starting Despawn timer");
+                        SendCustomEventDelayedSeconds(nameof(_AttemptDespawn), despawnTime);
                     }
-
-                    isGrounded = true;
                 }
             }
 
-            isColliding = true;
+            //Element layer (24) shouldn't affect surface collision detection
+            if (collision.collider.gameObject.layer != 24) isCollidingSurface = true;
         }
 
         public void ParentCollisionExit(Collision collision)
         {
             if (collision == null || collision.gameObject == null) return;
 
-            //Stop & reset timer if exiting Environment layer
             if (collision.collider.gameObject.layer == 11)
             {
-                timer = 0;
-                startTimeout = false;
                 isGrounded = false;
-
-                curDeathLoop = 0;
+                lastInteractTime = Time.time;
             }
 
-            isColliding = false;
+            //Element layer (24) shouldn't affect surface collision detection
+            if (collision.collider.gameObject.layer != 24) isCollidingSurface = false;
+        }
+
+        public virtual void _AttemptDespawn()
+        {
+            if (lastLandTime == lastInteractTime)
+            {
+                Log("Timed out, destroying...");
+                Destroy(parentObject);
+            }
         }
 
         //Container Enter
         private void OnTriggerEnter(Collider other)
         {
             if (other == null || other.gameObject == null) return;
+
             if (other.gameObject.layer == 22)
             {
-                parentObject.transform.parent = other.transform.parent;
-                Log($"{parentObject.name} has entered Container [{other.transform.parent.name}]");
-
-                isContained = true;
-                rb.mass = 0;
-
-                if (hideWhenContained)
+                //Don't let other containers steal this Element!
+                if (!isContained)
                 {
-                    elementRenderer.enabled = false;
-                    rb.isKinematic = true;
+                    parentObject.transform.parent = other.transform;
+                    //Log($"{parentObject.name} has entered Container [{other.transform.parent.name}]");
+
+                    isContained = true;
+                    lastInteractTime = Time.time;
+                    parentContainer = other.GetComponent<ElementContainer>();
+                    rb.mass = 0;
+
+                    if (hideWhenContained)
+                    {
+                        elementRenderer.enabled = false;
+                        rb.isKinematic = true;
+                    }
                 }
             }
 
@@ -194,8 +194,12 @@ namespace Catacombs.ElementSystem.Runtime
         private void OnTriggerExit(Collider other)
         {
             if (other == null || other.gameObject == null) return;
+
             if (other.gameObject.layer == 22)
             {
+                //Don't let other containers interfere with current container!
+                if (other.GetComponent<ElementContainer>() != parentContainer) return;
+
                 Log($"{parentObject.name} has exited Container [{transform.parent.name}]");
                 parentObject.transform.parent = null;
 
@@ -203,6 +207,12 @@ namespace Catacombs.ElementSystem.Runtime
                 rb.mass = itemMass;
 
                 if (hideWhenContained) elementRenderer.enabled = true;
+
+                if (isGrounded)
+                {
+                    Log($"Starting Despawn timer");
+                    SendCustomEventDelayedSeconds(nameof(_AttemptDespawn), despawnTime);
+                }
             }
 
             AdditionalTriggerExit(other);
@@ -213,7 +223,7 @@ namespace Catacombs.ElementSystem.Runtime
             int r = (int)(elementColor.r * 255), g = (int)(elementColor.g * 255), b = (int)(elementColor.b * 255);
             string elementColorHex = r.ToString("X2") + g.ToString("X2") + b.ToString("X2");
 
-            Debug.Log($"<color=#{elementColorHex}>[{name}]</color> {message}", this);
+            if (!hideDebugsOverride) Debug.Log($"<color=#{elementColorHex}>[{parentObject.name}]</color> {message:G}", this);
         }
     }
 }

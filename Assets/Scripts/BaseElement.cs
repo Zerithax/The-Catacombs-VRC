@@ -26,7 +26,7 @@ namespace Catacombs.ElementSystem.Runtime
 
         private Animator seedPodAnim;
         private bool isElligible;
-        private ElementSpawnerPlot collidingSpawnerPlot;
+        private ObjectGrowingPlot collidingObjectGrowingPlot;
         private bool isPlanting;
         private float curPlotInteractTime;
         private float lastPlotPlantTime;
@@ -36,7 +36,7 @@ namespace Catacombs.ElementSystem.Runtime
         private int curSize;
         private Vector3[] sizeIntervals = new Vector3[0];
 
-        private Vector3 pestlePos;
+        private Vector3 collidingPestlePos;
 
         private bool hasSpawner;
 
@@ -55,15 +55,16 @@ namespace Catacombs.ElementSystem.Runtime
             for (int i = 0; i < baseSize; i++) sizeIntervals[i] = baseScale / baseSize * i;
         }
 
-        public override void PullElementType()
+        public override bool _PullElementType()
         {
-            base.PullElementType();
+            if (!base._PullElementType()) return false;
 
+            //COLOR
             elementRenderer.material.color = elementColor;
 
-            parentObject.name = $"{elementTypeId.ToString()}";
+            //ELEMEN DATA
+            ElementData elementData = elementTypeManager.elementDataObjs[(int)elementTypeId];
 
-            ElementData elementData = elementTypeManager.elementTypeData[(int)elementTypeId];
 
             elementPrecipitateAmount = elementData.elementPrecipitateAmount;
             elementPrecipitatePrefab = elementData.ElementPrecipitatePrefab;
@@ -85,6 +86,12 @@ namespace Catacombs.ElementSystem.Runtime
                     seedPodAnim.keepAnimatorControllerStateOnDisable = false;
                 }
             }
+
+            //NAME
+            parentObject.name = $"{parentObject.name} Element";
+
+            Log($"Retrieved Element Data for {elementData.name}");
+            return true;
         }
         #endregion
 
@@ -121,18 +128,18 @@ namespace Catacombs.ElementSystem.Runtime
 
         public override void Dropped()
         {
-            if (isElligible && collidingSpawnerPlot != null) RequestElementSpawnerPlot();
+            if (isElligible && collidingObjectGrowingPlot != null) RequestObjectGrowingPlot();
             else rb.isKinematic = false;
         }
 
-        private void RequestElementSpawnerPlot()
+        private void RequestObjectGrowingPlot()
         {
-            Debug.Log($"[{name}] has been placed on an Element Spawner Plot!");
+            Log($"Placed on an Object Growing Plot!");
 
-            //The position the seed plot will lie is the Element's X/Z aligned with the SpawnerPlot's Y
-            Vector3 seedPlotPos = new Vector3(parentObject.transform.position.x, collidingSpawnerPlot.transform.position.y, parentObject.transform.position.z);
+            //The position the seed plot will lie is the Element's X/Z aligned with the GrowingPlot's Y
+            Vector3 seedPlotPos = new Vector3(parentObject.transform.position.x, collidingObjectGrowingPlot.transform.position.y, parentObject.transform.position.z);
 
-            if (collidingSpawnerPlot.RoomToAddSpawner(seedPlotPos))
+            if (collidingObjectGrowingPlot.RoomToAddObject(seedPlotPos))
             {
                 isPlanting = true;
 
@@ -140,12 +147,12 @@ namespace Catacombs.ElementSystem.Runtime
                 curPlotInteractTime = Time.time;
                 lastPlotPlantTime = curPlotInteractTime;
 
-                //Position Element in Spawner Plot
+                //Position Element in Ground
                 parentObject.transform.position = seedPlotPos;
                 parentObject.transform.rotation = Quaternion.Euler(new Vector3(0, parentObject.transform.position.y, 0));
 
                 //Swap parenting around for animations
-                seedPodAnim.transform.SetParent(collidingSpawnerPlot.transform.parent, true);
+                seedPodAnim.transform.SetParent(collidingObjectGrowingPlot.transform.parent, true);
                 parentObject.transform.SetParent(seedPodAnim.transform.GetChild(0).transform, true);
                 parentObject = seedPodAnim.gameObject;
 
@@ -162,60 +169,67 @@ namespace Catacombs.ElementSystem.Runtime
             {
                 lastPlotPlantTime = 0;
 
-                collidingSpawnerPlot.CreateSpawner(elementTypeId, seedPodAnim.transform.position);
+                collidingObjectGrowingPlot.CreateSpawner(elementTypeId, seedPodAnim.transform.position);
 
                 //Kill self a few seconds after ElementSpawner has appeared
                 SendCustomEventDelayedSeconds(nameof(_DelayedKill), 7);
             }
         }
 
-        protected override void AdditionalTriggerEnter(Collider other) { if (other.gameObject.layer == 2) collidingSpawnerPlot = other.GetComponent<ElementSpawnerPlot>(); }
+        protected override void AdditionalTriggerEnter(Collider other) { if (other.gameObject.layer == 2) collidingObjectGrowingPlot = other.GetComponent<ObjectGrowingPlot>(); }
 
-        protected override void AdditionalTriggerExit(Collider other) { if (other.gameObject.layer == 2) collidingSpawnerPlot = null; }
+        protected override void AdditionalTriggerExit(Collider other) { if (other.gameObject.layer == 2) collidingObjectGrowingPlot = null; }
         #endregion
 
         #region SPAWNING PRECIPITATE
+
+        //Track the position and shrink if colliding with a pestle that is actively moving
         private void OnTriggerStay(Collider other)
         {
-            //If colliding with a pestle
-            if (other.gameObject.layer == 23)
+            if (other == null || other.gameObject == null) return;
+
+            if (other.gameObject.layer == 23) TrackPestle(other.transform);
+        }
+
+        private void TrackPestle(Transform other)
+        {
+            Vector3 curPestlePos = other.transform.position;
+
+            //If is in Container and collided Pestle is actively moving
+            if (isContained && curPestlePos != collidingPestlePos)
             {
-                Vector3 curPestlePos = other.transform.position;
+                //Subtract a steady stream of scale
+                parentObject.transform.localScale -= new Vector3(shrinkSpeed, shrinkSpeed, shrinkSpeed);
 
-                //And pestle is actively moving
-                if (isContained && curPestlePos != pestlePos)
+                //At every equal interval of baseScale, spawn Dust and add to parent container's containedDusts[]
+                for (int i = sizeIntervals.Length - 1; i > 0; i--)
                 {
-                    //Subtract a steady stream of scale
-                    parentObject.transform.localScale -= new Vector3(shrinkSpeed, shrinkSpeed, shrinkSpeed);
-
-                    //At every equal interval of baseScale, SpawnDust()
-                    for (int i = sizeIntervals.Length - 1; i > 0; i--)
+                    if ((float)Math.Round(parentObject.transform.localScale.x, 3) == (float)Math.Round(sizeIntervals[i].x, 3))
                     {
-                        if ((float)Math.Round(parentObject.transform.localScale.x, 3) == (float)Math.Round(sizeIntervals[i].x, 3))
-                        {
-                            ElementPrecipitate newPrecipitate = Instantiate(elementPrecipitatePrefab, parentObject.transform.position + Vector3.up * 0.1f, Quaternion.identity, parentObject.transform.parent).GetComponent<ElementPrecipitate>();
+                        ElementPrecipitate newPrecipitate = Instantiate(elementPrecipitatePrefab, parentObject.transform.position + Vector3.up * 0.1f, Quaternion.identity, parentObject.transform.parent).GetComponent<ElementPrecipitate>();
 
-                            newPrecipitate.elementTypeManager = elementTypeManager;
-                            newPrecipitate.elementTypeId = elementTypeId;
+                        newPrecipitate.elementTypeManager = elementTypeManager;
+                        newPrecipitate.elementTypeId = elementTypeId;
 
-                            ShrinkBerry();
-                            break;
-                        }
+                        if (newPrecipitate.elementPrecipitateType == ElementPrecipitates.Drip) parentContainer.AttemptConsumeDust(newPrecipitate);
+
+                        ShrinkBerry();
+                        break;
                     }
                 }
-
-                pestlePos = curPestlePos;
             }
+
+            collidingPestlePos = curPestlePos;
         }
 
         private void ShrinkBerry()
         {
             curSize--;
-            Debug.Log($"Shrinking {name} to {curSize}", this);
+            Log($"Shrinking to {curSize}");
 
-            if (curSize <= baseSize - elementPrecipitateAmount || parentObject.transform.localScale.x < 0)
+            if (curSize <= baseSize - elementPrecipitateAmount)
             {
-                Debug.Log($"{name} is out of berry dust, destroying", this);
+                Log($"Out of berry dust, destroying");
                 Destroy(parentObject);
             }
         }

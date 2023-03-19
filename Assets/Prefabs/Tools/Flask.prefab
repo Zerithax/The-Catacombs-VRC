@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4269242127157442481}
   - component: {fileID: 7590514340865778030}
   - component: {fileID: 1799432375828518592}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: FlaskCollider8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65,7 +65,7 @@ GameObject:
   - component: {fileID: 6262923094969470131}
   - component: {fileID: 925176140863289470}
   - component: {fileID: 2288361741499234412}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: FlaskCollider5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 1031986833647462986}
   - component: {fileID: 3283650096858802788}
   - component: {fileID: 2326592409475077059}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: FlaskCollider10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +171,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2739858900148284526}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ Transform:
   - {fileID: 1031986833647462986}
   - {fileID: 5817171928390930599}
   m_Father: {fileID: 5774475783073626251}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3873963752682215870
 GameObject:
@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: 6502672222350872815}
   - component: {fileID: 7728616395354287107}
   - component: {fileID: 3873963752682215871}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: FlaskCollider4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,7 +290,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5774475783073626251}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2369878359064328872
 MeshFilter:
@@ -375,8 +375,9 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _udonSharpBackingUdonBehaviour: {fileID: 4013737200229974228}
-  liquidDropPrefab: {fileID: 1447690598607725664, guid: 0bedf82cc1bea9b408a21322e2d88ed0,
-    type: 3}
+  elementTypeManager: {fileID: 0}
+  rb: {fileID: 7185866803628844734}
+  pickupScript: {fileID: 1023431546297336390}
   containerRend: {fileID: 8659370520069296434}
   containerSpout: {fileID: 7051183775860320915}
   maxLiquidParts: 5
@@ -385,10 +386,44 @@ MonoBehaviour:
   liquidClippingPlane: {fileID: 79216032155558143}
   planeNormal: {x: 0, y: 0, z: 0}
   planePosition: {x: 0, y: 0, z: 0}
-  clippingPlaneMaxHeight: 0.30198
-  clippingPlaneMinHeight: 0.01547
+  fxMaxHeight: 0.27
+  fxMinHeight: 0.01547
+  curHeightInterval: 0
+  lerpDirection: 0
+  canCreatePotions: 1
   containedLiquids: 
-  containedBerries: 
+  containedElements: 
+  containedDusts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  elementPrimedParticles: {fileID: 2901299592565192091}
+  primedParticlesStartScale: {x: 1.3, y: 0.125}
+  primedParticlesTopScale: {x: 1.3, y: 0.125}
+  elementUsePrimingTrigger: 0
+  elementPrimedAmount: 0
+  elementPrimedThreshold: 100
+  liquidElementIsPrimed: 0
+  elementUseTrigger: 0
+  containerIsOpenEnded: 0
+  deprimingSpeed: 0.1
 --- !u!114 &4013737200229974228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -426,7 +461,7 @@ GameObject:
   - component: {fileID: 6697996932877643987}
   - component: {fileID: 2034126703903569480}
   - component: {fileID: 4666585570426084325}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: FlaskCollider6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -469,6 +504,38 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 7553614423946137390, guid: 681969f03b3570241a35aff895a34e26, type: 3}
+--- !u!1 &4930443299412452833
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8529116612582210947}
+  m_Layer: 0
+  m_Name: FX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8529116612582210947
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4930443299412452833}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.27, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 79216032155558141}
+  - {fileID: 2428892641454519229}
+  m_Father: {fileID: 5774475783073626251}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5573370307639385141
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,7 +547,7 @@ GameObject:
   - component: {fileID: 7461153562635235883}
   - component: {fileID: 4823255815150499679}
   - component: {fileID: 5573370307639385142}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: FlaskCollider9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -534,7 +601,10 @@ GameObject:
   - component: {fileID: 5774475783073626251}
   - component: {fileID: 4779115183372226454}
   - component: {fileID: 6399744917991290598}
-  m_Layer: 0
+  - component: {fileID: 105108413562067277}
+  - component: {fileID: 7185866803628844734}
+  - component: {fileID: 1023431546297336390}
+  m_Layer: 13
   m_Name: Flask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -552,10 +622,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 79216032155558141}
-  - {fileID: 6501628138190888394}
-  - {fileID: 6848220178175731808}
   - {fileID: 2739858900148284526}
+  - {fileID: 6848220178175731808}
+  - {fileID: 6501628138190888394}
+  - {fileID: 8529116612582210947}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -606,6 +676,67 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!135 &105108413562067277
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6101298831128349376}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.2
+  m_Center: {x: 0, y: 0.2, z: 0}
+--- !u!54 &7185866803628844734
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6101298831128349376}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &1023431546297336390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6101298831128349376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1804438810, guid: 661092b4961be7145bfbe56e1e62337b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MomentumTransferMethod: 0
+  DisallowTheft: 1
+  ExactGun: {fileID: 0}
+  ExactGrip: {fileID: 0}
+  allowManipulationWhenEquipped: 0
+  orientation: 0
+  AutoHold: 0
+  InteractionText: 
+  UseText: 
+  useEventBroadcastType: 0
+  UseDownEventName: 
+  UseUpEventName: 
+  pickupDropEventBroadcastType: 0
+  PickupEventName: 
+  DropEventName: 
+  ThrowVelocityBoostMinSpeed: 1
+  ThrowVelocityBoostScale: 1
+  currentlyHeldBy: {fileID: 0}
+  pickupable: 1
+  proximity: 2
 --- !u!1 &6545229722051970193
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,7 +748,7 @@ GameObject:
   - component: {fileID: 3162770894182147635}
   - component: {fileID: 4609651560713779433}
   - component: {fileID: 6545229722051970194}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: FlaskCollider7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -689,7 +820,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5774475783073626251}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8254162018549446105
 MeshFilter:
@@ -710,7 +841,7 @@ GameObject:
   - component: {fileID: 9214999542902497868}
   - component: {fileID: 6133376092879249715}
   - component: {fileID: 7424622527918625077}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: FlaskCollider2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -764,7 +895,7 @@ GameObject:
   - component: {fileID: 5817171928390930599}
   - component: {fileID: 8651782089926541204}
   - component: {fileID: 7992795253303275503}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: FlaskCollider11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -818,7 +949,7 @@ GameObject:
   - component: {fileID: 8417584798817884465}
   - component: {fileID: 521571194515980704}
   - component: {fileID: 8529487723379952303}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: FlaskCollider3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -872,7 +1003,7 @@ GameObject:
   - component: {fileID: 925836203071069380}
   - component: {fileID: 5483116254295230151}
   - component: {fileID: 9152056222983278881}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: FlaskCollider1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -920,7 +1051,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 5774475783073626251}
+    m_TransformParent: {fileID: 8529116612582210947}
     m_Modifications:
     - target: {fileID: 2818270028085215126, guid: 00c794e9084bd514c83aa5198ce18f42,
         type: 3}
@@ -995,4 +1126,155 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2818270028085215125, guid: 00c794e9084bd514c83aa5198ce18f42,
     type: 3}
   m_PrefabInstance: {fileID: 2739858900718444394}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7998221636783725141
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8529116612582210947}
+    m_Modifications:
+    - target: {fileID: 2902873387927071118, guid: fbdcfba589944d347aa53442fde0ee4f,
+        type: 3}
+      propertyPath: m_Name
+      value: Primed Particles
+      objectReference: {fileID: 0}
+    - target: {fileID: 5096975989561569230, guid: fbdcfba589944d347aa53442fde0ee4f,
+        type: 3}
+      propertyPath: ShapeModule.type
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5096975989561569230, guid: fbdcfba589944d347aa53442fde0ee4f,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.x
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5096975989561569230, guid: fbdcfba589944d347aa53442fde0ee4f,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.y
+      value: 0.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 5096975989561569230, guid: fbdcfba589944d347aa53442fde0ee4f,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5096975989561569230, guid: fbdcfba589944d347aa53442fde0ee4f,
+        type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5096975989561569230, guid: fbdcfba589944d347aa53442fde0ee4f,
+        type: 3}
+      propertyPath: CollisionModule.radiusScale
+      value: 0.075
+      objectReference: {fileID: 0}
+    - target: {fileID: 5096975989561569230, guid: fbdcfba589944d347aa53442fde0ee4f,
+        type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5096975989561569230, guid: fbdcfba589944d347aa53442fde0ee4f,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5096975989561569230, guid: fbdcfba589944d347aa53442fde0ee4f,
+        type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5096975989561569230, guid: fbdcfba589944d347aa53442fde0ee4f,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5096975989561569230, guid: fbdcfba589944d347aa53442fde0ee4f,
+        type: 3}
+      propertyPath: InitialModule.startRotation.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5096975989561569230, guid: fbdcfba589944d347aa53442fde0ee4f,
+        type: 3}
+      propertyPath: InitialModule.startRotation.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5096975989561569230, guid: fbdcfba589944d347aa53442fde0ee4f,
+        type: 3}
+      propertyPath: InitialModule.startRotationX.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5096975989561569230, guid: fbdcfba589944d347aa53442fde0ee4f,
+        type: 3}
+      propertyPath: InitialModule.startRotationY.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5713463528478910952, guid: fbdcfba589944d347aa53442fde0ee4f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5713463528478910952, guid: fbdcfba589944d347aa53442fde0ee4f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5713463528478910952, guid: fbdcfba589944d347aa53442fde0ee4f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.004
+      objectReference: {fileID: 0}
+    - target: {fileID: 5713463528478910952, guid: fbdcfba589944d347aa53442fde0ee4f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5713463528478910952, guid: fbdcfba589944d347aa53442fde0ee4f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5713463528478910952, guid: fbdcfba589944d347aa53442fde0ee4f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5713463528478910952, guid: fbdcfba589944d347aa53442fde0ee4f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5713463528478910952, guid: fbdcfba589944d347aa53442fde0ee4f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5713463528478910952, guid: fbdcfba589944d347aa53442fde0ee4f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5713463528478910952, guid: fbdcfba589944d347aa53442fde0ee4f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5713463528478910952, guid: fbdcfba589944d347aa53442fde0ee4f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fbdcfba589944d347aa53442fde0ee4f, type: 3}
+--- !u!4 &2428892641454519229 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5713463528478910952, guid: fbdcfba589944d347aa53442fde0ee4f,
+    type: 3}
+  m_PrefabInstance: {fileID: 7998221636783725141}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &2901299592565192091 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5096975989561569230, guid: fbdcfba589944d347aa53442fde0ee4f,
+    type: 3}
+  m_PrefabInstance: {fileID: 7998221636783725141}
   m_PrefabAsset: {fileID: 0}
