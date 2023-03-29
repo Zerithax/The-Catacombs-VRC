@@ -13,8 +13,6 @@ namespace Catacombs.ElementSystem.Runtime
         public BaseElement[] elementsSpawned;
         [SerializeField] private bool roomToSpawnElements = true;
 
-        protected override void AdditionalStart() { elementsSpawned = new BaseElement[elementSpawnPoints.Length]; }
-
         public override bool _PullElementType()
         {
             if (!base._PullElementType()) return false;
@@ -22,6 +20,14 @@ namespace Catacombs.ElementSystem.Runtime
             ElementData elementData = elementTypeManager.elementDataObjs[(int)elementTypeId];
 
             elementSpawnTime = elementData.elementSpawnTime;
+
+            Transform elementSpawnsObject = transform.GetChild(0);
+            elementSpawnPoints = new Transform[elementSpawnsObject.childCount];
+            elementsSpawned = new BaseElement[elementSpawnPoints.Length];
+            for (int i = 0; i < elementSpawnPoints.Length; i++)
+            {
+                elementSpawnPoints[i] = elementSpawnsObject.GetChild(i);
+            }
 
             parentObject.name = $"{parentObject.name} Spawner";
 
@@ -31,27 +37,43 @@ namespace Catacombs.ElementSystem.Runtime
 
         protected override void AdditionalUpdate()
         {
-            if (matured && isRooted && roomToSpawnElements) SpawnElements();
+            base.AdditionalUpdate();
+
+            if (matured && isRooted && roomToSpawnElements)
+            {
+                elementGrowthTime += Time.deltaTime;
+
+                if (elementGrowthTime >= elementSpawnTime)
+                {
+                    elementGrowthTime = 0;
+                    SpawnElement();
+                }
+            }
+            else elementGrowthTime = 0;
         }
 
-        private void SpawnElements()
+        private void SpawnElement()
         {
-            elementGrowthTime += Time.deltaTime;
-
-            if (elementGrowthTime >= elementSpawnTime)
+            for (int i = 0; i < elementsSpawned.Length; i++)
             {
-                elementGrowthTime = 0;
-
-                for (int i = 0; i < elementsSpawned.Length; i++)
+                if (elementsSpawned[i] == null)
                 {
-                    if (elementsSpawned[i] == null)
+                    BaseElement newElement = itemPooler.RequestBaseElement();
+
+                    if (newElement != null)
                     {
                         physicsCollider.enabled = false;
 
-                        elementsSpawned[i] = (BaseElement)Instantiate(elementTypeManager.elementDataObjs[(int)elementTypeId].BaseElementPrefab, elementSpawnPoints[i].transform.position, Quaternion.identity, transform).GetComponent<ElementInteractionHandler>().childElement;
-                        elementsSpawned[i].elementTypeManager = elementTypeManager;
+                        elementsSpawned[i] = newElement;
+
                         elementsSpawned[i].elementTypeId = elementTypeId;
                         elementsSpawned[i].parentElementSpawner = this;
+                        elementsSpawned[i].disableContainment = true;
+
+                        elementsSpawned[i]._PullElementType();
+
+                        elementsSpawned[i].parentObject.transform.SetPositionAndRotation(elementSpawnPoints[i].transform.position, elementSpawnPoints[i].transform.rotation);
+                        elementsSpawned[i].parentObject.transform.SetParent(transform, true);
 
                         for (int j = 0; j < elementsSpawned.Length; j++)
                         {
@@ -59,7 +81,7 @@ namespace Catacombs.ElementSystem.Runtime
                             roomToSpawnElements = false;
                         }
 
-                        return;
+                        return; 
                     }
                 }
             }
@@ -79,25 +101,16 @@ namespace Catacombs.ElementSystem.Runtime
             roomToSpawnElements = true;
         }
 
-        protected override void PlantedEvent()
-        {
-            //Enable child Elements' pickup colliders again
-            for (int i = 0; i < elementsSpawned.Length; i++)
-            {
-                if (elementsSpawned[i] != null) elementsSpawned[i].physicsCollider.enabled = true;
-            }
-        }
-
         protected override void RemoveFromPlot()
         {
             base.RemoveFromPlot();
 
             //There's a 20% chance for Spawners to just die for uprooting them at all
-            if (Random.Range(0, 5) == 0) Destroy(parentObject);
+            if (Random.Range(0, 5) == 0) itemPooler.ReturnElementSpawner(parentObject);
 
             //Plus an additional 30 second period before dying for staying uprooted
             //TODO: Maybe not hardcode uproot-death period?
-            SendCustomEventDelayedSeconds(nameof(_DelayedKill), 30);
+            SendCustomEventDelayedSeconds(nameof(KillElement), 30);
         }
     }
 }

@@ -12,6 +12,7 @@ namespace Catacombs.ElementSystem.Runtime
     //Current Containables: Berries, Dusts, Liquids
     public class ElementContainer : UdonSharpBehaviour
     {
+        [SerializeField] private ItemPooler itemPooler;
         [SerializeField] private ElementTypeManager elementTypeManager;
 
         [Header("Container Properties")]
@@ -50,7 +51,7 @@ namespace Catacombs.ElementSystem.Runtime
         [SerializeField] private bool canCreatePotions = true;
         [SerializeField] private ElementTypes[] containedLiquids;
         [SerializeField] private ElementTypes[] containedElements;
-        public ElementPrecipitate[] containedDusts = new ElementPrecipitate[20];
+        public ElementPrecipitate[] containedDusts = new ElementPrecipitate[10];
 
 
         [Header("Potion Priming/Use")]
@@ -115,22 +116,6 @@ namespace Catacombs.ElementSystem.Runtime
                 case 1: LerpFxUp(); break;
             }
 
-            //TODO: Find a place to put this that maybe doesn't need to run in Update()?
-            //If we have any containedDusts and the Container is full enough...
-            if (containedDusts[0] != null && curHeightInterval >= (float)maxLiquidParts / 3)
-            {
-                //For every dust in containedDusts, Attempt to add to Recipes list then destroy
-                for (int i = 0; i < containedDusts.Length; i++)
-                {
-                    if (containedDusts[i] != null)
-                    {
-                        Log($"Consuming containedDust [{containedDusts[i].name}]");
-                        AttemptConsumeDust(containedDusts[i]);
-                        containedDusts[i] = null;
-                    }
-                }
-            }
-
             MonitorPriming();
         }
 
@@ -145,6 +130,21 @@ namespace Catacombs.ElementSystem.Runtime
             if (liquidClippingPlane.transform.parent.localPosition.y != targetPos) return;
             
             curHeightInterval += lerpDirection;
+
+            //If we have any containedDusts and the Container is full enough...
+            if (containedDusts[0] != null && curHeightInterval >= (float)maxLiquidParts / 3)
+            {
+                //For every dust in containedDusts, Attempt to add to Recipes list
+                for (int i = 0; i < containedDusts.Length; i++)
+                {
+                    if (containedDusts[i] != null)
+                    {
+                        Log($"Consuming containedDust [{containedDusts[i].name}]");
+                        AttemptConsumeDust(containedDusts[i]);
+                        containedDusts[i] = null;
+                    }
+                }
+            }
 
             //return and continue lerping if Container has another interval left to fill
             if (curHeightInterval < curLiquidParts) return;
@@ -176,11 +176,7 @@ namespace Catacombs.ElementSystem.Runtime
             curHeightInterval += lerpDirection;
 
             //return and continue lerping if Container has another interval left to drain
-            if (curHeightInterval > curLiquidParts)
-            {
-                lerpStartTime = Time.time;
-                return;
-            }
+            if (curHeightInterval > curLiquidParts) return;
 
             lerpDirection = 0;
 
@@ -193,6 +189,13 @@ namespace Catacombs.ElementSystem.Runtime
 
         private void MonitorPriming()
         {
+            //Elements CANNOT be primed if any Dusts have been added
+            if (containedElements[0] != ElementTypes.None)
+            {
+                elementPrimedAmount = 0;
+                return;
+            }
+
             switch (elementUsePrimingTrigger)
             {
                 case ElementPrimingTrigger.None:
@@ -249,7 +252,7 @@ namespace Catacombs.ElementSystem.Runtime
             }
         }
 
-        //TODO: ClippingPlane position visuals gradually worsen and get really ugly once you've tilted ~130 degrees
+        //TODO: ClippingPlane position visuals gradually worsen and get really ugly once you've tilted > ~90 degrees
         #region LIQUID POURING
         private void UpdateShaderProperties()
         {
@@ -284,51 +287,66 @@ namespace Catacombs.ElementSystem.Runtime
                     Log($"Container has tipped enough to pour!");
                     pourTimer = 0;
 
-                    curLiquidParts--;
-
-                    //lowestVert, the literal lowest vertex of the spout mesh, indicates which way the container is tilted
-                    Vector3 lowestVert = new Vector3(0, Mathf.Infinity, 0);
-
-                    foreach (Vector3 vert in containerSpoutFilter.mesh.vertices)
-                    {
-                        Vector3 vertGlobal = transform.TransformPoint(vert);
-                        if (vertGlobal.y < lowestVert.y) lowestVert = vertGlobal;
-                    }
-
-                    //After getting lowest vert in Mesh Filter the actual obj instance's transform must be manually added
-                    lowestVert += containerSpoutFilter.transform.localPosition;
-
-                    ElementPrecipitate newPrec = Instantiate(elementTypeManager.elementDataObjs[(int)containedLiquids[0]].ElementPrecipitatePrefab, lowestVert, Quaternion.identity, null).GetComponent<ElementPrecipitate>();
-
-                    newPrec.elementTypeId = containedLiquids[0];
-                    newPrec.elementTypeManager = elementTypeManager;
-
-                    if (liquidElementIsPrimed) newPrec.precipitateIsPrimed = true;
-
-                    //Init lerping
-                    startFxHeight = liquidClippingPlane.transform.parent.localPosition.y;
-
-                    if (lerpDirection == 0)
-                    {
-                        lerpDirection = -1;
-                        lerpStartTime = Time.time;
-                    }
-
-                    //If we don't have any liquid left, reset all Element Priming Data
-                    if (curLiquidParts == 0) ResetElementPrimingData();
-
-                    //Remove the top liquid element of containedLiquids
-                    for (int i = containedLiquids.Length - 1; i >= 0; i--)
-                    {
-                        if (containedLiquids[i] != ElementTypes.None)
-                        {
-                            containedLiquids[i] = ElementTypes.None;
-                            break;
-                        }
-                    }
+                    PourLiquid();
                 }
             }
             else pourTimer = 0;
+        }
+
+        private void PourLiquid()
+        {
+            ElementPrecipitate newPrecipitate = itemPooler.RequestElementPrecipitate();
+
+            if (newPrecipitate != null)
+            {
+                curLiquidParts--;
+
+                //lowestVert, the literal lowest vertex of the spout mesh, indicates which way the container is tilted
+                Vector3 lowestVert = new Vector3(0, Mathf.Infinity, 0);
+
+                foreach (Vector3 vert in containerSpoutFilter.mesh.vertices)
+                {
+                    Vector3 vertGlobal = transform.TransformPoint(vert);
+                    if (vertGlobal.y < lowestVert.y) lowestVert = vertGlobal;
+                }
+
+                //After getting lowest vert in Mesh Filter the actual obj instance's transform must be manually added
+                lowestVert += containerSpoutFilter.transform.localPosition;
+
+                newPrecipitate.transform.position = lowestVert;
+                newPrecipitate.transform.parent = null;
+                newPrecipitate.trailRend.emitting = true;
+
+                newPrecipitate.elementTypeId = containedLiquids[0];
+
+                newPrecipitate.rb.isKinematic = false;
+
+                newPrecipitate._PullElementType();
+
+                if (liquidElementIsPrimed) newPrecipitate.precipitateIsPrimed = true;
+
+                //Init lerping
+                startFxHeight = liquidClippingPlane.transform.parent.localPosition.y;
+
+                if (lerpDirection == 0)
+                {
+                    lerpDirection = -1;
+                    lerpStartTime = Time.time;
+                }
+
+                //If we don't have any liquid left, reset all Element Priming Data
+                if (curLiquidParts == 0) ResetElementPrimingData();
+
+                //Remove the top liquid element of containedLiquids
+                for (int i = containedLiquids.Length - 1; i >= 0; i--)
+                {
+                    if (containedLiquids[i] != ElementTypes.None)
+                    {
+                        containedLiquids[i] = ElementTypes.None;
+                        break;
+                    }
+                }
+            }
         }
         #endregion LIQUID POURING
 
@@ -347,7 +365,7 @@ namespace Catacombs.ElementSystem.Runtime
                     {
                         case ElementPrecipitates.None:
                             Debug.LogWarning($"[{name}] Attempted to contain Precipitate [{other.gameObject.name}] with Drip type None; Verifying Drip Type...");
-                            elementPrecipitate.SendCustomEventDelayedFrames(nameof(elementPrecipitate._VerifyDripType), 1);
+                            elementPrecipitate._VerifyDripType(); //SendCustomEventDelayedFrames(nameof(elementPrecipitate._VerifyDripType), 1);
                             break;
 
                         case ElementPrecipitates.Drip:
@@ -389,7 +407,7 @@ namespace Catacombs.ElementSystem.Runtime
             }
         }
 
-        private void AttemptContainLiquid(ElementPrecipitate elementDrip)
+        public void AttemptContainLiquid(ElementPrecipitate elementDrip)
         {
             if (curLiquidParts < maxLiquidParts)
             {
@@ -445,11 +463,11 @@ namespace Catacombs.ElementSystem.Runtime
             liquidClippingPlane.material.color = curLiquidColor;
 
             //Verify if element can be Used
-            if (elementData.elementIsPotion)
+            if (elementData.elementHasUsableEffect)
             {
-                elementUsePrimingTrigger = elementData.potionPrimingTrigger;
-                elementPrimedThreshold = elementData.potionPrimingThreshold;
-                elementUseTrigger = elementData.potionUseTrigger;
+                elementUsePrimingTrigger = elementData.elementEffectPrimingTrigger;
+                elementPrimedThreshold = elementData.effectPrimingThreshold;
+                elementUseTrigger = elementData.effectUseTrigger;
             }
         }
 
@@ -467,6 +485,7 @@ namespace Catacombs.ElementSystem.Runtime
                         break;
                     }
                 }
+
                 return;
             }
 
@@ -499,7 +518,7 @@ namespace Catacombs.ElementSystem.Runtime
             }
 
             //A full enough container will ALWAYS kill ElementPrecipitates, even if it wasn't accepted as an ingredient!
-            Destroy(elementDust.gameObject);
+            itemPooler.ReturnElementPrecipitate(elementDust.parentObject);
         }
         #endregion
 

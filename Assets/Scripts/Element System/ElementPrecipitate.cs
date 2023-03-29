@@ -7,15 +7,6 @@ using VRC.Udon;
 
 namespace Catacombs.ElementSystem.Runtime
 {
-    //TODO: Add code so drips try to grow elements if canSpawnElements;
-
-    public enum ElementPrecipitates
-    {
-        None,
-        Dust = 1,
-        Drip = 2
-    }
-
     public class ElementPrecipitate : RuntimeElement
     {
         [Header("Precipitate Type")]
@@ -25,10 +16,10 @@ namespace Catacombs.ElementSystem.Runtime
         public float minimumVelocity = 0;
         public float maximumVelocity = Mathf.Infinity;
         public float velocityMultiplier = 0.01f;
-        [SerializeField] private TrailRenderer trailRend;
+        public TrailRenderer trailRend;
 
-        [Header("Potion Settings")]
-        public bool isPotion;
+        [Header("Grounding Effect Settings")]
+        public bool hasUsableEffect;
         public bool precipitateIsPrimed;
         public ElementPrimingTrigger primingTrigger;
         public int primingThreshold;
@@ -39,43 +30,37 @@ namespace Catacombs.ElementSystem.Runtime
         public float ingestedEffectDuration;
 
         public GameObject GrownObjectPrefab;
-        public float growTime;
 
-        protected override void AdditionalStart()
+        public Collider physicsCollider;
+
+        public override void KillElement()
         {
-            if (elementPrecipitateType == ElementPrecipitates.Drip)
-            {
-                trailRend = GetComponent<TrailRenderer>();
-
-                //Liquids override despawn time to 3 seconds
-                despawnTime = 3;
-            }
+            itemPooler.ReturnElementPrecipitate(parentObject);
         }
 
         protected override void AdditionalUpdate() { SimulateViscosity(); }
+
+        protected override void AdditionalStart() { physicsCollider = GetComponent<Collider>(); }
 
         private void SimulateViscosity()
         {
             //TODO: isCollidingSurface is false if colliding when recently instantiated... object pooling will probably fix this
 
-            /*
-            if (isCollidingSurface)
+            //TODO: To remove the environment (isGrounded) restriction, get the angle of the ground's normal vs vector3.up and compare to an element-dependent threshold (ranged ~10-45 degrees)
+            if (isCollidingSurface && !isGrounded && !isContained)
             {
-                //TODO: To remove the environment restriction, get the angle of the ground's normal vs vector3.up and compare to an element-dependent threshold (ranged ~10-45 degrees)
-                if (isCollidingSurface && !isGrounded && !isContained)
-                {
-                    if (rb.velocity.magnitude < minimumVelocity) rb.velocity *= 1 + velocityMultiplier;
-                    else if (rb.velocity.magnitude > maximumVelocity) rb.velocity *= 1 - velocityMultiplier;
-                }
+                Log("Simulating viscosity...");
+                if (rb.velocity.magnitude < minimumVelocity) rb.velocity *= 1 + velocityMultiplier;
+                else if (rb.velocity.magnitude > maximumVelocity) rb.velocity *= 1 - velocityMultiplier;
             }
-            */
-                //TODO: To remove the environment restriction, get the angle of the ground's normal vs vector3.up and compare to an element-dependent threshold (ranged ~10-45 degrees)
 
+            /*
             if (!isGrounded && !isContained)
             {
                 if (rb.velocity.magnitude < minimumVelocity) rb.velocity *= 1 + velocityMultiplier;
                 else if (rb.velocity.magnitude > maximumVelocity) rb.velocity *= 1 - velocityMultiplier;
             }
+            */
         }
 
         public override bool _PullElementType()
@@ -91,61 +76,95 @@ namespace Catacombs.ElementSystem.Runtime
             velocityMultiplier = elementData.velocityMultiplier;
 
             //ELEMENT-POTION DATA
-            isPotion = elementData.elementIsPotion;
-            primingTrigger = elementData.potionPrimingTrigger;
-            primingThreshold = elementData.potionPrimingThreshold;
-            useTrigger = elementData.potionUseTrigger;
+            hasUsableEffect = elementData.elementHasUsableEffect;
+            primingTrigger = elementData.elementEffectPrimingTrigger;
+            primingThreshold = elementData.effectPrimingThreshold;
+            useTrigger = elementData.effectUseTrigger;
 
             ingestedEffect = elementData.ingestedEffect;
             ingestedEffectStrength = elementData.ingestedEffectStrength;
             ingestedEffectDuration = elementData.ingestedEffectDuration;
 
             GrownObjectPrefab = elementData.GrownObjectPrefab;
-            growTime = elementData.growTime;
 
-            //COLOR
-            base._PullElementType();
-
-            trailRend.startColor = elementColor;
-            trailRend.endColor = elementColor;
-
+            //PRECIPITATE TYPE
             string precipitateTypeName = "";
 
             switch (elementPrecipitateType)
             {
                 case ElementPrecipitates.Dust:
 
+                    //COLOR
                     float elementTintAmount = (float)System.Math.Round(Random.Range(0.1f, 0.65f), 1);
                     //Hopefully I'm just stealing 25% from Green and giving it back to the Element (dust was way too green)
                     float greenTintAmount = 0.75f - elementTintAmount;
                     elementTintAmount += 0.25f;
 
-                    GetComponent<Renderer>().material.color = elementColor * elementTintAmount + Color.green * greenTintAmount;
+                    elementRenderer.material.color = elementColor * elementTintAmount + Color.green * greenTintAmount;
+                    elementRenderer.material.SetFloat("_Glossiness", 0);
 
+                    rb.drag = 0.4f;
+                    trailRend.emitting = false;
+                    hideWhenContained = false;
+
+                    //Dust Precipitates halve the killVelocity
+                    killVelocity = killVelocity / 2;
+
+                    //NAME
                     precipitateTypeName = "Dust";
                     break;
 
                 case ElementPrecipitates.Drip:
 
-                    GetComponent<Renderer>().material.color = elementColor;
-                    trailRend.material.SetColor("_Emission", elementColor);
+                    //COLOR
+                    elementRenderer.material.color = elementColor;
+                    elementRenderer.material.SetFloat("_Glossiness", 1);
 
+                    trailRend = GetComponent<TrailRenderer>();
+                    trailRend.material.SetColor("_Emission", elementColor);
+                    trailRend.startColor = elementColor;
+                    trailRend.endColor = elementColor;
+
+                    //Liquid Precipitates have unlimited killVelocity
+                    killVelocity = Mathf.Infinity;
+
+                    //Liquids override despawn time to 3 seconds
+                    despawnTime = 3;
+
+                    rb.drag = 5;
+                    trailRend.emitting = true;
+                    hideWhenContained = true;
+
+                    //NAME
                     precipitateTypeName = "Drip";
                     break;
             }
 
-            //NAME
+            //NAME p2
             parentObject.name = $"{parentObject.name} {precipitateTypeName}";
 
             Log($"Retrieved ElementPrecipitate Data from {elementData.name}");
             return true;
         }
 
+        public override void _AttemptDespawn()
+        {
+            //TODO: Before despawning, search the ground area and attempt to create a temporary container to exist in (pools of water)
+            //The search can probably be a phat stationary spherecast, that looks for a "pool" of angled normals? Do spherecasts return *all* collided normals of a single object?
+
+            if (lastLandTime == lastInteractTime)
+            {
+                Log("Timed out, returning to Item Pooler...");
+
+                itemPooler.ReturnElementPrecipitate(parentObject);
+            }
+        }
+
         protected override void AdditionalTriggerEnter(Collider other)
         {
             if (hideWhenContained) trailRend.emitting = false;
 
-            if (isPotion && precipitateIsPrimed)
+            if (hasUsableEffect && precipitateIsPrimed)
             {
                 switch (useTrigger)
                 {
@@ -190,32 +209,15 @@ namespace Catacombs.ElementSystem.Runtime
 
                 if (collidingSpawnerPlot.RoomToAddObject(seedPlotPos))
                 {
-                    //Setup GrownObjectPrefab instance
-                    GrownObject newGrownObject = (GrownObject)Instantiate(GrownObjectPrefab).GetComponent<ElementInteractionHandler>().childElement;
-                    newGrownObject.elementTypeId = elementTypeId;
-                    newGrownObject.elementTypeManager = elementTypeManager;
-
-                    //Place in ground
-                    newGrownObject.transform.parent.SetPositionAndRotation(seedPlotPos, Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)));
-                    newGrownObject.transform.parent.SetParent(collidingSpawnerPlot.transform, true);
+                    //TODO: When the GrownObjectPrefab is an ElementSpawner, we need AddNewObject to check the ElementType for an ElementSpawner, and spawn that instead of the GrownObjectPrefab if it exists
 
                     //Add to spawnerPlot
-                    collidingSpawnerPlot.AddObject(newGrownObject);
+                    collidingSpawnerPlot.AddNewObject(GrownObjectPrefab, seedPlotPos);
 
                     //Kill Self after attempting to plant object
                     HideThenDelayedKill();
                 }
             }
-        }
-
-        protected override void AdditionalTriggerExit(Collider other) { if (hideWhenContained) trailRend.emitting = true; }
-
-        public override void _AttemptDespawn()
-        {
-            base._AttemptDespawn();
-
-            //TODO: Before despawning, search the ground area and attempt to create a temporary container to exist in (pools of water)
-            //The search can probably be a phat stationary spherecast, that looks for a "pool" of angled normals? Do spherecasts return *all* collided normals of a single object?
         }
 
         public void _VerifyDripType()
@@ -231,7 +233,7 @@ namespace Catacombs.ElementSystem.Runtime
             rb.isKinematic = true;
             physicsCollider.enabled = false;
 
-            SendCustomEventDelayedSeconds(nameof(_DelayedKill), 1);
+            SendCustomEventDelayedSeconds(nameof(KillElement), 2f);
         }
     }
 }

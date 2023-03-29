@@ -1,5 +1,6 @@
 ﻿using Argus.ItemSystem;
 using Argus.ItemSystem.Editor;
+using System;
 using System.ComponentModel;
 using System.Linq;
 using UdonSharp;
@@ -14,16 +15,19 @@ namespace Catacombs.ElementSystem.Runtime
         [Header("Req. Item Fields")]
         public GameObject parentObject;
         public Rigidbody rb;
-        public Collider physicsCollider;
+        public ItemPooler itemPooler;
+        public ElementTypeManager elementTypeManager;
+
         public bool isCollidingSurface = false;
-        public bool isGrounded = false;
+        [HideInInspector] public bool isGrounded = false;
+
         [HideInInspector] public float itemMass;
 
         [Header("Element Type Settings")]
         //This should already be set for pre-placed Element Prefabs
-        public ElementTypeManager elementTypeManager;
         public ElementTypes elementTypeId;
         public Color elementColor;
+
         private bool elementInitialized;
 
         [Header("Death Settings")]
@@ -32,14 +36,15 @@ namespace Catacombs.ElementSystem.Runtime
         [HideInInspector] public bool startTimeout = false;
         public float killVelocity = Mathf.Infinity;
 
-        private float lastLandTime;
-        private float lastInteractTime;
+        public float lastLandTime;
+        public float lastInteractTime;
 
         [Header("Containment Settings")]
         public bool isContained;
         public bool hideWhenContained;
         public Renderer elementRenderer;
-        [SerializeField] protected ElementContainer parentContainer;
+        public bool disableContainment;
+        public ElementContainer parentContainer;
 
         [HideInInspector] public bool hideDebugsOverride;
 
@@ -49,9 +54,8 @@ namespace Catacombs.ElementSystem.Runtime
             if (rb == null) rb = parentObject.GetComponent<Rigidbody>();
             elementRenderer = parentObject.GetComponent<Renderer>();
 
-            itemMass = rb.mass;
-
-            _PullElementType();
+            //If this object already exists within the first second of scene init, manually PullElementType()
+            if (Time.time < 1) _PullElementType();
         }
 
         private void Update() { if (elementInitialized) AdditionalUpdate(); }
@@ -72,6 +76,7 @@ namespace Catacombs.ElementSystem.Runtime
 
             elementColor = elementData.elementColor;
             despawnTime = elementData.despawnTime;
+            killVelocity = elementData.killVelocity;
 
             //if (Time.time < 1) parentObject.name = $"{elementData.name} {parentObject.name}";
             //else parentObject.name = $"{elementData.name} {parentObject.name.Remove(parentObject.name.Length - 7)}";
@@ -95,11 +100,17 @@ namespace Catacombs.ElementSystem.Runtime
 
         protected virtual void AdditionalTriggerExit(Collider other) { }
 
-        public virtual void Grabbed() { parentObject.transform.parent = null; rb.isKinematic = true; }
+        public virtual void Grabbed()
+        {
+            parentObject.transform.parent = null;
+            rb.isKinematic = true;
+
+            lastInteractTime = (float)Math.Round(Time.time, 3);
+        }
 
         public virtual void Dropped() { }
 
-        public virtual void _DelayedKill() { Destroy(parentObject); }
+        public virtual void KillElement() { }
 
         public void OnCollisionEnter(Collision collision) { ParentCollisionEnter(collision); }
         private void OnCollisionExit(Collision collision) { ParentCollisionExit(collision); }
@@ -109,13 +120,18 @@ namespace Catacombs.ElementSystem.Runtime
         {
             if (collision == null || collision.gameObject == null) return;
 
+            //TODO: This is sometimes 0, why?
+            Log($"Collided with something, velocity is {rb.velocity.magnitude}");
+
             //Instantly die if smashing into a surface at a velocity higher than killVelocity
             if (!isCollidingSurface && rb.velocity.magnitude > killVelocity)
             {
                 Log($"Smashed into something too hard");
-                Destroy(parentObject);
+
+                itemPooler.ReturnBaseElement(parentObject);
             }
 
+            //If on Environment layer
             if (collision.collider.gameObject.layer == 11)
             {
                 isGrounded = true;
@@ -123,7 +139,7 @@ namespace Catacombs.ElementSystem.Runtime
                 //Initiate despawn countdown
                 if (canDespawn)
                 {
-                    lastLandTime = Time.time;
+                    lastLandTime = (float)Math.Round(Time.time, 3);
                     lastInteractTime = lastLandTime;
 
                     if (!isContained)
@@ -145,21 +161,14 @@ namespace Catacombs.ElementSystem.Runtime
             if (collision.collider.gameObject.layer == 11)
             {
                 isGrounded = false;
-                lastInteractTime = Time.time;
+                lastInteractTime = (float)Math.Round(Time.time, 3);
             }
 
             //Element layer (24) shouldn't affect surface collision detection
             if (collision.collider.gameObject.layer != 24) isCollidingSurface = false;
         }
 
-        public virtual void _AttemptDespawn()
-        {
-            if (lastLandTime == lastInteractTime)
-            {
-                Log("Timed out, destroying...");
-                Destroy(parentObject);
-            }
-        }
+        public virtual void _AttemptDespawn() {  }
 
         //Container Enter
         private void OnTriggerEnter(Collider other)
@@ -169,13 +178,13 @@ namespace Catacombs.ElementSystem.Runtime
             if (other.gameObject.layer == 22)
             {
                 //Don't let other containers steal this Element!
-                if (!isContained)
+                if (!isContained && !disableContainment)
                 {
                     parentObject.transform.parent = other.transform;
-                    //Log($"{parentObject.name} has entered Container [{other.transform.parent.name}]");
+                    Log($"{parentObject.name} has entered Container [{other.transform.parent.name}]");
 
                     isContained = true;
-                    lastInteractTime = Time.time;
+                    lastInteractTime = (float)Math.Round(Time.time, 3);
                     parentContainer = other.GetComponent<ElementContainer>();
                     rb.mass = 0;
 
@@ -200,7 +209,9 @@ namespace Catacombs.ElementSystem.Runtime
                 //Don't let other containers interfere with current container!
                 if (other.GetComponent<ElementContainer>() != parentContainer) return;
 
-                Log($"{parentObject.name} has exited Container [{transform.parent.name}]");
+                Log($"{parentObject.name} has exited Container [{other.transform.parent.name}]");
+
+                parentContainer = null;
                 parentObject.transform.parent = null;
 
                 isContained = false;

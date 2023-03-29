@@ -10,6 +10,7 @@ namespace Catacombs.ElementSystem.Runtime
     public class ElementDispenser : UdonSharpBehaviour
     {
         [Header("Element Settings")]
+        [SerializeField] private ItemPooler itemPooler;
         [SerializeField] private ElementTypeManager elementTypeManager;
         [SerializeField] private ElementTypes elementToDispense;
         [SerializeField] private Transform[] spawnPositions;
@@ -60,26 +61,26 @@ namespace Catacombs.ElementSystem.Runtime
             }
 
             RuntimeElement newElement;
-            ElementData elementType = elementTypeManager.elementDataObjs[(int)elementToDispense];
             Vector3 spawnPos = spawnPositions[Random.Range(0, spawnPositions.Length)].position;
 
-            if (usePrecipitate) newElement = Instantiate(elementType.ElementPrecipitatePrefab, spawnPos, Quaternion.identity, transform).GetComponent<ElementPrecipitate>();
-            else newElement = Instantiate(elementType.BaseElementPrefab, spawnPos, Quaternion.identity, transform).GetComponent<BaseElement>();
+            if (usePrecipitate) newElement = itemPooler.RequestElementPrecipitate();
+            else newElement = itemPooler.RequestBaseElement();
+
+            newElement.transform.position = spawnPos;
+            newElement.transform.parent = transform;
+
+            newElement.rb.isKinematic = false;
 
             if (hideDebugs) newElement.hideDebugsOverride = true;
-            newElement.elementTypeManager = elementTypeManager;
             newElement.elementTypeId = elementToDispense;
 
+            newElement._PullElementType();
         }
 
-        public override void OnPickup()
+        public override void Interact()
         {
-            base.OnPickup();
-
             if (requireInteract)
             {
-                pickupScript.Drop();
-
                 AttemptSpawnElement();
             }
         }
