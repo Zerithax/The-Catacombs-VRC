@@ -10,14 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 055ce9bfd4f47f440adde5714a300157, type: 3}
-  m_Name: BlueberryJuice
+  m_Name: CloverSeed
   m_EditorClassIdentifier: 
-  elementTypeId: 6
-  elementColor: {r: 0.1499305, g: 0.137362, b: 0.346, a: 1}
+  elementTypeId: 9
+  elementColor: {r: 0.12993948, g: 0.3773585, b: 0.1536917, a: 1}
   canDespawn: 1
-  despawnTime: 60
+  despawnTime: 10
   killVelocity: Infinity
-  spawnsFromElementSpawner: 0
+  BaseElementCollisionPrefab: {fileID: 5769621185703160912, guid: c9230e8bb8ac3574f95d917aa003db04,
+    type: 3}
+  baseElementMesh: {fileID: 8137266731148065982, guid: ef761f4b6a89ff74d85274b5093edccc,
+    type: 3}
+  pickupColliderRadius: 0.07
+  rbMass: 0.02
+  rbDrag: 0.4
+  rbAngularDrag: 4
   ElementSpawnerAnimator: {fileID: 0}
   colliderYPos: 0
   colliderRadius: 0.05
@@ -26,31 +33,25 @@ MonoBehaviour:
   ElementSpawnTransforms: {fileID: 0}
   elementSpawnerGrowTime: 0
   elementSpawnTime: 0
-  baseElementMesh: {fileID: 0}
-  BaseElementCollisionPrefab: {fileID: 0}
-  pickupColliderRadius: 0
-  rbMass: 1
-  rbDrag: 0
-  rbAngularDrag: 0.05
+  canPlantManually: 0
   canCreatePrecipitate: 1
   elementPrecipitateType: 2
-  shrinkSpeed: 0.001
-  elementPrecipitateAmount: 3
+  shrinkSpeed: 0.0005
+  elementPrecipitateAmount: 1
   minimumVelocity: 0
   maximumVelocity: Infinity
-  velocityMultiplier: 0.01
+  velocityMultiplier: 0
   canSpawnSeedPod: 0
   seedPodSpawnChance: 0
   SeedPodPrefab: {fileID: 0}
   seedPodPosOffset: {x: 0, y: 0, z: 0}
   ElementLeavesPrefab: {fileID: 0}
   seedPodElementType: 0
-  canPlantManually: 0
-  elementHasUsableEffect: 1
-  elementEffectPrimingTrigger: 1
+  elementHasUsableEffect: 0
+  elementEffectPrimingTrigger: 0
   effectPrimingThreshold: 100
-  effectUseTrigger: 1
-  ingestedEffect: 1
-  ingestedEffectStrength: 3
-  ingestedEffectDuration: 30
+  effectUseTrigger: 0
+  ingestedEffect: 0
+  ingestedEffectStrength: 0
+  ingestedEffectDuration: 0
   GrownObjectPrefab: {fileID: 0}

@@ -26,13 +26,15 @@ MonoBehaviour:
   minimumVelocity: 0
   maximumVelocity: 2
   velocityMultiplier: 0.01
-  canCreateSpawner: 0
-  seedGrowChance: 0
+  canSpawnSeedPod: 0
+  seedPodSpawnChance: 0
+  seedPodElementType: 0
+  ElementSpawnerPrefab: {fileID: 0}
   elementSpawnerGrowTime: 0
   elementSpawnTime: 0
-  ElementSpawnerPrefab: {fileID: 0}
   BaseElementPrefab: {fileID: 0}
-  elementIsPotion: 1
+  canPlantManually: 0
+  elementHasUsableEffect: 1
   elementEffectPrimingTrigger: 2
   effectPrimingThreshold: 50
   effectUseTrigger: 2

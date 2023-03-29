@@ -15,22 +15,56 @@ MonoBehaviour:
   elementTypeId: 1
   elementColor: {r: 0.9056604, g: 0.53381246, b: 0.16660735, a: 1}
   canDespawn: 1
+  despawnTime: 10
   killVelocity: 10
-  despawnTime: 60
+  BaseElementPrefab: {fileID: 1871503638817367044, guid: 274468afc980c6849815840892b7ba40,
+    type: 3}
+  BaseElementCollisionPrefab: {fileID: 6517209209624554442, guid: 554890788ad92104aa813dbbaf885061,
+    type: 3}
+  baseElementMesh: {fileID: 7898303678134235034, guid: 2c0d3050e7ab9e54dbb011f7296c66c7,
+    type: 3}
+  pickupColliderRadius: 0.07
+  rbMass: 0.1
+  rbDrag: 0.4
+  rbAngularDrag: 0.05
   canCreatePrecipitate: 1
   elementPrecipitateType: 1
   ElementPrecipitatePrefab: {fileID: 168277037723220031, guid: 30fe8e48d081c624181abc1f666640c4,
     type: 3}
   shrinkSpeed: 0.001
   elementPrecipitateAmount: 5
-  scaleVelocity: 0
-  targetVelocity: 0
-  momentumScale: 1.01
-  canCreateSpawner: 1
+  minimumVelocity: 0
+  maximumVelocity: Infinity
+  velocityMultiplier: 0.01
+  canSpawnSeedPod: 1
+  seedPodSpawnChance: 1
+  SeedPodPrefab: {fileID: 6647423906080684150, guid: 32b1811c43c122d45a586f72ec67dd1b,
+    type: 3}
+  seedPodPosOffset: {x: 0, y: 0.0142, z: 0}
+  ElementLeavesPrefab: {fileID: 1164041372635974953, guid: f70261a4d3d58bf4cb1dad530dfd476e,
+    type: 3}
+  seedPodElementType: 1
   ElementSpawnerPrefab: {fileID: 2800183236413200083, guid: 6f1bed9474956e14e8982a4824fff354,
     type: 3}
-  elementSpawnerGrowTime: 60
-  BaseElementPrefab: {fileID: 1871503638817367044, guid: 274468afc980c6849815840892b7ba40,
+  ElementSpawnerAnimator: {fileID: 9100000, guid: e5f4db4bddd0c7549a0f073be026d390,
+    type: 2}
+  colliderYPos: 0.25
+  colliderRadius: 0.15
+  colliderHeight: 0.5
+  ElementSpawnerGrowthPrefabs:
+  - {fileID: 3641895495905796266, guid: c8b12f469ef9157469bfcf918dec5beb, type: 3}
+  - {fileID: 4278128458719230246, guid: 0e4e6b537695a8340a420d1dc473b724, type: 3}
+  - {fileID: 2857445737330349378, guid: ddd384402782b564aace66fe64c574b4, type: 3}
+  ElementSpawnTransforms: {fileID: 1743217837672615097, guid: 42679ade0fc18214e91d6ad6a3b63ad8,
     type: 3}
+  elementSpawnerGrowTime: 20
   elementSpawnTime: 180
-  seedGrowChance: 1
+  canPlantManually: 1
+  elementHasUsableEffect: 0
+  elementEffectPrimingTrigger: 0
+  effectPrimingThreshold: 100
+  effectUseTrigger: 0
+  ingestedEffect: 0
+  ingestedEffectStrength: 0
+  ingestedEffectDuration: 0
+  GrownObjectPrefab: {fileID: 0}

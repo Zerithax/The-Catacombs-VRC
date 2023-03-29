@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 055ce9bfd4f47f440adde5714a300157, type: 3}
+  m_Name: CloverSprout
+  m_EditorClassIdentifier: 
+  elementTypeId: 10
+  elementColor: {r: 0.5882353, g: 0.25490198, b: 0.26666668, a: 1}
+  canDespawn: 0
+  despawnTime: 60
+  killVelocity: Infinity
+  BaseElementCollisionPrefab: {fileID: 0}
+  baseElementMesh: {fileID: 0}
+  pickupColliderRadius: 0
+  rbMass: 1
+  rbDrag: 0
+  rbAngularDrag: 0.05
+  ElementSpawnerAnimator: {fileID: 0}
+  colliderYPos: 0.12
+  colliderRadius: 0.08
+  colliderHeight: 0.35
+  ElementSpawnerGrowthPrefabs:
+  - {fileID: 6507329483071515177, guid: 5dd3a78256e56854ca4ae64e8b420f11, type: 3}
+  - {fileID: 2708940158376424420, guid: 5a3e21193a6ab4a4fbb6c604e2f8bbc8, type: 3}
+  - {fileID: 1042644658229548207, guid: 0b4b4d9429f00784ca759e4ef5a27435, type: 3}
+  ElementSpawnTransforms: {fileID: 9166072400649028557, guid: 6d6d036542bc3334e844f395a9cee112,
+    type: 3}
+  elementSpawnerGrowTime: 10
+  elementSpawnTime: 1
+  canPlantManually: 0
+  canCreatePrecipitate: 1
+  elementPrecipitateType: 2
+  shrinkSpeed: 0.001
+  elementPrecipitateAmount: 1
+  minimumVelocity: 0
+  maximumVelocity: Infinity
+  velocityMultiplier: 0.01
+  canSpawnSeedPod: 0
+  seedPodSpawnChance: 0
+  SeedPodPrefab: {fileID: 0}
+  seedPodPosOffset: {x: 0, y: 0, z: 0}
+  ElementLeavesPrefab: {fileID: 0}
+  seedPodElementType: 0
+  elementHasUsableEffect: 1
+  elementEffectPrimingTrigger: 1
+  effectPrimingThreshold: 100
+  effectUseTrigger: 2
+  ingestedEffect: 0
+  ingestedEffectStrength: 0
+  ingestedEffectDuration: 0
+  GrownObjectPrefab: {fileID: 7077476885925382721, guid: 6e1575ae24830604a9b3ac71879c57dd,
+    type: 3}
