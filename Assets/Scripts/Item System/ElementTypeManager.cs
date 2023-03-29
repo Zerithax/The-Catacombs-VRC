@@ -111,26 +111,44 @@ namespace Argus.ItemSystem
                             //Precipitate settings
                             elementDataObjs[i].canCreatePrecipitate = elementTypes[i].canCreatePrecipitate;
                             elementDataObjs[i].elementPrecipitateType = elementTypes[i].elementPrecipitateType;
-                            elementDataObjs[i].ElementPrecipitatePrefab = elementTypes[i].ElementPrecipitatePrefab;
                             elementDataObjs[i].shrinkSpeed = elementTypes[i].shrinkSpeed;
                             elementDataObjs[i].elementPrecipitateAmount = elementTypes[i].elementPrecipitateAmount;
                             elementDataObjs[i].minimumVelocity = elementTypes[i].minimumVelocity;
                             elementDataObjs[i].maximumVelocity = elementTypes[i].maximumVelocity;
                             elementDataObjs[i].velocityMultiplier = elementTypes[i].velocityMultiplier;
 
-                            //Seed Pod/Spawner settings
-                            elementDataObjs[i].canCreateSpawners = elementTypes[i].canCreateSpawner;
-                            elementDataObjs[i].ElementSpawnerPrefab = elementTypes[i].ElementSpawnerPrefab;
-                            elementDataObjs[i].elementSpawnerGrowthPeriod = elementTypes[i].elementSpawnerGrowTime;
-                            elementDataObjs[i].BaseElementPrefab = elementTypes[i].BaseElementPrefab;
+                            //Base Element settings
+                            elementDataObjs[i].BaseElementCollisionPrefab = elementTypes[i].BaseElementCollisionPrefab;
+                            elementDataObjs[i].baseElementMesh = elementTypes[i].baseElementMesh;
+                            elementDataObjs[i].pickupColliderRadius = elementTypes[i].pickupColliderRadius;
+                            elementDataObjs[i].rbMass = elementTypes[i].rbMass;
+                            elementDataObjs[i].rbDrag = elementTypes[i].rbDrag;
+                            elementDataObjs[i].rbAngularDrag = elementTypes[i].rbAngularDrag;
+
+                            //Seed Pod settings
+                            elementDataObjs[i].canSpawnSeedPod = elementTypes[i].canSpawnSeedPod;
+                            elementDataObjs[i].SeedPodPrefab = elementTypes[i].SeedPodPrefab;
+                            elementDataObjs[i].seedPodPosOffset = elementTypes[i].seedPodPosOffset;
+                            elementDataObjs[i].ElementLeavesPrefab = elementTypes[i].ElementLeavesPrefab;
+                            elementDataObjs[i].seedPodSpawnChance = elementTypes[i].seedPodSpawnChance;
+                            elementDataObjs[i].seedPodElementType = elementTypes[i].seedPodElementType;
+
+                            //Element Spawner settings
+                            elementDataObjs[i].ElementSpawnerAnimator = elementTypes[i].ElementSpawnerAnimator;
+                            elementDataObjs[i].colliderYPos = elementTypes[i].colliderYPos;
+                            elementDataObjs[i].colliderRadius = elementTypes[i].colliderRadius;
+                            elementDataObjs[i].colliderHeight = elementTypes[i].colliderHeight;
+                            elementDataObjs[i].ElementSpawnerGrowthPrefabs = elementTypes[i].ElementSpawnerGrowthPrefabs;
+                            elementDataObjs[i].ElementSpawnTransforms = elementTypes[i].ElementSpawnTransforms;
+                            elementDataObjs[i].elementSpawnerGrowTime = elementTypes[i].elementSpawnerGrowTime;
                             elementDataObjs[i].elementSpawnTime = elementTypes[i].elementSpawnTime;
-                            elementDataObjs[i].seedGrowChance = elementTypes[i].seedGrowChance;
+                            elementDataObjs[i].canPlantManually = elementTypes[i].canPlantManually;
 
                             //Potion settings
-                            elementDataObjs[i].elementIsPotion = elementTypes[i].elementIsPotion;
-                            elementDataObjs[i].potionPrimingTrigger = elementTypes[i].elementEffectPrimingTrigger;
-                            elementDataObjs[i].potionPrimingThreshold = elementTypes[i].effectPrimingThreshold;
-                            elementDataObjs[i].potionUseTrigger = elementTypes[i].effectUseTrigger;
+                            elementDataObjs[i].elementHasUsableEffect = elementTypes[i].elementHasUsableEffect;
+                            elementDataObjs[i].elementEffectPrimingTrigger = elementTypes[i].elementEffectPrimingTrigger;
+                            elementDataObjs[i].effectPrimingThreshold = elementTypes[i].effectPrimingThreshold;
+                            elementDataObjs[i].effectUseTrigger = elementTypes[i].effectUseTrigger;
 
                             //   \Ingestion settings
                             elementDataObjs[i].ingestedEffect = elementTypes[i].ingestedEffect;
@@ -139,7 +157,6 @@ namespace Argus.ItemSystem
 
                             //   \Grounding settings
                             elementDataObjs[i].GrownObjectPrefab = elementTypes[i].GrownObjectPrefab;
-                            elementDataObjs[i].growTime = elementTypes[i].growTime;
 
                             Debug.Log($"Created {newElementData.name}");
                         }

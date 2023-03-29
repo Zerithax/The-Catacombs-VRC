@@ -375,6 +375,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _udonSharpBackingUdonBehaviour: {fileID: 4013737200229974228}
+  itemPooler: {fileID: 0}
   elementTypeManager: {fileID: 0}
   rb: {fileID: 7185866803628844734}
   pickupScript: {fileID: 1023431546297336390}
@@ -394,16 +395,6 @@ MonoBehaviour:
   containedLiquids: 
   containedElements: 
   containedDusts:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

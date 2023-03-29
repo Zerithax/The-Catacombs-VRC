@@ -12,40 +12,55 @@ namespace Argus.ItemSystem.Editor
         public ElementTypes elementTypeId;
         public Color elementColor;
 
-        [Header("Death Settings")]
+        [Header("Despawn Settings")]
         public bool canDespawn;
-        public float killVelocity = Mathf.Infinity;
-        public int despawnTime = 60;
+        public int despawnTime;
+        public float killVelocity;
 
         [Header("Base Element Settings")]
-        public bool canCreatePrecipitate;
-        public ElementPrecipitates elementPrecipitateType;
-        public GameObject ElementPrecipitatePrefab;
-        public float shrinkSpeed = 0.001f;
-        public int elementPrecipitateAmount = 5;
+        public GameObject BaseElementCollisionPrefab;
+        public Mesh baseElementMesh;
+        public float pickupColliderRadius;
+        public float rbMass;
+        public float rbDrag;
+        public float rbAngularDrag;
 
         [Header("Precipitate Settings")]
-        public float minimumVelocity = 0;
-        public float maximumVelocity = Mathf.Infinity;
-        public float velocityMultiplier = 0.01f;
+        public bool canCreatePrecipitate;
+        public ElementPrecipitates elementPrecipitateType;
+        public float shrinkSpeed;
+        public int elementPrecipitateAmount;
+        public float minimumVelocity;
+        public float maximumVelocity;
+        public float velocityMultiplier;
 
-        [Header("Spawner Settings")]
-        public bool canCreateSpawners;
-        public float seedGrowChance;
-        public int elementSpawnerGrowthPeriod;
+        [Header("Seed Pod Settings")]
+        public bool canSpawnSeedPod;
+        public float seedPodSpawnChance;
+        public GameObject SeedPodPrefab;
+        public Vector3 seedPodPosOffset;
+        public GameObject ElementLeavesPrefab;
+        public ElementTypes seedPodElementType;
+
+        [Header("Element Spawner Settings")]
+        public RuntimeAnimatorController ElementSpawnerAnimator;
+        public float colliderYPos;
+        public float colliderRadius;
+        public float colliderHeight;
+        public GameObject[] ElementSpawnerGrowthPrefabs;
+        public GameObject ElementSpawnTransforms;
+        public int elementSpawnerGrowTime;
         public int elementSpawnTime;
-        public GameObject ElementSpawnerPrefab;
-        public GameObject BaseElementPrefab;
+        public bool canPlantManually;
 
-        [Header("Potion Settings")]
-        public bool elementIsPotion;
-        public ElementPrimingTrigger potionPrimingTrigger;
-        public int potionPrimingThreshold;
-        public ElementUseTrigger potionUseTrigger;
+        [Header("Effect Settings")]
+        public bool elementHasUsableEffect;
+        public ElementPrimingTrigger elementEffectPrimingTrigger;
+        public int effectPrimingThreshold;
+        public ElementUseTrigger effectUseTrigger;
         public PlayerEffect ingestedEffect;
         public int ingestedEffectStrength;
         public float ingestedEffectDuration;
         public GameObject GrownObjectPrefab;
-        public float growTime;
     }
 }
