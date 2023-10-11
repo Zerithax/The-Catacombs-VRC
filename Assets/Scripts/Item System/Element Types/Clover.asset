@@ -14,22 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementTypeId: 8
   elementColor: {r: 0.20392157, g: 0.69411767, b: 0.2509804, a: 1}
+  elementIsProducedByPotion: 0
+  elementIsSpawnedByElementSpawner: 1
+  elementIsSeedPod: 0
+  elementCanSpawnGrownObject: 0
   canDespawn: 1
   despawnTime: 10
   killVelocity: Infinity
-  spawnsFromElementSpawner: 1
-  ElementSpawnerAnimator: {fileID: 9100000, guid: 6f6f8365e7798ac4d983df356aa45b4c,
-    type: 2}
-  colliderYPos: 0.12
-  colliderRadius: 0.08
-  colliderHeight: 0.35
-  ElementSpawnerGrowthPrefabs:
-  - {fileID: 6507329483071515177, guid: 5dd3a78256e56854ca4ae64e8b420f11, type: 3}
-  - {fileID: 2708940158376424420, guid: 5a3e21193a6ab4a4fbb6c604e2f8bbc8, type: 3}
-  - {fileID: 1042644658229548207, guid: 0b4b4d9429f00784ca759e4ef5a27435, type: 3}
-  ElementSpawnTransforms: {fileID: 0}
-  elementSpawnerGrowTime: 10
-  elementSpawnTime: 1
+  baseElementSpawnTime: 1
   baseElementMesh: {fileID: 8137266731148065982, guid: ef761f4b6a89ff74d85274b5093edccc,
     type: 3}
   BaseElementCollisionPrefab: {fileID: 5769621185703160912, guid: c9230e8bb8ac3574f95d917aa003db04,
@@ -38,26 +30,39 @@ MonoBehaviour:
   rbMass: 0.02
   rbDrag: 0.4
   rbAngularDrag: 4
-  canCreatePrecipitate: 1
+  elementCanBecomeSeedPod: 1
+  seedPodSpawnChance: 33.3
+  SeedPodPrefab: {fileID: 910723081663789424, guid: eac8af58ecd9f9c49a435d9ee4806f66,
+    type: 3}
+  seedPodPosOffset: {x: -0.000279, y: -0.008799, z: 0.005195}
+  seedPodElementType: 9
+  ElementLeavesPrefab: {fileID: 0}
+  canPlantManually: 0
+  GrownObjectAnimator: {fileID: 9100000, guid: 6f6f8365e7798ac4d983df356aa45b4c, type: 2}
+  grownObjectType: 0
+  grownObjectElement: 0
+  colliderYPos: 0.12
+  colliderRadius: 0.08
+  colliderHeight: 0.35
+  GrownObjectGrowthPrefabs:
+  - {fileID: 6507329483071515177, guid: 5dd3a78256e56854ca4ae64e8b420f11, type: 3}
+  - {fileID: 2708940158376424420, guid: 5a3e21193a6ab4a4fbb6c604e2f8bbc8, type: 3}
+  - {fileID: 1042644658229548207, guid: 0b4b4d9429f00784ca759e4ef5a27435, type: 3}
+  grownObjectGrowTime: 10
+  ElementSpawnTransforms: {fileID: 9166072400649028557, guid: 6d6d036542bc3334e844f395a9cee112,
+    type: 3}
+  elementHasPrecipitateForm: 1
   elementPrecipitateType: 1
-  shrinkSpeed: 0.0005
-  elementPrecipitateAmount: 1
   minimumVelocity: 0
   maximumVelocity: Infinity
   velocityMultiplier: 0
-  canSpawnSeedPod: 1
-  seedPodSpawnChance: 60
-  SeedPodPrefab: {fileID: 910723081663789424, guid: eac8af58ecd9f9c49a435d9ee4806f66,
-    type: 3}
-  seedPodPosOffset: {x: 0.000279, y: -0.008799, z: 0.005195}
-  ElementLeavesPrefab: {fileID: 0}
-  seedPodElementType: 9
-  canPlantManually: 0
+  shrinkSpeed: 0.0005
+  elementPrecipitateAmount: 1
+  elementPrecipitateSpawnChance: 0.5
   elementHasUsableEffect: 0
   elementEffectPrimingTrigger: 0
-  effectPrimingThreshold: 100
+  effectPrimingThreshold: 0
   effectUseTrigger: 0
   ingestedEffect: 0
   ingestedEffectStrength: 0
   ingestedEffectDuration: 0
-  GrownObjectPrefab: {fileID: 0}

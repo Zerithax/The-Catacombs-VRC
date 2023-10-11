@@ -13,23 +13,35 @@ namespace Argus.ItemSystem.Editor
         [MenuItem("Argus/Item System/Refresh Database")]
         public static void RefreshItemDatabase()
         {
-            AllItems = null;
+            AllElements = null;
             GetAllElementTypes();
 
             AllPotions = null;
             GetAllPotionRecipes();
         }
 
-        private static List<ElementType> AllItems;
+        public static void RefreshElementTypes()
+        {
+            AllElements = null;
+            GetAllElementTypes();
+        }
+
+        public static void RefreshPotionRecipes()
+        {
+            AllPotions = null;
+            GetAllPotionRecipes();
+        }
+
+        private static List<ElementType> AllElements;
 
         public static List<ElementType> GetAllElementTypes()
         {
-            if (AllItems != null) return AllItems.OrderBy(i => i.elementTypeId).ToList();
+            if (AllElements != null) return AllElements.OrderBy(i => i.elementTypeId).ToList();
 
             string[] assets = AssetDatabase.FindAssets($"t:{nameof(ElementType)}");
-            AllItems = assets.Select(AssetDatabase.GUIDToAssetPath).Select(AssetDatabase.LoadAssetAtPath<ElementType>).OrderBy(i => i.elementTypeId).ToList();
+            AllElements = assets.Select(AssetDatabase.GUIDToAssetPath).Select(AssetDatabase.LoadAssetAtPath<ElementType>).OrderBy(i => i.elementTypeId).ToList();
 
-            return AllItems;
+            return AllElements;
         }
 
         private static List<PotionRecipe> AllPotions;

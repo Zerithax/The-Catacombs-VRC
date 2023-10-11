@@ -7,27 +7,18 @@ namespace Catacombs.ElementSystem.Runtime
     public class GrownObject : RuntimeElement
     {
         [Header("Initial Growth Details")]
-        public Animator grownObjectAnim;
         public ObjectGrowingPlot parentSpawnPlot;
-        [SerializeField] protected bool isRooted = true;
-        public int growthPeriod;
-        [SerializeField] private float curGrowthTime;
-        [SerializeField] private int totalGrowthStages = 2;
-        public bool matured;
+        public Animator grownObjectAnim;
         public Collider physicsCollider;
+        [SerializeField] private float curGrowthTime;
+        [SerializeField] protected bool isRooted;
+        public bool matured;
 
         [Header("Replanting")]
         [SerializeField] protected bool isCollidingGrowthPlot;
         [SerializeField] protected ObjectGrowingPlot collidingGrowthPlot;
         protected float lastPlotInteractTime;
         protected float lastPlotPlantTime;
-
-        public override void KillElement()
-        {
-            if (!isRooted && lastPlotPlantTime == lastPlotInteractTime) itemPooler.ReturnElementSpawner(parentObject);
-            
-            return;
-        }
 
         protected override void AdditionalStart()
         {
@@ -40,38 +31,14 @@ namespace Catacombs.ElementSystem.Runtime
             lastPlotInteractTime = lastPlotPlantTime;
         }
 
-        public override bool _PullElementType()
-        {
-            if (!base._PullElementType()) return false;
-
-            ElementData elementData = elementTypeManager.elementDataObjs[(int)elementTypeId];
-
-            growthPeriod = elementData.elementSpawnerGrowTime;
-
-            if (grownObjectAnim.runtimeAnimatorController != null) grownObjectAnim.Play("GrowthStage0");
-
-            parentObject.name = $"Grown {parentObject.name}";
-
-            Log($"Retrieved GrownObject Data from {elementData.name}");
-            return true;
-        }
-
-        public override void _AttemptDespawn()
-        {
-            if (lastLandTime == lastInteractTime)
-            {
-                Log("Timed out, returning to Item Pooler...");
-
-                itemPooler.ReturnElementSpawner(parentObject);
-            }
-        }
-
         protected override void AdditionalUpdate()
         {
             if (isRooted && !matured)
             {
                 curGrowthTime += Time.deltaTime;
 
+                float totalGrowthStages = elementTypeData.GrownObjectGrowthPrefabs.Length - 1;
+                float growthPeriod = elementTypeData.grownObjectGrowTime;
                 float growthIntervals = growthPeriod / totalGrowthStages;
 
                 //Loop through growthStages and play an animation only if it's within the specific time interval of each growthStage
@@ -91,6 +58,28 @@ namespace Catacombs.ElementSystem.Runtime
                     }
                 }
             }
+        }
+
+        public override bool _PullElementType()
+        {
+            if (!base._PullElementType()) return false;
+
+            if (grownObjectAnim.runtimeAnimatorController != null) grownObjectAnim.Play("GrowthStage0");
+            isRooted = true;
+
+            parentObject.name = $"Grown {parentObject.name}";
+
+            Log($"Retrieved GrownObject Data from {elementTypeData.name}");
+            return true;
+        }
+
+        public override void KillElement() { itemPooler.ReturnGrownObject(parentObject); }
+
+        public override void _AttemptDespawn()
+        {
+            if (isRooted) return;
+
+            if (lastPlotPlantTime == lastPlotInteractTime) KillElement();
         }
 
         public override void Grabbed()

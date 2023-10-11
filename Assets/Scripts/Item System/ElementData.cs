@@ -1,7 +1,11 @@
 ﻿using Catacombs.Base;
 using Catacombs.ElementSystem.Runtime;
 using UdonSharp;
+using UnityEditor;
 using UnityEngine;
+using Boo.Lang;
+using System;
+using System.Linq;
 
 namespace Argus.ItemSystem.Editor
 {
@@ -11,6 +15,10 @@ namespace Argus.ItemSystem.Editor
         [Header("Element")]
         public ElementTypes elementTypeId;
         public Color elementColor;
+        public bool elementIsProducedByPotion;
+        public bool elementIsSpawnedByElementSpawner;
+        public bool elementIsSeedPod;
+        public bool elementCanSpawnGrownObject;
 
         [Header("Despawn Settings")]
         public bool canDespawn;
@@ -18,40 +26,45 @@ namespace Argus.ItemSystem.Editor
         public float killVelocity;
 
         [Header("Base Element Settings")]
-        public GameObject BaseElementCollisionPrefab;
+        public int baseElementSpawnTime;
         public Mesh baseElementMesh;
+        public GameObject BaseElementCollisionPrefab;
         public float pickupColliderRadius;
         public float rbMass;
         public float rbDrag;
         public float rbAngularDrag;
 
+        [Header("Seed Pod Settings")]
+        public bool elementCanBecomeSeedPod;
+        public float seedPodSpawnChance;
+        public GameObject SeedPodPrefab;
+        public Vector3 seedPodPosOffset;
+        public ElementTypes seedPodElementType;
+        public GameObject ElementLeavesPrefab;
+        public bool canPlantManually;
+
+        [Header("Grown Object Settings")]
+        public RuntimeAnimatorController GrownObjectAnimator;
+        public GrownObjectType grownObjectType;
+        public ElementTypes grownObjectElement;
+        public float colliderYPos;
+        public float colliderRadius;
+        public float colliderHeight;
+        public GameObject[] GrownObjectGrowthPrefabs;
+        public int grownObjectGrowTime;
+        public GameObject ElementSpawnTransforms;
+
         [Header("Precipitate Settings")]
-        public bool canCreatePrecipitate;
+        public bool elementHasPrecipitateForm;
         public ElementPrecipitates elementPrecipitateType;
-        public float shrinkSpeed;
-        public int elementPrecipitateAmount;
         public float minimumVelocity;
         public float maximumVelocity;
         public float velocityMultiplier;
 
-        [Header("Seed Pod Settings")]
-        public bool canSpawnSeedPod;
-        public float seedPodSpawnChance;
-        public GameObject SeedPodPrefab;
-        public Vector3 seedPodPosOffset;
-        public GameObject ElementLeavesPrefab;
-        public ElementTypes seedPodElementType;
-
-        [Header("Element Spawner Settings")]
-        public RuntimeAnimatorController ElementSpawnerAnimator;
-        public float colliderYPos;
-        public float colliderRadius;
-        public float colliderHeight;
-        public GameObject[] ElementSpawnerGrowthPrefabs;
-        public GameObject ElementSpawnTransforms;
-        public int elementSpawnerGrowTime;
-        public int elementSpawnTime;
-        public bool canPlantManually;
+        [Header("BaseElement Precipitation Settings")]
+        public float shrinkSpeed;
+        public int elementPrecipitateAmount;
+        public float elementPrecipitateSpawnChance;
 
         [Header("Effect Settings")]
         public bool elementHasUsableEffect;
@@ -61,6 +74,328 @@ namespace Argus.ItemSystem.Editor
         public PlayerEffect ingestedEffect;
         public int ingestedEffectStrength;
         public float ingestedEffectDuration;
-        public GameObject GrownObjectPrefab;
+    }
+
+    [CustomEditor(typeof(ElementData))]
+    public class ElementDataEditor : UnityEditor.Editor
+    {
+        private ElementTypeManager elementTypeManager;
+        private ElementData[] elementTypes;
+
+        public override void OnInspectorGUI()
+        {
+            if (elementTypeManager == null)
+            {
+                elementTypeManager = FindObjectOfType<ElementTypeManager>();
+                elementTypes = elementTypeManager.elementDataObjs;
+            }
+
+            /*if (GUILayout.Button("Refresh ElementTypeManager", EditorStyles.toolbarButton))
+            {
+                elementTypeManager = FindObjectOfType<ElementTypeManager>();
+                elementTypes = elementTypeManager.elementDataObjs;
+            }*/
+
+            serializedObject.Update();
+
+            List<string> excludedProperties = new List<string>();
+
+            ElementData myBehaviour = target as ElementData;
+
+            //Header: 'Element Info'
+            bool isProducedByPotion = false;
+
+            //Loop through PotionRecipeData objects and check if any of their resulting ElementTypes are this Element's
+            for (int i = 1; i < elementTypeManager.potionRecipeObjs.Length; i++)
+            {
+                if (myBehaviour.elementTypeId == elementTypeManager.potionRecipeObjs[i].potionElementType)
+                {
+                    isProducedByPotion = true;
+                    break;
+                }
+            }
+            myBehaviour.elementIsProducedByPotion = isProducedByPotion;
+            if (myBehaviour.elementIsProducedByPotion) myBehaviour.elementHasPrecipitateForm = true;
+
+            //Loop through ElementData objects to find any SeedPod & GrownObject references to this Element
+            bool isSeedPod = false;
+            bool isSpawnedByElementSpawner = false;
+            for (int i = 1; i < elementTypes.Length; i++)
+            {
+                //If elementTypeID exists as an elementData's seedPodElementType 
+                if (myBehaviour.elementTypeId == elementTypes[i].seedPodElementType)
+                {
+                    isSeedPod = true;
+                    isSpawnedByElementSpawner = true;
+                    break;
+                }
+
+                //If elementData hasUsableEffect & canSpawnGrownObject
+                if (elementTypes[i].elementHasUsableEffect && elementTypes[i].elementCanSpawnGrownObject)
+                {
+                    //If elementData's grownObjectType is ElementSpawner & grownObjectElement is elementTypeID 
+                    if (elementTypes[i].grownObjectType == GrownObjectType.ElementSpawner)
+                    {
+                        if (myBehaviour.elementTypeId == elementTypes[i].grownObjectElement)
+                        {
+                            isSpawnedByElementSpawner = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            myBehaviour.elementIsSeedPod = isSeedPod;
+            myBehaviour.elementIsSpawnedByElementSpawner = isSpawnedByElementSpawner;
+
+            myBehaviour.elementCanSpawnGrownObject = myBehaviour.canPlantManually || (myBehaviour.elementHasUsableEffect && myBehaviour.effectUseTrigger == ElementUseTrigger.GroundingGrownObject);
+
+            //Header: 'Despawn Settings'
+            if (!myBehaviour.canDespawn)
+            {
+                excludedProperties.Add("despawnTime");
+                excludedProperties.Add("killVelocity");
+            }
+            else
+            {
+                excludedProperties.Remove("despawnTime");
+                excludedProperties.Remove("killVelocity");
+            }
+
+            //Header: 'BaseElement Settings'
+            if (!myBehaviour.elementIsSpawnedByElementSpawner)
+            {
+                excludedProperties.Add("baseElementSpawnTime");
+                excludedProperties.Add("baseElementMesh");
+                excludedProperties.Add("BaseElementCollisionPrefab");
+                excludedProperties.Add("pickupColliderRadius");
+                excludedProperties.Add("rbMass");
+                excludedProperties.Add("rbDrag");
+                excludedProperties.Add("rbAngularDrag");
+                excludedProperties.Add("elementSpawnerCanSpawnSeedPod");
+
+                //Header: 'GrownObject Settings'
+                excludedProperties.Add("GrownObjectAnimator");
+                excludedProperties.Add("colliderYPos");
+                excludedProperties.Add("colliderRadius");
+                excludedProperties.Add("colliderHeight");
+                excludedProperties.Add("GrownObjectGrowthPrefabs");
+                excludedProperties.Add("grownObjectGrowTime");
+                excludedProperties.Add("ElementSpawnTransforms");
+            }
+            else
+            {
+                excludedProperties.Remove("baseElementSpawnTime");
+                excludedProperties.Remove("baseElementMesh");
+                excludedProperties.Remove("BaseElementCollisionPrefab");
+                excludedProperties.Remove("pickupColliderRadius");
+                excludedProperties.Remove("rbMass");
+                excludedProperties.Remove("rbDrag");
+                excludedProperties.Remove("rbAngularDrag");
+                excludedProperties.Remove("elementSpawnerCanSpawnSeedPod");
+            }
+
+            //Header: 'Seed Pod Settings' p1
+            if (!myBehaviour.elementCanBecomeSeedPod)
+            {
+                excludedProperties.Add("seedPodSpawnChance");
+                excludedProperties.Add("ElementLeavesPrefab");
+                excludedProperties.Add("seedPodElementType");
+            }
+            else
+            {
+                excludedProperties.Remove("seedPodSpawnChance");
+                excludedProperties.Remove("ElementLeavesPrefab");
+                excludedProperties.Remove("seedPodElementType");
+            }
+
+            //Header: 'Seed Pod Settings' p2
+            if (!myBehaviour.elementIsSeedPod)
+            {
+                excludedProperties.Add("SeedPodPrefab");
+                excludedProperties.Add("seedPodPosOffset");
+                excludedProperties.Add("canPlantManually");
+
+                //Header: 'Grown Object Settings'
+                if (!myBehaviour.elementIsSpawnedByElementSpawner && myBehaviour.grownObjectType != GrownObjectType.GrowableLink)
+                {
+                    excludedProperties.Add("GrownObjectAnimator");
+                    excludedProperties.Add("colliderYPos");
+                    excludedProperties.Add("colliderRadius");
+                    excludedProperties.Add("colliderHeight");
+                    excludedProperties.Add("GrownObjectGrowthPrefabs");
+                    excludedProperties.Add("grownObjectGrowTime");
+                    excludedProperties.Add("ElementSpawnTransforms");
+                }
+                else
+                {
+                    excludedProperties.Remove("GrownObjectAnimator");
+                    excludedProperties.Remove("colliderYPos");
+                    excludedProperties.Remove("colliderRadius");
+                    excludedProperties.Remove("colliderHeight");
+                    excludedProperties.Remove("GrownObjectGrowthPrefabs");
+                    excludedProperties.Remove("grownObjectGrowTime");
+                    excludedProperties.Remove("ElementSpawnTransforms");
+                }
+            }
+            else
+            {
+                excludedProperties.Remove("SeedPodPrefab");
+                excludedProperties.Remove("seedPodPosOffset");
+                excludedProperties.Remove("canPlantManually");
+
+                //Header: 'Grown Object Settings'
+                if (!myBehaviour.elementCanSpawnGrownObject && !myBehaviour.canPlantManually)
+                {
+                    excludedProperties.Add("GrownObjectAnimator");
+                    excludedProperties.Add("colliderYPos");
+                    excludedProperties.Add("colliderRadius");
+                    excludedProperties.Add("colliderHeight");
+                    excludedProperties.Add("GrownObjectGrowthPrefabs");
+                    excludedProperties.Add("grownObjectGrowTime");
+                    excludedProperties.Add("ElementSpawnTransforms");
+                }
+                else
+                {
+                    excludedProperties.Remove("GrownObjectAnimator");
+                    excludedProperties.Remove("colliderYPos");
+                    excludedProperties.Remove("colliderRadius");
+                    excludedProperties.Remove("colliderHeight");
+                    excludedProperties.Remove("GrownObjectGrowthPrefabs");
+                    excludedProperties.Remove("grownObjectGrowTime");
+                    excludedProperties.Remove("ElementSpawnTransforms");
+                }
+            }
+
+            //Header: 'Grown Object Settings'
+            if (!myBehaviour.elementCanSpawnGrownObject)
+            {
+                excludedProperties.Add("grownObjectType");
+                excludedProperties.Add("grownObjectElement");
+            }
+            else
+            {
+                excludedProperties.Remove("grownObjectType");
+                excludedProperties.Remove("grownObjectElement");
+            }
+
+            //Header: 'Precipitate Settings'
+            if (!myBehaviour.elementHasPrecipitateForm)
+            {
+                excludedProperties.Add("elementPrecipitateType");
+                excludedProperties.Add("minimumVelocity");
+                excludedProperties.Add("maximumVelocity");
+                excludedProperties.Add("velocityMultiplier");
+
+                //Header: 'BaseElement Precipitation Settings'
+                excludedProperties.Add("shrinkSpeed");
+                excludedProperties.Add("elementPrecipitateAmount");
+                excludedProperties.Add("elementPrecipitateSpawnChance");
+            }
+            else
+            {
+                excludedProperties.Remove("elementPrecipitateType");
+                excludedProperties.Remove("minimumVelocity");
+                excludedProperties.Remove("maximumVelocity");
+                excludedProperties.Remove("velocityMultiplier");
+                excludedProperties.Remove("shrinkSpeed");
+                excludedProperties.Remove("elementPrecipitateAmount");
+
+                //Header: 'BaseElement Precipitation Settings'
+                if (!myBehaviour.elementIsSpawnedByElementSpawner)
+                {
+                    excludedProperties.Add("shrinkSpeed");
+                    excludedProperties.Add("elementPrecipitateAmount");
+                    excludedProperties.Add("elementPrecipitateSpawnChance");
+                }
+                else
+                {
+                    excludedProperties.Remove("shrinkSpeed");
+                    excludedProperties.Remove("elementPrecipitateAmount");
+                    excludedProperties.Remove("elementPrecipitateSpawnChance");
+                }
+            }
+            //hide velocityMultiplier if minVel & maxVel unmodified 
+            if (myBehaviour.minimumVelocity == 0 && myBehaviour.maximumVelocity == Mathf.Infinity) excludedProperties.Add("velocityMultiplier");
+            else excludedProperties.Remove("velocityMultiplier");
+
+            //Header: 'Effect Settings'
+            if (!myBehaviour.elementHasUsableEffect)
+            {
+                excludedProperties.Add("elementEffectPrimingTrigger");
+                excludedProperties.Add("effectPrimingThreshold");
+                excludedProperties.Add("effectUseTrigger");
+                excludedProperties.Add("ingestedEffect");
+                excludedProperties.Add("ingestedEffectStrength");
+                excludedProperties.Add("ingestedEffectDuration");
+            }
+            else
+            {
+                excludedProperties.Remove("elementEffectPrimingTrigger");
+                excludedProperties.Remove("effectPrimingThreshold");
+                excludedProperties.Remove("effectUseTrigger");
+                excludedProperties.Remove("ingestedEffect");
+                excludedProperties.Remove("ingestedEffectStrength");
+                excludedProperties.Remove("ingestedEffectDuration");
+            }
+            //elementEffectPrimingTrigger ENUM Toggles
+            switch (myBehaviour.elementEffectPrimingTrigger)
+            {
+                default:
+                    excludedProperties.Add("effectPrimingThreshold");
+                    break;
+
+                case ElementPrimingTrigger.Always:
+                    excludedProperties.Add("effectPrimingThreshold");
+                    break;
+
+                case ElementPrimingTrigger.Mixing:
+                    excludedProperties.Remove("effectPrimingThreshold");
+                    break;
+
+                case ElementPrimingTrigger.Heating:
+                    excludedProperties.Remove("effectPrimingThreshold");
+                    break;
+
+                case ElementPrimingTrigger.Lighting:
+                    excludedProperties.Remove("effectPrimingThreshold");
+                    break;
+            }
+            //effectUseTrigger ENUM Toggles
+            switch (myBehaviour.effectUseTrigger)
+            {
+                default:
+
+                    excludedProperties.Add("ingestedEffect");
+                    excludedProperties.Add("ingestedEffectStrength");
+                    excludedProperties.Add("ingestedEffectDuration");
+
+                    if (!myBehaviour.elementCanSpawnGrownObject)
+                    {
+                        myBehaviour.grownObjectType = GrownObjectType.None;
+                        myBehaviour.grownObjectElement = ElementTypes.None;
+                    }
+                    break;
+
+                case ElementUseTrigger.Ingesting:
+
+                    excludedProperties.Remove("ingestedEffect");
+                    excludedProperties.Remove("ingestedEffectStrength");
+                    excludedProperties.Remove("ingestedEffectDuration");
+                    break;
+
+                case ElementUseTrigger.GroundingGrownObject:
+
+                    excludedProperties.Add("ingestedEffect");
+                    excludedProperties.Add("ingestedEffectStrength");
+                    excludedProperties.Add("ingestedEffectDuration");
+
+                    myBehaviour.elementHasPrecipitateForm = true;
+                    break;
+            }
+
+            DrawPropertiesExcluding(serializedObject, excludedProperties.ToArray());
+
+            serializedObject.ApplyModifiedProperties();
+        }
     }
 }

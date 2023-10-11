@@ -95,6 +95,9 @@ namespace Argus.ItemSystem
                         {
                             //Generate a GameObject, AddComponent<ElementData>(), then fill it out with the ElementType data
                             GameObject newElementData = new GameObject();
+
+                            EditorUtility.SetDirty(newElementData);
+
                             newElementData.transform.SetParent(elementTypeManager.elementDataParent.transform, true);
                             elementDataObjs[i] = newElementData.AddComponent<ElementData>();
                             newElementData.name = $"{elementTypes[i].elementTypeId:G} Element";
@@ -104,64 +107,106 @@ namespace Argus.ItemSystem
                             elementDataObjs[i].elementColor = elementTypes[i].elementColor;
 
                             //Despawn settings
-                            elementDataObjs[i].canDespawn = elementTypes[i].canDespawn;
-                            elementDataObjs[i].despawnTime = elementTypes[i].despawnTime;
-                            elementDataObjs[i].killVelocity = elementTypes[i].killVelocity;
-
-                            //Precipitate settings
-                            elementDataObjs[i].canCreatePrecipitate = elementTypes[i].canCreatePrecipitate;
-                            elementDataObjs[i].elementPrecipitateType = elementTypes[i].elementPrecipitateType;
-                            elementDataObjs[i].shrinkSpeed = elementTypes[i].shrinkSpeed;
-                            elementDataObjs[i].elementPrecipitateAmount = elementTypes[i].elementPrecipitateAmount;
-                            elementDataObjs[i].minimumVelocity = elementTypes[i].minimumVelocity;
-                            elementDataObjs[i].maximumVelocity = elementTypes[i].maximumVelocity;
-                            elementDataObjs[i].velocityMultiplier = elementTypes[i].velocityMultiplier;
+                            if (elementTypes[i].canDespawn)
+                            {
+                                elementDataObjs[i].canDespawn = elementTypes[i].canDespawn;
+                                elementDataObjs[i].despawnTime = elementTypes[i].despawnTime;
+                                elementDataObjs[i].killVelocity = elementTypes[i].killVelocity;
+                            }
 
                             //Base Element settings
-                            elementDataObjs[i].BaseElementCollisionPrefab = elementTypes[i].BaseElementCollisionPrefab;
-                            elementDataObjs[i].baseElementMesh = elementTypes[i].baseElementMesh;
-                            elementDataObjs[i].pickupColliderRadius = elementTypes[i].pickupColliderRadius;
-                            elementDataObjs[i].rbMass = elementTypes[i].rbMass;
-                            elementDataObjs[i].rbDrag = elementTypes[i].rbDrag;
-                            elementDataObjs[i].rbAngularDrag = elementTypes[i].rbAngularDrag;
+                            if (elementTypes[i].elementIsSpawnedByElementSpawner)
+                            {
+                                elementDataObjs[i].baseElementSpawnTime = elementTypes[i].baseElementSpawnTime;
+                                elementDataObjs[i].baseElementMesh = elementTypes[i].baseElementMesh;
+                                elementDataObjs[i].BaseElementCollisionPrefab = elementTypes[i].BaseElementCollisionPrefab;
+                                elementDataObjs[i].pickupColliderRadius = elementTypes[i].pickupColliderRadius;
+                                elementDataObjs[i].rbMass = elementTypes[i].rbMass;
+                                elementDataObjs[i].rbDrag = elementTypes[i].rbDrag;
+                                elementDataObjs[i].rbAngularDrag = elementTypes[i].rbAngularDrag;
 
-                            //Seed Pod settings
-                            elementDataObjs[i].canSpawnSeedPod = elementTypes[i].canSpawnSeedPod;
-                            elementDataObjs[i].SeedPodPrefab = elementTypes[i].SeedPodPrefab;
-                            elementDataObjs[i].seedPodPosOffset = elementTypes[i].seedPodPosOffset;
-                            elementDataObjs[i].ElementLeavesPrefab = elementTypes[i].ElementLeavesPrefab;
-                            elementDataObjs[i].seedPodSpawnChance = elementTypes[i].seedPodSpawnChance;
-                            elementDataObjs[i].seedPodElementType = elementTypes[i].seedPodElementType;
+                                //Seed Pod settings
+                                if (elementTypes[i].elementCanBecomeSeedPod)
+                                {
+                                    elementDataObjs[i].elementCanBecomeSeedPod = elementTypes[i].elementCanBecomeSeedPod;
+                                    elementDataObjs[i].seedPodSpawnChance = elementTypes[i].seedPodSpawnChance;
+                                    elementDataObjs[i].seedPodElementType = elementTypes[i].seedPodElementType;
+                                    elementDataObjs[i].ElementLeavesPrefab = elementTypes[i].ElementLeavesPrefab;
+                                }
 
-                            //Element Spawner settings
-                            elementDataObjs[i].ElementSpawnerAnimator = elementTypes[i].ElementSpawnerAnimator;
-                            elementDataObjs[i].colliderYPos = elementTypes[i].colliderYPos;
-                            elementDataObjs[i].colliderRadius = elementTypes[i].colliderRadius;
-                            elementDataObjs[i].colliderHeight = elementTypes[i].colliderHeight;
-                            elementDataObjs[i].ElementSpawnerGrowthPrefabs = elementTypes[i].ElementSpawnerGrowthPrefabs;
-                            elementDataObjs[i].ElementSpawnTransforms = elementTypes[i].ElementSpawnTransforms;
-                            elementDataObjs[i].elementSpawnerGrowTime = elementTypes[i].elementSpawnerGrowTime;
-                            elementDataObjs[i].elementSpawnTime = elementTypes[i].elementSpawnTime;
-                            elementDataObjs[i].canPlantManually = elementTypes[i].canPlantManually;
+                                //Grown Object Settings 1
+                                if (elementTypes[i].elementIsSeedPod)
+                                {
+                                    elementDataObjs[i].SeedPodPrefab = elementTypes[i].SeedPodPrefab;
+                                    elementDataObjs[i].seedPodPosOffset = elementTypes[i].seedPodPosOffset;
+                                }
 
-                            //Potion settings
-                            elementDataObjs[i].elementHasUsableEffect = elementTypes[i].elementHasUsableEffect;
-                            elementDataObjs[i].elementEffectPrimingTrigger = elementTypes[i].elementEffectPrimingTrigger;
-                            elementDataObjs[i].effectPrimingThreshold = elementTypes[i].effectPrimingThreshold;
-                            elementDataObjs[i].effectUseTrigger = elementTypes[i].effectUseTrigger;
+                                if (elementTypes[i].elementIsSpawnedByElementSpawner || (elementTypes[i].elementIsSeedPod && elementTypes[i].canPlantManually))
+                                {
+                                    elementDataObjs[i].canPlantManually = elementTypes[i].canPlantManually;
+                                    elementDataObjs[i].GrownObjectAnimator = elementTypes[i].GrownObjectAnimator;
+                                    elementDataObjs[i].colliderYPos = elementTypes[i].colliderYPos;
+                                    elementDataObjs[i].colliderRadius = elementTypes[i].colliderRadius;
+                                    elementDataObjs[i].colliderHeight = elementTypes[i].colliderHeight;
+                                    elementDataObjs[i].GrownObjectGrowthPrefabs = elementTypes[i].GrownObjectGrowthPrefabs;
+                                    elementDataObjs[i].grownObjectGrowTime = elementTypes[i].grownObjectGrowTime;
+                                    elementDataObjs[i].ElementSpawnTransforms = elementTypes[i].ElementSpawnTransforms;
+                                }
+                            }
 
-                            //   \Ingestion settings
-                            elementDataObjs[i].ingestedEffect = elementTypes[i].ingestedEffect;
-                            elementDataObjs[i].ingestedEffectStrength = elementTypes[i].ingestedEffectStrength;
-                            elementDataObjs[i].ingestedEffectDuration = elementTypes[i].ingestedEffectDuration;
+                            //Grown Object settings 2
+                            if (elementTypes[i].elementCanSpawnGrownObject)
+                            {
+                                elementDataObjs[i].grownObjectType = elementTypes[i].grownObjectType;
+                                elementDataObjs[i].grownObjectElement = elementTypes[i].grownObjectElement;
 
-                            //   \Grounding settings
-                            elementDataObjs[i].GrownObjectPrefab = elementTypes[i].GrownObjectPrefab;
+                                if (elementTypes[i].grownObjectType == GrownObjectType.GrowableLink)
+                                {
+                                    elementDataObjs[i].canPlantManually = elementTypes[i].canPlantManually;
+                                    elementDataObjs[i].GrownObjectAnimator = elementTypes[i].GrownObjectAnimator;
+                                    elementDataObjs[i].colliderYPos = elementTypes[i].colliderYPos;
+                                    elementDataObjs[i].colliderRadius = elementTypes[i].colliderRadius;
+                                    elementDataObjs[i].colliderHeight = elementTypes[i].colliderHeight;
+                                    elementDataObjs[i].GrownObjectGrowthPrefabs = elementTypes[i].GrownObjectGrowthPrefabs;
+                                    elementDataObjs[i].grownObjectGrowTime = elementTypes[i].grownObjectGrowTime;
+                                    elementDataObjs[i].ElementSpawnTransforms = elementTypes[i].ElementSpawnTransforms;
+                                }
+                            }
+
+                            //Precipitate settings
+                            if (elementTypes[i].elementHasPrecipitateForm)
+                            {
+                                elementDataObjs[i].elementHasPrecipitateForm = elementTypes[i].elementHasPrecipitateForm;
+                                elementDataObjs[i].elementPrecipitateType = elementTypes[i].elementPrecipitateType;
+                                elementDataObjs[i].minimumVelocity = elementTypes[i].minimumVelocity;
+                                elementDataObjs[i].maximumVelocity = elementTypes[i].maximumVelocity;
+                                elementDataObjs[i].velocityMultiplier = elementTypes[i].velocityMultiplier;
+
+                                //BaseElement Precipitation settings
+                                if (elementTypes[i].elementIsSpawnedByElementSpawner)
+                                {
+                                    elementDataObjs[i].shrinkSpeed = elementTypes[i].shrinkSpeed;
+                                    elementDataObjs[i].elementPrecipitateAmount = elementTypes[i].elementPrecipitateAmount;
+                                    elementDataObjs[i].elementPrecipitateSpawnChance = elementTypes[i].elementPrecipitateSpawnChance;
+                                }
+                            }
+
+                            //Effect settings
+                            if (elementTypes[i].elementHasUsableEffect)
+                            {
+                                elementDataObjs[i].elementHasUsableEffect = elementTypes[i].elementHasUsableEffect;
+                                elementDataObjs[i].elementEffectPrimingTrigger = elementTypes[i].elementEffectPrimingTrigger;
+                                elementDataObjs[i].effectPrimingThreshold = elementTypes[i].effectPrimingThreshold;
+                                elementDataObjs[i].effectUseTrigger = elementTypes[i].effectUseTrigger;
+                                elementDataObjs[i].ingestedEffect = elementTypes[i].ingestedEffect;
+                                elementDataObjs[i].ingestedEffectStrength = elementTypes[i].ingestedEffectStrength;
+                                elementDataObjs[i].ingestedEffectDuration = elementTypes[i].ingestedEffectDuration;
+                            }
 
                             Debug.Log($"Created {newElementData.name}");
                         }
 
-                        elementTypeManager.elementDataParent.gameObject.SetActive(false);
+                        //elementTypeManager.elementDataParent.gameObject.SetActive(false);
                         
                         int enumElementTypes = System.Enum.GetNames(typeof(ElementTypes)).Length - 1;
 
@@ -211,12 +256,13 @@ namespace Argus.ItemSystem
 
                             potionDataObjs[i].potionElementType = potionRecipes[i].potionRecipeId;
                             potionDataObjs[i].requiredLiquidType = potionRecipes[i].requiredLiquidType;
+                            potionDataObjs[i].updateColor = potionRecipes[i].updateColor;
                             potionDataObjs[i].requiredElementTypes = potionRecipes[i].requiredElementTypes;
 
                             Debug.Log($"Created {newPotionData.name}");
                         }
 
-                        elementTypeManager.potionRecipeDataParent.gameObject.SetActive(false);
+                        //elementTypeManager.potionRecipeDataParent.gameObject.SetActive(false);
 
                         elementTypeManager.potionRecipeObjs = potionDataObjs;
 

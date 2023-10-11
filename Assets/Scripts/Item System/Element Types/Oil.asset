@@ -15,20 +15,42 @@ MonoBehaviour:
   elementTypeId: 5
   elementColor: {r: 0.4056604, g: 0.29355898, b: 0.07845318, a: 1}
   canDespawn: 1
-  killVelocity: Infinity
   despawnTime: 10
-  canCreatePrecipitate: 1
-  elementPrecipitateType: 2
-  ElementPrecipitatePrefab: {fileID: 1447690598607725664, guid: 0bedf82cc1bea9b408a21322e2d88ed0,
-    type: 3}
-  shrinkSpeed: 0.001
+  killVelocity: Infinity
+  elementGrowsFromPlots: 0
+  ElementSpawnerAnimator: {fileID: 0}
+  colliderYPos: 0
+  colliderRadius: 0.05
+  colliderHeight: 0.5
+  ElementSpawnerGrowthPrefabs: []
+  ElementSpawnTransforms: {fileID: 0}
+  elementSpawnerGrowTime: 0
+  elementSpawnTime: 0
+  baseElementMesh: {fileID: 0}
+  BaseElementCollisionPrefab: {fileID: 0}
   elementPrecipitateAmount: 10
+  pickupColliderRadius: 0
+  rbMass: 1
+  rbDrag: 0
+  rbAngularDrag: 0.05
+  elementHasPrecipitateForm: 1
+  elementPrecipitateType: 2
+  shrinkSpeed: 0.001
   minimumVelocity: 0.1
   maximumVelocity: 0.4
   velocityMultiplier: 0.01
-  canCreateSpawner: 0
-  ElementSpawnerPrefab: {fileID: 0}
-  elementSpawnerGrowTime: 0
-  BaseElementPrefab: {fileID: 0}
-  elementSpawnTime: 0
-  seedGrowChance: 0
+  canSpawnSeedPod: 0
+  seedPodSpawnChance: 0
+  SeedPodPrefab: {fileID: 0}
+  seedPodPosOffset: {x: 0, y: 0, z: 0}
+  ElementLeavesPrefab: {fileID: 0}
+  seedPodElementType: 0
+  canPlantManually: 0
+  elementHasUsableEffect: 0
+  elementEffectPrimingTrigger: 0
+  effectPrimingThreshold: 100
+  effectUseTrigger: 0
+  ingestedEffect: 0
+  ingestedEffectStrength: 0
+  ingestedEffectDuration: 0
+  GrownObjectPrefab: {fileID: 0}

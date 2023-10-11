@@ -14,38 +14,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementTypeId: 6
   elementColor: {r: 0.1499305, g: 0.137362, b: 0.346, a: 1}
+  elementIsProducedByPotion: 1
+  elementIsSpawnedByElementSpawner: 0
+  elementCanSpawnGrownObject: 0
   canDespawn: 1
-  despawnTime: 60
+  despawnTime: 30
   killVelocity: Infinity
-  spawnsFromElementSpawner: 0
-  ElementSpawnerAnimator: {fileID: 0}
-  colliderYPos: 0
-  colliderRadius: 0.05
-  colliderHeight: 0.5
-  ElementSpawnerGrowthPrefabs: []
-  ElementSpawnTransforms: {fileID: 0}
-  elementSpawnerGrowTime: 0
-  elementSpawnTime: 0
+  elementCanSpawnFromOwnElementSpawner: 0
+  baseElementSpawnTime: 0
   baseElementMesh: {fileID: 0}
   BaseElementCollisionPrefab: {fileID: 0}
   pickupColliderRadius: 0
   rbMass: 1
   rbDrag: 0
   rbAngularDrag: 0.05
-  canCreatePrecipitate: 1
-  elementPrecipitateType: 2
-  shrinkSpeed: 0.001
-  elementPrecipitateAmount: 3
-  minimumVelocity: 0
-  maximumVelocity: Infinity
-  velocityMultiplier: 0.01
-  canSpawnSeedPod: 0
+  elementSpawnerCanSpawnSeedPod: 0
   seedPodSpawnChance: 0
   SeedPodPrefab: {fileID: 0}
   seedPodPosOffset: {x: 0, y: 0, z: 0}
   ElementLeavesPrefab: {fileID: 0}
   seedPodElementType: 0
   canPlantManually: 0
+  grownObjectScriptName: 
+  grownObjectElement: 0
+  GrownObjectAnimator: {fileID: 0}
+  colliderYPos: 0
+  colliderRadius: 0.05
+  colliderHeight: 0.5
+  GrownObjectGrowthPrefabs: []
+  grownObjectGrowTime: 0
+  ElementSpawnTransforms: {fileID: 0}
+  elementHasPrecipitateForm: 1
+  elementPrecipitateType: 2
+  minimumVelocity: 0
+  maximumVelocity: Infinity
+  velocityMultiplier: 0.01
+  shrinkSpeed: 0.001
+  elementPrecipitateAmount: 0
   elementHasUsableEffect: 1
   elementEffectPrimingTrigger: 1
   effectPrimingThreshold: 100
@@ -53,4 +58,3 @@ MonoBehaviour:
   ingestedEffect: 1
   ingestedEffectStrength: 3
   ingestedEffectDuration: 30
-  GrownObjectPrefab: {fileID: 0}

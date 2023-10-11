@@ -7,19 +7,15 @@ namespace Catacombs.ElementSystem.Runtime
     public class ElementSpawner : GrownObject
     {
         [Header("Element Spawning Details")]
-        public int elementSpawnTime;
-        private float elementGrowthTime;
-        public Transform[] elementSpawnPoints;
-        public BaseElement[] elementsSpawned;
         [SerializeField] private bool roomToSpawnElements = true;
+        [SerializeField] private float elementSpawnTime;
+        public BaseElement[] elementsSpawned;
+        public Transform[] elementSpawnPoints;
+        private float elementGrowthTime;
 
         public override bool _PullElementType()
         {
             if (!base._PullElementType()) return false;
-
-            ElementData elementData = elementTypeManager.elementDataObjs[(int)elementTypeId];
-
-            elementSpawnTime = elementData.elementSpawnTime;
 
             Transform elementSpawnsObject = transform.GetChild(0);
             elementSpawnPoints = new Transform[elementSpawnsObject.childCount];
@@ -29,9 +25,11 @@ namespace Catacombs.ElementSystem.Runtime
                 elementSpawnPoints[i] = elementSpawnsObject.GetChild(i);
             }
 
+            elementSpawnTime = elementTypeData.grownObjectElement == 0 ? elementTypeData.baseElementSpawnTime : elementTypeManager.elementDataObjs[(int)elementTypeData.grownObjectElement].baseElementSpawnTime;
+
             parentObject.name = $"{parentObject.name} Spawner";
 
-            Log($"Retrieved ElementSpawner data from {elementData.name}");
+            Log($"Retrieved ElementSpawner data from {elementTypeData.name}");
             return true;
         }
 
@@ -66,7 +64,22 @@ namespace Catacombs.ElementSystem.Runtime
 
                         elementsSpawned[i] = newElement;
 
-                        elementsSpawned[i].elementTypeId = elementTypeId;
+                        if (elementTypeData.elementCanBecomeSeedPod) elementsSpawned[i].isSeedPod = Random.Range(0f, 100f) <= elementTypeData.seedPodSpawnChance;
+
+                        //If the element spawned is a seed pod, override its ElementType if this element's seedPodElementType is specified (and fallback to elementTypeId) 
+                        if (elementsSpawned[i].isSeedPod)
+                        {
+                            elementsSpawned[i].elementTypeId = elementTypeData.seedPodElementType == 0 ? elementTypeId : elementTypeData.seedPodElementType;
+                        }
+                        //Otherwise, override the new BaseElement's ElementType if this Element's grownObjectElement is specified (and fallback to elementTypeId)
+                        else
+                        {
+                            elementsSpawned[i].elementTypeId = elementTypeData.grownObjectElement == 0 ? elementTypeId : elementTypeData.grownObjectElement;
+
+                            //Not a seed pod, so spawn ElementLeavesPrefab if it exists
+                            if (elementTypeData.ElementLeavesPrefab != null) Instantiate(elementTypeData.ElementLeavesPrefab, elementsSpawned[i].parentObject.transform);
+                        }
+
                         elementsSpawned[i].parentElementSpawner = this;
                         elementsSpawned[i].disableContainment = true;
 
@@ -106,11 +119,11 @@ namespace Catacombs.ElementSystem.Runtime
             base.RemoveFromPlot();
 
             //There's a 20% chance for Spawners to just die for uprooting them at all
-            if (Random.Range(0, 5) == 0) itemPooler.ReturnElementSpawner(parentObject);
+            if (Random.Range(0, 5) == 0) itemPooler.ReturnGrownObject(parentObject);
 
             //Plus an additional 30 second period before dying for staying uprooted
             //TODO: Maybe not hardcode uproot-death period?
-            SendCustomEventDelayedSeconds(nameof(KillElement), 30);
+            SendCustomEventDelayedSeconds(nameof(_AttemptDespawn), 10);
         }
     }
 }

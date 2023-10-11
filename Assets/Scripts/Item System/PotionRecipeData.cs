@@ -12,6 +12,7 @@ namespace Argus.ItemSystem.Editor
         public Color potionColor;
         public ElementTypes potionElementType;
         public ElementTypes requiredLiquidType;
+        public bool updateColor;
         public ElementTypes[] requiredElementTypes;
     }
 }

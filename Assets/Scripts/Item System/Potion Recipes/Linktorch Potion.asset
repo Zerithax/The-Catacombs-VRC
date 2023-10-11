@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   potionRecipeId: 7
   requiredLiquidType: 0
+  updateColor: 1
   requiredElementTypes: 01000000

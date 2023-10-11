@@ -39,7 +39,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 834725979656477927}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.01
@@ -101,6 +101,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _udonSharpBackingUdonBehaviour: {fileID: 5771546358997151462}
+  itemPooler: {fileID: 0}
   elementTypeManager: {fileID: 0}
   elementToDispense: 0
   spawnPositions:
@@ -108,11 +109,14 @@ MonoBehaviour:
   - {fileID: 6576703968209164487}
   - {fileID: 1829127677626215013}
   usePrecipitate: 1
-  spawnCountdown: 5
   requireInteract: 0
+  spawnCountdown: 5
+  hasStorage: 0
+  playerTracker: {fileID: 0}
   pickupScript: {fileID: 0}
   maxElements: 0
   curElements: 0
+  hideDebugs: 0
 --- !u!114 &5771546358997151462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +182,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5526977594954283075}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.01
@@ -222,7 +226,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6360692519595821966}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.01

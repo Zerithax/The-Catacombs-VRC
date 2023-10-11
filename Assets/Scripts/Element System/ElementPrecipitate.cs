@@ -9,58 +9,28 @@ namespace Catacombs.ElementSystem.Runtime
 {
     public class ElementPrecipitate : RuntimeElement
     {
-        [Header("Precipitate Type")]
+        [Header("Precipitate Settings")]
         public ElementPrecipitates elementPrecipitateType;
-
-        [Header("Momentum Scaling Settings")]
-        public float minimumVelocity = 0;
-        public float maximumVelocity = Mathf.Infinity;
-        public float velocityMultiplier = 0.01f;
         public TrailRenderer trailRend;
-
-        [Header("Grounding Effect Settings")]
-        public bool hasUsableEffect;
-        public bool precipitateIsPrimed;
-        public ElementPrimingTrigger primingTrigger;
-        public int primingThreshold;
-        public ElementUseTrigger useTrigger;
-
-        public PlayerEffect ingestedEffect;
-        public int ingestedEffectStrength;
-        public float ingestedEffectDuration;
-
-        public GameObject GrownObjectPrefab;
-
         public Collider physicsCollider;
 
-        public override void KillElement()
-        {
-            itemPooler.ReturnElementPrecipitate(parentObject);
-        }
-
-        protected override void AdditionalUpdate() { SimulateViscosity(); }
+        [Space(3)]
+        public bool precipitateIsPrimed;
 
         protected override void AdditionalStart() { physicsCollider = GetComponent<Collider>(); }
 
+        protected override void AdditionalUpdate() { SimulateViscosity(); }
+
         private void SimulateViscosity()
         {
-            //TODO: isCollidingSurface is false if colliding when recently instantiated... object pooling will probably fix this
-
             //TODO: To remove the environment (isGrounded) restriction, get the angle of the ground's normal vs vector3.up and compare to an element-dependent threshold (ranged ~10-45 degrees)
             if (isCollidingSurface && !isGrounded && !isContained)
             {
-                Log("Simulating viscosity...");
-                if (rb.velocity.magnitude < minimumVelocity) rb.velocity *= 1 + velocityMultiplier;
-                else if (rb.velocity.magnitude > maximumVelocity) rb.velocity *= 1 - velocityMultiplier;
-            }
+                //Log("Simulating viscosity...");
 
-            /*
-            if (!isGrounded && !isContained)
-            {
-                if (rb.velocity.magnitude < minimumVelocity) rb.velocity *= 1 + velocityMultiplier;
-                else if (rb.velocity.magnitude > maximumVelocity) rb.velocity *= 1 - velocityMultiplier;
+                if (rb.velocity.magnitude < elementTypeData.minimumVelocity) rb.velocity *= 1 + elementTypeData.velocityMultiplier;
+                else if (rb.velocity.magnitude > elementTypeData.maximumVelocity) rb.velocity *= 1 - elementTypeData.velocityMultiplier;
             }
-            */
         }
 
         public override bool _PullElementType()
@@ -68,29 +38,12 @@ namespace Catacombs.ElementSystem.Runtime
             if (!base._PullElementType()) return false;
 
             //ELEMENT DATA
-            ElementData elementData = elementTypeManager.elementDataObjs[(int)elementTypeId];
-
-            elementPrecipitateType = elementData.elementPrecipitateType;
-            minimumVelocity = elementData.minimumVelocity;
-            maximumVelocity = elementData.maximumVelocity;
-            velocityMultiplier = elementData.velocityMultiplier;
-
-            //ELEMENT-POTION DATA
-            hasUsableEffect = elementData.elementHasUsableEffect;
-            primingTrigger = elementData.elementEffectPrimingTrigger;
-            primingThreshold = elementData.effectPrimingThreshold;
-            useTrigger = elementData.effectUseTrigger;
-
-            ingestedEffect = elementData.ingestedEffect;
-            ingestedEffectStrength = elementData.ingestedEffectStrength;
-            ingestedEffectDuration = elementData.ingestedEffectDuration;
-
-            GrownObjectPrefab = elementData.GrownObjectPrefab;
+            elementPrecipitateType = elementTypeData.elementPrecipitateType;
 
             //PRECIPITATE TYPE
             string precipitateTypeName = "";
 
-            switch (elementPrecipitateType)
+            switch (elementTypeData.elementPrecipitateType)
             {
                 case ElementPrecipitates.Dust:
 
@@ -107,8 +60,12 @@ namespace Catacombs.ElementSystem.Runtime
                     trailRend.emitting = false;
                     hideWhenContained = false;
 
-                    //Dust Precipitates halve the killVelocity
-                    killVelocity = killVelocity / 2;
+                    //Dusts override despawn time to a fifth of Element's default despawnTime
+                    canDespawn = true;
+                    despawnTime = elementTypeData.despawnTime / 5;
+
+                    //And halve the killVelocity
+                    killVelocity = elementTypeData.killVelocity / 2;
 
                     //NAME
                     precipitateTypeName = "Dust";
@@ -125,11 +82,12 @@ namespace Catacombs.ElementSystem.Runtime
                     trailRend.startColor = elementColor;
                     trailRend.endColor = elementColor;
 
-                    //Liquid Precipitates have unlimited killVelocity
-                    killVelocity = Mathf.Infinity;
-
-                    //Liquids override despawn time to 3 seconds
+                    //Liquid Precipitates override despawn time to 3 seconds
+                    canDespawn = true;
                     despawnTime = 3;
+
+                    //And have unlimited killVelocity
+                    killVelocity = Mathf.Infinity;
 
                     rb.drag = 5;
                     trailRend.emitting = true;
@@ -141,11 +99,13 @@ namespace Catacombs.ElementSystem.Runtime
             }
 
             //NAME p2
-            parentObject.name = $"{parentObject.name} {precipitateTypeName}";
+            parentObject.name = $"{parentObject.name} {precipitateTypeName} t{System.Math.Round(Time.time, 1)}";
 
-            Log($"Retrieved ElementPrecipitate Data from {elementData.name}");
+            Log($"Retrieved ElementPrecipitate Data from {elementTypeData.name}");
             return true;
         }
+
+        public override void KillElement() { itemPooler.ReturnElementPrecipitate(parentObject); }
 
         public override void _AttemptDespawn()
         {
@@ -164,9 +124,9 @@ namespace Catacombs.ElementSystem.Runtime
         {
             if (hideWhenContained) trailRend.emitting = false;
 
-            if (hasUsableEffect && precipitateIsPrimed)
+            if (elementTypeData.elementHasUsableEffect && precipitateIsPrimed)
             {
-                switch (useTrigger)
+                switch (elementTypeData.effectUseTrigger)
                 {
                     case ElementUseTrigger.None:
                         Debug.LogError($"[{name}] Attempting to use potion with useTrigger set to None. How did this happened?!?!?!?");
@@ -175,9 +135,9 @@ namespace Catacombs.ElementSystem.Runtime
                         //If this element can be ingested, AttemptIngestElement if colliding with PlayerMouthTracker layer (Default)
                         if (other.gameObject.layer == 0) AttemptIngestElement(other.gameObject.GetComponent<PlayerMouthTracker>());
                         break;
-                    case ElementUseTrigger.Grounding:
+                    case ElementUseTrigger.GroundingGrownObject:
                         //If this element triggers an action when grounded, AttemptGroundingTrigger if colliding with ObjectGrowingPlot layer (Ignore Raycast)
-                        if (other.gameObject.layer == 2) AttemptGroundedTrigger(other.gameObject);
+                        if (other.gameObject.layer == 2) AttemptSpawnGrownObject(other.gameObject);
                         break;
                 }
             }
@@ -189,14 +149,14 @@ namespace Catacombs.ElementSystem.Runtime
             {
                 Log($"Collided with Player Mouth!");
 
-                possibleMouthTracker.playerTracker.AttemptAddEffect(ingestedEffect, ingestedEffectStrength, ingestedEffectDuration);
+                possibleMouthTracker.playerTracker.AttemptAddEffect(elementTypeData.ingestedEffect, elementTypeData.ingestedEffectStrength, elementTypeData.ingestedEffectDuration);
 
                 //Kill self after being ingested
                 HideThenDelayedKill();
             }
         }
 
-        private void AttemptGroundedTrigger(GameObject collidingObject)
+        private void AttemptSpawnGrownObject(GameObject collidingObject)
         {
             ObjectGrowingPlot collidingSpawnerPlot = collidingObject.GetComponent<ObjectGrowingPlot>();
 
@@ -204,15 +164,32 @@ namespace Catacombs.ElementSystem.Runtime
             {
                 Log($"Collided with an Element Spawner Plot!");
 
+                //Instantly return if Item Pooler doesn't have any Growable Links available
+                switch (elementTypeData.grownObjectType)
+                {
+                    default:
+
+                        LogWarning("Attempted to Spawn GrownObject with grownObjectType 0! How did this happen??");
+                        break;
+                    case GrownObjectType.ElementSpawner:
+
+                        if (!itemPooler.ElementSpawnerAvailable()) return;
+                        break;
+                    case GrownObjectType.GrowableLink:
+
+                        if (!itemPooler.GrowableLinkAvailable()) return;
+                        break;
+                }
+
                 //The position the new ElementSpawner will lie is the Element's X/Z aligned with the SpawnerPlot's Y
                 Vector3 seedPlotPos = new Vector3(parentObject.transform.position.x, collidingSpawnerPlot.transform.position.y, parentObject.transform.position.z);
 
                 if (collidingSpawnerPlot.RoomToAddObject(seedPlotPos))
                 {
-                    //TODO: When the GrownObjectPrefab is an ElementSpawner, we need AddNewObject to check the ElementType for an ElementSpawner, and spawn that instead of the GrownObjectPrefab if it exists
+                    ElementTypes elementTypeToUse = elementTypeData.grownObjectElement == 0 ? elementTypeId : elementTypeData.grownObjectElement;
 
                     //Add to spawnerPlot
-                    collidingSpawnerPlot.AddNewObject(GrownObjectPrefab, seedPlotPos);
+                    collidingSpawnerPlot.AddNewGrownObject(seedPlotPos, elementTypeData.grownObjectType, elementTypeToUse);
 
                     //Kill Self after attempting to plant object
                     HideThenDelayedKill();

@@ -72,7 +72,7 @@ namespace Catacombs.ElementSystem.Runtime
 
         public void RemoveGrownObject(GrownObject grownObject)
         {
-            //Remove self from ElementSpawnerPlot's ElementSpawners list
+            //Remove GrownObject from ElementSpawners list
             int existingGrownObjects = grownObjects.Length;
 
             for (int i = 0; i < grownObjects.Length; i++)
@@ -111,12 +111,150 @@ namespace Catacombs.ElementSystem.Runtime
             if (existingGrownObjects == grownObjects.Length) plotAnimator.Play("GrowthPlotDie");
         }
 
-        public void AddNewObject(GameObject grownObjectPrefab, Vector3 newObjectPos)
+        public void AddNewGrownObject(Vector3 newGrownObjectPos, GrownObjectType grownObjectType, ElementTypes grownObjectElement)
         {
-            //If the Prefab's InteractionHandler's childElement isn't a GrownObject, cancel!
-            ElementInteractionHandler interactionHandler = grownObjectPrefab.GetComponent<ElementInteractionHandler>();
-            if (interactionHandler == null) return;
+            bool hasInitializedGrownObject = false;
+            int existingGrownObjects = 0;
 
+            switch (grownObjectType)
+            {
+                default:
+
+                    LogWarning("Attempted to AddNewGrownObject with grownObjectType 0, how did you get here?");
+                    return;
+
+                case GrownObjectType.ElementSpawner:
+
+                    for (int i = 0; i < grownObjects.Length; i++)
+                    {
+                        if (!hasInitializedGrownObject && grownObjects[i] == null)
+                        {
+                            ElementData elementData = elementTypeManager.elementDataObjs[(int)grownObjectElement];
+
+                            Vector3 elementSpawnerPos = new Vector3(newGrownObjectPos.x, transform.position.y, newGrownObjectPos.z);
+                            Quaternion elementSpawnerRot = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0));
+
+                            ElementSpawner newElementSpawner = itemPooler.RequestElementSpawner();
+
+                            if (newElementSpawner != null)
+                            {
+                                hasInitializedGrownObject = true;
+                                existingGrownObjects++;
+
+                                //Put new Element Spawner in ground
+                                newElementSpawner.parentObject.transform.SetPositionAndRotation(elementSpawnerPos, elementSpawnerRot);
+                                newElementSpawner.parentObject.transform.parent = transform;
+
+                                //Set pickup/interaction collider sizes
+                                CapsuleCollider parentCollider = newElementSpawner.parentObject.GetComponent<CapsuleCollider>();
+                                parentCollider.center = new Vector3(0, elementData.colliderYPos, 0);
+                                parentCollider.radius = elementData.colliderRadius;
+                                parentCollider.height = elementData.colliderHeight;
+
+                                CapsuleCollider spawnerCollider = newElementSpawner.GetComponent<CapsuleCollider>();
+                                spawnerCollider.center = new Vector3(0, elementData.colliderYPos, 0);
+                                spawnerCollider.radius = elementData.colliderRadius;
+                                spawnerCollider.height = elementData.colliderHeight;
+
+                                //Create Element Spawn Transforms
+                                Instantiate(elementData.ElementSpawnTransforms, newElementSpawner.transform).SetActive(false);
+
+                                //Set animator controller
+                                newElementSpawner.grownObjectAnim.runtimeAnimatorController = elementData.GrownObjectAnimator;
+
+                                //Instantiate each animation stage under the Spawner
+                                for (int j = 0; j < elementData.GrownObjectGrowthPrefabs.Length; j++)
+                                {
+                                    GameObject animationPrefab = Instantiate(elementData.GrownObjectGrowthPrefabs[j], newElementSpawner.transform);
+                                    animationPrefab.name = animationPrefab.name.Remove(animationPrefab.name.Length - 7);
+                                }
+
+                                //Rebind Animator to retrieve mesh data from above
+                                newElementSpawner.grownObjectAnim.Rebind();
+
+                                //Pull ElementSpawner ElementData (& consequentially start animations)
+                                newElementSpawner.elementTypeId = grownObjectElement;
+                                newElementSpawner.parentSpawnPlot = this;
+                                newElementSpawner._PullElementType();
+
+                                grownObjects[i] = newElementSpawner;
+
+                                Log($"Successfully created [{grownObjects[i].name}]", grownObjects[i]);
+                            }
+                        }
+                        else if (grownObjects[i] != null) existingGrownObjects++;
+                    }
+                    break;
+
+                case GrownObjectType.GrowableLink:
+
+                    for (int i = 0; i < grownObjects.Length; i++)
+                    {
+                        if (!hasInitializedGrownObject && grownObjects[i] == null)
+                        {
+                            ElementData elementData = elementTypeManager.elementDataObjs[(int)grownObjectElement];
+
+                            Vector3 linkTorchPos = new Vector3(newGrownObjectPos.x, transform.position.y, newGrownObjectPos.z);
+                            Quaternion linkTorchRot = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0));
+
+                            GrowableLink newLink = itemPooler.RequestGrowableLink();
+
+                            if (newLink != null)
+                            {
+                                hasInitializedGrownObject = true;
+                                existingGrownObjects++;
+
+                                //Put new GrowableLink in ground
+                                newLink.parentObject.transform.SetPositionAndRotation(linkTorchPos, linkTorchRot);
+                                newLink.parentObject.transform.parent = transform;
+
+                                //Set pickup/interaction collider sizes
+                                CapsuleCollider parentCollider = newLink.parentObject.GetComponent<CapsuleCollider>();
+                                parentCollider.center = new Vector3(0, elementData.colliderYPos, 0);
+                                parentCollider.radius = elementData.colliderRadius;
+                                parentCollider.height = elementData.colliderHeight;
+
+                                CapsuleCollider spawnerCollider = newLink.GetComponent<CapsuleCollider>();
+                                spawnerCollider.center = new Vector3(0, elementData.colliderYPos, 0);
+                                spawnerCollider.radius = elementData.colliderRadius;
+                                spawnerCollider.height = elementData.colliderHeight;
+
+                                //Set animator controller
+                                newLink.grownObjectAnim.runtimeAnimatorController = elementData.GrownObjectAnimator;
+
+                                //Instantiate each animation stage under the Link
+                                for (int j = 0; j < elementData.GrownObjectGrowthPrefabs.Length; j++)
+                                {
+                                    GameObject animationPrefab = Instantiate(elementData.GrownObjectGrowthPrefabs[j], newLink.transform);
+                                    animationPrefab.name = animationPrefab.name.Remove(animationPrefab.name.Length - 7);
+                                }
+
+                                //Rebind Animator to retrieve mesh data from above
+                                newLink.grownObjectAnim.Rebind();
+
+                                //Pull GrowableLink ElementData (& consequentially start animations)
+                                newLink.elementTypeId = grownObjectElement;
+                                newLink.parentSpawnPlot = this;
+                                newLink.torchColor = elementTypeManager.elementDataObjs[(int)grownObjectElement].elementColor;
+                                newLink._PullElementType();
+
+                                grownObjects[i] = newLink;
+
+                                Log($"Successfully created [{grownObjects[i].name}]", grownObjects[i]);
+                            }
+                        }
+                        else if (grownObjects[i] != null) existingGrownObjects++;
+                    }
+                    break;
+            }
+
+            //Disable PlotIndicator if all elementSpawner slots are full
+            if (existingGrownObjects == grownObjects.Length) plotAnimator.Play("GrowthPlotDie");
+        }
+
+        /*
+        public void AddNewGrowableLink(Vector3 newObjectPos)
+        {
             bool hasInitializedObject = false;
             int existingGrownObjects = 0;
 
@@ -126,9 +264,9 @@ namespace Catacombs.ElementSystem.Runtime
                 {
                     Quaternion grownObjectRot = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0));
 
-                    grownObjects[i] = (GrownObject)Instantiate(grownObjectPrefab, newObjectPos, grownObjectRot).GetComponent<ElementInteractionHandler>().childElement;
-
-                    grownObjects[i].transform.parent.SetParent(transform, true);
+                    grownObjects[i] = itemPooler.RequestGrowableLink();
+                    grownObjects[i].transform.SetPositionAndRotation(newObjectPos, grownObjectRot);
+                    grownObjects[i].transform.parent = transform;
 
                     hasInitializedObject = true;
                     existingGrownObjects++;
@@ -140,8 +278,7 @@ namespace Catacombs.ElementSystem.Runtime
             if (existingGrownObjects == grownObjects.Length) plotAnimator.Play("GrowthPlotDie");
         }
 
-        //v2: Providing an elementType instead of a GrownObject tells us to generate an Element Spawner off of that ID instead!
-        public void AddNewObject(ElementTypes elementType, Vector3 newObjectPos)
+        public void AddNewElementSpawner(ElementTypes elementType, Vector3 newObjectPos)
         {
             bool hasInitializedSpawner = false;
             int existingGrownObjects = 0;
@@ -155,7 +292,9 @@ namespace Catacombs.ElementSystem.Runtime
                     Vector3 elementSpawnerPos = new Vector3(newObjectPos.x, transform.position.y, newObjectPos.z);
                     Quaternion elementSpawnerRot = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0));
 
-                    ElementSpawner newElementSpawner = itemPooler.RequestElementSpawner();
+                    ElementSpawner newElementSpawner = (ElementSpawner)itemPooler.RequestGrownObject(elementData.grownObjectType);
+
+                    //ElementSpawner newElementSpawner = itemPooler.RequestElementSpawner();
 
                     if (newElementSpawner != null)
                     {
@@ -181,12 +320,12 @@ namespace Catacombs.ElementSystem.Runtime
                         Instantiate(elementData.ElementSpawnTransforms, newElementSpawner.transform).SetActive(false);
 
                         //Set animator controller
-                        newElementSpawner.grownObjectAnim.runtimeAnimatorController = elementData.ElementSpawnerAnimator;
+                        newElementSpawner.grownObjectAnim.runtimeAnimatorController = elementData.GrownObjectAnimator;
 
                         //Instantiate each animation stage under the Spawner
-                        for (int j = 0; j < elementData.ElementSpawnerGrowthPrefabs.Length; j++)
+                        for (int j = 0; j < elementData.GrownObjectGrowthPrefabs.Length; j++)
                         {
-                            GameObject animationPrefab = Instantiate(elementData.ElementSpawnerGrowthPrefabs[j], newElementSpawner.transform);
+                            GameObject animationPrefab = Instantiate(elementData.GrownObjectGrowthPrefabs[j], newElementSpawner.transform);
                             animationPrefab.name = animationPrefab.name.Remove(animationPrefab.name.Length - 7);
                         }
 
@@ -209,6 +348,7 @@ namespace Catacombs.ElementSystem.Runtime
             //Disable PlotIndicator if all elementSpawner slots are full
             if (existingGrownObjects == grownObjects.Length) plotAnimator.Play("GrowthPlotDie");
         }
+        */
 
         private void Log(string message)
         {
@@ -218,6 +358,16 @@ namespace Catacombs.ElementSystem.Runtime
         private void Log(string message, Object context)
         {
             Debug.Log($"[{name}] {message}", context);
+        }
+
+        private void LogWarning(string message)
+        {
+            Debug.LogWarning($"[{name}] {message}", this);
+        }
+
+        private void LogError(string message)
+        {
+            Debug.Log($"[{name}] {message}", this);
         }
     }
 }

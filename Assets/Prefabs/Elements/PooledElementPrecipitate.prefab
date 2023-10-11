@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 360556659406004892}
   - component: {fileID: 8016258200088921986}
   m_Layer: 24
-  m_Name: ElementPrecipitate
+  m_Name: PooledElementPrecipitate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,7 +124,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.375
+  m_Time: 0.75
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -236,11 +236,7 @@ MonoBehaviour:
   rb: {fileID: 8889365963102612516}
   itemPooler: {fileID: 0}
   elementTypeManager: {fileID: 0}
-  isCollidingSurface: 0
-  isGrounded: 0
-  itemMass: 0
   elementTypeId: 0
-  elementColor: {r: 0, g: 0, b: 0, a: 0}
   canDespawn: 1
   despawnTime: 60
   startTimeout: 0
@@ -253,6 +249,11 @@ MonoBehaviour:
   disableContainment: 0
   parentContainer: {fileID: 0}
   hideDebugsOverride: 0
+  elementInitialized: 0
+  isCollidingSurface: 0
+  isGrounded: 0
+  itemMass: 0
+  elementColor: {r: 0, g: 0, b: 0, a: 0}
   elementPrecipitateType: 0
   minimumVelocity: 0
   maximumVelocity: Infinity
@@ -266,7 +267,6 @@ MonoBehaviour:
   ingestedEffect: 0
   ingestedEffectStrength: 0
   ingestedEffectDuration: 0
-  GrownObjectPrefab: {fileID: 0}
   physicsCollider: {fileID: 0}
 --- !u!114 &8016258200088921986
 MonoBehaviour:

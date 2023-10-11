@@ -10,25 +10,9 @@ namespace Catacombs.ElementSystem.Runtime
     public class BaseElement : RuntimeElement
     {
         [Header("Element Settings")]
-        public int elementPrecipitateAmount = 5;
-        public ElementPrecipitates precipitateType;
         public float shrinkSpeed;
         public ElementSpawner parentElementSpawner;
         [SerializeField] private GameObject baseElementCollisionPrefab;
-
-
-        [Header("Can Spawn Seed Pod/Create Element Spawner")]
-        public bool canSpawnSeedPod;
-        public GameObject elementSpawnerPrefab;
-        public bool canPlantManually;
-
-        private Animator seedPodAnim;
-        private ObjectGrowingPlot collidingObjectGrowingPlot;
-
-        private bool isElligible;
-        private bool isPlanting;
-        private float curPlotInteractTime;
-        private float lastPlotPlantTime;
 
         public Vector3 baseScale;
         private int baseSize;
@@ -37,55 +21,32 @@ namespace Catacombs.ElementSystem.Runtime
 
         private Vector3 collidingPestlePos;
 
-        public override void KillElement()
-        {
-            itemPooler.ReturnBaseElement(parentObject);
-        }
+        public bool isSeedPod;
+        private Animator seedPodAnim;
+        private ObjectGrowingPlot collidingObjectGrowingPlot;
+
+        private bool isPlanting;
+        private float curPlotInteractTime;
+        private float lastPlotPlantTime;
 
         #region INIT
         public override bool _PullElementType()
         {
             if (!base._PullElementType()) return false;
 
-            ElementData elementData = elementTypeManager.elementDataObjs[(int)elementTypeId];
-
-            if (elementData.canSpawnSeedPod)
+            if (isSeedPod)
             {
-                isElligible = UnityEngine.Random.Range(0f, 100f) <= elementData.seedPodSpawnChance;
+                GameObject seedPod = Instantiate(elementTypeData.SeedPodPrefab, parentObject.transform);
+                seedPod.transform.localPosition = elementTypeData.seedPodPosOffset;
 
-                if (isElligible)
-                {
-                    GameObject seedPod = Instantiate(elementData.SeedPodPrefab, parentObject.transform);
-                    seedPod.transform.localPosition = elementData.seedPodPosOffset;
-
-                    seedPodAnim = seedPod.GetComponent<Animator>();
-                    if (seedPodAnim != null) seedPodAnim.keepAnimatorControllerStateOnDisable = false;
-
-                    //Override Element to Seed Pod variant's ElementType (not always different) 
-                    elementTypeId = elementTypeManager.elementDataObjs[(int)elementTypeId].seedPodElementType;
-                }
-                else if (elementData.ElementLeavesPrefab != null) Instantiate(elementData.ElementLeavesPrefab, parentObject.transform);
+                seedPodAnim = seedPod.GetComponent<Animator>();
+                if (seedPodAnim != null) seedPodAnim.keepAnimatorControllerStateOnDisable = false;
             }
 
-            //ELEMENT DATA
-            //Re-fetch elementData if it was changed from turning into a Seed Pod
-            if (elementTypeId != elementData.elementTypeId)
-            {
-                elementData = elementTypeManager.elementDataObjs[(int)elementTypeId];
-
-                //These are usually set in RuntimeElement, but need to be re-fetched if the elementID did in fact change
-                elementColor = elementData.elementColor;
-                despawnTime = elementData.despawnTime;
-                killVelocity = elementData.killVelocity;
-            }
-
-            elementPrecipitateAmount = elementData.elementPrecipitateAmount;
-            precipitateType = elementData.elementPrecipitateType;
-            shrinkSpeed = elementData.shrinkSpeed;
-            canPlantManually = elementData.canPlantManually;
+            shrinkSpeed = elementTypeData.shrinkSpeed;
 
             //Calculate size intervals to spawn each precipitate at (+ 1 so we don't need 0 scale before being destroyed)
-            baseSize = elementPrecipitateAmount + 1;
+            baseSize = elementTypeData.elementPrecipitateAmount + 1;
             curSize = baseSize;
             sizeIntervals = new Vector3[baseSize];
 
@@ -94,15 +55,15 @@ namespace Catacombs.ElementSystem.Runtime
             for (int i = 0; i < baseSize; i++) sizeIntervals[i] = baseScale / baseSize * i;
 
             //Manually assign filter, collider, & rigidbody data from elementData
-            parentObject.GetComponent<MeshFilter>().mesh = elementData.baseElementMesh;
-            parentObject.GetComponent<SphereCollider>().radius = elementData.pickupColliderRadius;
+            parentObject.GetComponent<MeshFilter>().mesh = elementTypeData.baseElementMesh;
+            parentObject.GetComponent<SphereCollider>().radius = elementTypeData.pickupColliderRadius;
 
             Rigidbody parentRb = parentObject.GetComponent<Rigidbody>();
-            parentRb.mass = elementData.rbMass;
-            parentRb.drag = elementData.rbDrag;
-            parentRb.angularDrag = elementData.rbAngularDrag;
+            parentRb.mass = elementTypeData.rbMass;
+            parentRb.drag = elementTypeData.rbDrag;
+            parentRb.angularDrag = elementTypeData.rbAngularDrag;
 
-            Instantiate(elementData.BaseElementCollisionPrefab, parentObject.transform);
+            Instantiate(elementTypeData.BaseElementCollisionPrefab, parentObject.transform);
 
             //COLOR
             elementRenderer.material.color = elementColor;
@@ -111,9 +72,12 @@ namespace Catacombs.ElementSystem.Runtime
             //NAME
             parentObject.name = $"{parentObject.name} Element";
 
-            Log($"Retrieved Element Data for {elementData.name}");
+            Log($"Retrieved Element Data for {elementTypeData.name}");
             return true;
         }
+        #endregion
+
+        public override void KillElement() { itemPooler.ReturnBaseElement(parentObject); }
 
         public override void _AttemptDespawn()
         {
@@ -124,7 +88,6 @@ namespace Catacombs.ElementSystem.Runtime
                 itemPooler.ReturnBaseElement(parentObject);
             }
         }
-        #endregion
 
         #region SPAWNERS & PLANTING
         public override void Grabbed()
@@ -159,19 +122,36 @@ namespace Catacombs.ElementSystem.Runtime
 
         public override void Dropped()
         {
-            if (isElligible && canPlantManually && collidingObjectGrowingPlot != null) RequestObjectGrowingPlot();
+            if (isSeedPod && elementTypeData.canPlantManually && collidingObjectGrowingPlot != null) AttemptPlantSeedPod();
             else rb.isKinematic = false;
         }
 
-        private void RequestObjectGrowingPlot()
+        private void AttemptPlantSeedPod()
         {
             Log($"Placed on an Object Growing Plot!");
 
-            //If the item pooler doesn't have any ElementSpawners available, immediately reject the request
-            if (!itemPooler.ElementSpawnerAvailable())
+            //If the Item Pooler doesn't have the necessary GrownObject available, immediately reject the request
+            switch (elementTypeData.grownObjectType)
             {
-                rb.isKinematic = false;
-                return;
+                case GrownObjectType.None:
+
+                    break;
+                case GrownObjectType.ElementSpawner:
+
+                    if (!itemPooler.ElementSpawnerAvailable())
+                    {
+                        rb.isKinematic = false;
+                        return;
+                    }
+                    break;
+                case GrownObjectType.GrowableLink:
+
+                    if (!itemPooler.GrowableLinkAvailable())
+                    {
+                        rb.isKinematic = false;
+                        return;
+                    }
+                    break;
             }
 
             //The position the seed plot will lie is the Element's X/Z aligned with the GrowingPlot's Y
@@ -206,7 +186,9 @@ namespace Catacombs.ElementSystem.Runtime
             {
                 lastPlotPlantTime = 0;
 
-                collidingObjectGrowingPlot.AddNewObject(elementTypeId, seedPodAnim.transform.position);
+                ElementTypes elementTypeToUse = elementTypeData.grownObjectElement == 0 ? elementTypeId : elementTypeData.grownObjectElement;
+
+                collidingObjectGrowingPlot.AddNewGrownObject(seedPodAnim.transform.position, elementTypeData.grownObjectType, elementTypeToUse);
 
                 //Kill self a few seconds after ElementSpawner has appeared
                 SendCustomEventDelayedSeconds(nameof(_FixTransformsThenKillElement), 7);
@@ -241,17 +223,15 @@ namespace Catacombs.ElementSystem.Runtime
 
         private void TrackPestle(Transform other)
         {
-            //TOOD: This might be framerate dependent, maybe multiply shrinkSpeed by by normalized magnitude of pestle distance?
+            //TODO: This might be framerate dependent, maybe multiply shrinkSpeed by by normalized magnitude of pestle distance?
 
             Vector3 curPestlePos = other.transform.position;
 
             //If is in Container and collided Pestle is actively moving
             if (isContained && curPestlePos != collidingPestlePos)
             {
-                //float distanceMultiplier = (curPestlePos - collidingPestlePos).magnitude;
-
                 //Subtract a steady stream of scale
-                parentObject.transform.localScale -= new Vector3(shrinkSpeed, shrinkSpeed, shrinkSpeed);
+                parentObject.transform.localScale -= new Vector3(elementTypeData.shrinkSpeed, elementTypeData.shrinkSpeed, elementTypeData.shrinkSpeed);
 
                 //At every equal interval of baseScale, spawn Dust and add to parent container's containedDusts[]
                 for (int i = sizeIntervals.Length - 1; i > 0; i--)
@@ -262,26 +242,33 @@ namespace Catacombs.ElementSystem.Runtime
 
                         if (newPrecipitate != null)
                         {
-                            newPrecipitate.transform.position = parentObject.transform.position + Vector3.up * 0.1f;
-                            newPrecipitate.transform.parent = parentObject.transform.parent;
-
-                            newPrecipitate.elementTypeId = elementTypeId;
-
-                            newPrecipitate.rb.isKinematic = false;
-
-                            newPrecipitate._PullElementType();
-
-                            if (newPrecipitate.elementPrecipitateType == ElementPrecipitates.None) newPrecipitate._VerifyDripType();
-
-                            switch (newPrecipitate.elementPrecipitateType)
+                            if (UnityEngine.Random.Range(0, 1) > elementTypeData.elementPrecipitateSpawnChance)
                             {
-                                case ElementPrecipitates.Dust:
-                                    parentContainer.AttemptConsumeDust(newPrecipitate);
-                                    break;
+                                Log("Failed precipitateSpawnChance roll");
+                            }
+                            else
+                            {
+                                newPrecipitate.transform.position = parentObject.transform.position + Vector3.up * 0.1f;
+                                newPrecipitate.transform.parent = parentObject.transform.parent;
 
-                                case ElementPrecipitates.Drip:
-                                    parentContainer.AttemptContainLiquid(newPrecipitate);
-                                    break;
+                                newPrecipitate.elementTypeId = elementTypeId;
+
+                                newPrecipitate.rb.isKinematic = false;
+
+                                newPrecipitate._PullElementType();
+
+                                if (newPrecipitate.elementPrecipitateType == ElementPrecipitates.None) newPrecipitate._VerifyDripType();
+
+                                switch (newPrecipitate.elementPrecipitateType)
+                                {
+                                    case ElementPrecipitates.Dust:
+                                        parentContainer.AttemptConsumeDust(newPrecipitate);
+                                        break;
+
+                                    case ElementPrecipitates.Drip:
+                                        parentContainer.AttemptContainLiquid(newPrecipitate);
+                                        break;
+                                }
                             }
 
                             ShrinkElement();
@@ -300,7 +287,8 @@ namespace Catacombs.ElementSystem.Runtime
             curSize--;
             Log($"Shrinking to {curSize}");
 
-            if (curSize <= baseSize - elementPrecipitateAmount)
+            //TODO tf is this calc
+            if (curSize <= baseSize - elementTypeData.elementPrecipitateAmount)
             {
                 Log($"Out of berry dust, returning to Item Pool...");
                 itemPooler.ReturnBaseElement(parentObject);

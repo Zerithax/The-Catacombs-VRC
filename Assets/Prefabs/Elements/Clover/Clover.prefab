@@ -253,36 +253,32 @@ MonoBehaviour:
   _udonSharpBackingUdonBehaviour: {fileID: 3423622368600922427}
   parentObject: {fileID: 2540680783230851542}
   rb: {fileID: 5514045385902863104}
-  isCollidingSurface: 0
-  isGrounded: 0
-  itemMass: 0
+  itemPooler: {fileID: 0}
   elementTypeManager: {fileID: 0}
+  elementTypeData: {fileID: 0}
   elementTypeId: 8
-  elementColor: {r: 0.20441175, g: 0.695, b: 0.2521079, a: 1}
   canDespawn: 1
   despawnTime: 60
-  startTimeout: 0
   killVelocity: Infinity
+  startTimeout: 0
+  lastLandTime: 0
+  lastInteractTime: 0
   isContained: 0
   hideWhenContained: 0
   elementRenderer: {fileID: 0}
   disableContainment: 0
   parentContainer: {fileID: 0}
   hideDebugsOverride: 0
-  elementPrecipitateAmount: 5
-  elementPrecipitatePrefab: {fileID: 0}
-  precipitateType: 0
+  elementInitialized: 0
+  isCollidingSurface: 0
+  isGrounded: 0
+  itemMass: 0
+  elementColor: {r: 0.20441175, g: 0.695, b: 0.2521079, a: 1}
   shrinkSpeed: 0.001
   parentElementSpawner: {fileID: 0}
   baseElementCollisionPrefab: {fileID: 5769621185703160912, guid: c9230e8bb8ac3574f95d917aa003db04,
     type: 3}
-  canSpawnSeedPod: 0
-  seedPodPrefab: {fileID: 910723081663789424, guid: eac8af58ecd9f9c49a435d9ee4806f66,
-    type: 3}
-  elementLeavesPrefab: {fileID: 0}
-  seedPodPosOffset: {x: 0.000279, y: -0.008799, z: 0.005195}
-  elementSpawnerPrefab: {fileID: 0}
-  canPlantManually: 0
+  baseScale: {x: 0, y: 0, z: 0}
 --- !u!135 &3568975361851885082
 SphereCollider:
   m_ObjectHideFlags: 0

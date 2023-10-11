@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3861522259014461722
 Transform:
   m_ObjectHideFlags: 0
@@ -87,7 +87,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2857445737330349378}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 98ee4f0c4e279184fb02837a1fdfb4e1, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.15060388

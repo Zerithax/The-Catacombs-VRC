@@ -247,7 +247,6 @@ namespace Catacombs.ElementSystem.Runtime
                 {
                     liquidElementIsPrimed = true;
                     elementPrimedParticles.Play();
-                    SendCustomEventDelayedSeconds(nameof(_TimeoutPriming), 15);
                 }
             }
         }
@@ -321,9 +320,9 @@ namespace Catacombs.ElementSystem.Runtime
 
                 newPrecipitate.rb.isKinematic = false;
 
-                newPrecipitate._PullElementType();
-
                 if (liquidElementIsPrimed) newPrecipitate.precipitateIsPrimed = true;
+
+                newPrecipitate._PullElementType();
 
                 //Init lerping
                 startFxHeight = liquidClippingPlane.transform.parent.localPosition.y;
@@ -528,6 +527,8 @@ namespace Catacombs.ElementSystem.Runtime
         #region POTION DATA
         private void CheckRecipes()
         {
+            Log("Checking recipes!");
+
             //Start at 1 to align with ElementTypes Enum (0 == ElementTypes.None)
             for (int i = 1; i < elementTypeManager.potionRecipeObjs.Length; i++)
             {
@@ -600,17 +601,15 @@ namespace Catacombs.ElementSystem.Runtime
 
         private void CreatePotion(PotionRecipeData potionRecipeData)
         {
-            /*
-            //If no liquidType was specified, overwrite potionColor with current liquid's color (so flexible recipes' craft methods affect additional colors of some items!)
-            if (potionRecipeData.requiredLiquidType == ElementTypes.None) potionRecipeData.potionColor = elementTypeManager.elementDataObjs[(int)potionRecipeData.potionElementType].elementColor;
-            */
-
             ElementData elementData = elementTypeManager.elementDataObjs[(int)potionRecipeData.potionElementType];
+
+            //If potion can updateColor, overwrite element's elementColor with current liquid's color
+            if (potionRecipeData.updateColor) elementData.elementColor = elementTypeManager.elementDataObjs[(int)containedLiquids[0]].elementColor;
 
             //Erase all dusts & convert liquid to Potion's Element Type (and color!)
             for (int i = 0; i < containedLiquids.Length; i++)
             {
-                containedLiquids[i] = potionRecipeData.potionElementType;
+                if (containedLiquids[i] != ElementTypes.None) containedLiquids[i] = potionRecipeData.potionElementType;
                 containedElements[i] = ElementTypes.None;
             }
 
@@ -662,13 +661,6 @@ namespace Catacombs.ElementSystem.Runtime
                     collidingPestlePos = curPestlePos;
                 }
             }
-        }
-
-        public void _TimeoutPriming()
-        {
-            liquidElementIsPrimed = false;
-            elementPrimedAmount = 0;
-            elementPrimedParticles.Stop();
         }
 
         #endregion

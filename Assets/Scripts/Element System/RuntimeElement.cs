@@ -17,36 +17,33 @@ namespace Catacombs.ElementSystem.Runtime
         public Rigidbody rb;
         public ItemPooler itemPooler;
         public ElementTypeManager elementTypeManager;
-
-        public bool isCollidingSurface = false;
-        [HideInInspector] public bool isGrounded = false;
-
-        [HideInInspector] public float itemMass;
-
-        [Header("Element Type Settings")]
-        //This should already be set for pre-placed Element Prefabs
+        public ElementData elementTypeData;
         public ElementTypes elementTypeId;
-        public Color elementColor;
-
-        private bool elementInitialized;
 
         [Header("Death Settings")]
-        public bool canDespawn = true;
-        [Min(2)] public int despawnTime = 60;
-        [HideInInspector] public bool startTimeout = false;
-        public float killVelocity = Mathf.Infinity;
-
+        public bool canDespawn;
+        public float despawnTime;
+        public float killVelocity;
         public float lastLandTime;
         public float lastInteractTime;
 
         [Header("Containment Settings")]
-        public bool isContained;
-        public bool hideWhenContained;
-        public Renderer elementRenderer;
         public bool disableContainment;
+        public bool hideWhenContained;
+        public bool isContained;
+        public Renderer elementRenderer;
         public ElementContainer parentContainer;
 
-        [HideInInspector] public bool hideDebugsOverride;
+        [Header("Debug")]
+        public bool hideDebugsOverride;
+        public bool elementInitialized;
+        public bool isCollidingSurface;
+
+        public bool isGrounded;
+        public float itemMass;
+        public Color elementColor;
+
+        private float lastVelocityMagnitude;
 
         private void Start()
         {
@@ -58,7 +55,15 @@ namespace Catacombs.ElementSystem.Runtime
             if (Time.time < 1) _PullElementType();
         }
 
-        private void Update() { if (elementInitialized) AdditionalUpdate(); }
+        private void Update()
+        {
+            if (elementInitialized)
+            {
+                AdditionalUpdate();
+
+                lastVelocityMagnitude = rb.velocity.magnitude;
+            }
+        }
 
         [RecursiveMethod]
         public virtual bool _PullElementType()
@@ -70,18 +75,18 @@ namespace Catacombs.ElementSystem.Runtime
                 return false;
             }
 
-            ElementData elementData = elementTypeManager.elementDataObjs[(int)elementTypeId];
+            elementTypeData = elementTypeManager.elementDataObjs[(int)elementTypeId];
 
-            parentObject.name = $"{elementData.name.Remove(elementData.name.Length - 8)}";
+            parentObject.name = $"{elementTypeData.name.Remove(elementTypeData.name.Length - 8)}";
 
-            elementColor = elementData.elementColor;
-            despawnTime = elementData.despawnTime;
-            killVelocity = elementData.killVelocity;
+            elementColor = elementTypeData.elementColor;
 
-            //if (Time.time < 1) parentObject.name = $"{elementData.name} {parentObject.name}";
-            //else parentObject.name = $"{elementData.name} {parentObject.name.Remove(parentObject.name.Length - 7)}";
-
-            //parentObject.name = Time.time < 1 ? $"{elementData.name} {parentObject.name}" : $"{elementData.name} {parentObject.name.Remove(parentObject.name.Length - 15)}";
+            if (elementTypeData.canDespawn)
+            {
+                canDespawn = elementTypeData.canDespawn;
+                despawnTime = elementTypeData.despawnTime;
+                killVelocity = elementTypeData.killVelocity;
+            }
 
             AdditionalStart();
 
@@ -120,16 +125,20 @@ namespace Catacombs.ElementSystem.Runtime
         {
             if (collision == null || collision.gameObject == null) return;
 
-            //TODO: This is sometimes 0, why?
-            Log($"Collided with something, velocity is {rb.velocity.magnitude}");
+            if (collision.gameObject.layer == 24) return;
 
-            //Instantly die if smashing into a surface at a velocity higher than killVelocity
-            if (!isCollidingSurface && rb.velocity.magnitude > killVelocity)
+            if (!isCollidingSurface)
             {
-                Log($"Smashed into something too hard");
+                //Die if colliding with a surface at a velocity higher than killVelocity
+                if (elementTypeData.canDespawn && lastVelocityMagnitude > elementTypeData.killVelocity)
+                {
+                    Log($"Smashed into something too hard");
 
-                itemPooler.ReturnBaseElement(parentObject);
+                    KillElement();
+                }
             }
+
+            isCollidingSurface = true;
 
             //If on Environment layer
             if (collision.collider.gameObject.layer == 11)
@@ -137,7 +146,7 @@ namespace Catacombs.ElementSystem.Runtime
                 isGrounded = true;
 
                 //Initiate despawn countdown
-                if (canDespawn)
+                if (elementTypeData.canDespawn)
                 {
                     lastLandTime = (float)Math.Round(Time.time, 3);
                     lastInteractTime = lastLandTime;
@@ -149,23 +158,21 @@ namespace Catacombs.ElementSystem.Runtime
                     }
                 }
             }
-
-            //Element layer (24) shouldn't affect surface collision detection
-            if (collision.collider.gameObject.layer != 24) isCollidingSurface = true;
         }
 
         public void ParentCollisionExit(Collision collision)
         {
             if (collision == null || collision.gameObject == null) return;
 
+            if (collision.gameObject.layer == 24) return;
+
+            isCollidingSurface = false;
+
             if (collision.collider.gameObject.layer == 11)
             {
                 isGrounded = false;
                 lastInteractTime = (float)Math.Round(Time.time, 3);
             }
-
-            //Element layer (24) shouldn't affect surface collision detection
-            if (collision.collider.gameObject.layer != 24) isCollidingSurface = false;
         }
 
         public virtual void _AttemptDespawn() {  }
@@ -206,23 +213,26 @@ namespace Catacombs.ElementSystem.Runtime
 
             if (other.gameObject.layer == 22)
             {
-                //Don't let other containers interfere with current container!
-                if (other.GetComponent<ElementContainer>() != parentContainer) return;
-
-                Log($"{parentObject.name} has exited Container [{other.transform.parent.name}]");
-
-                parentContainer = null;
-                parentObject.transform.parent = null;
-
-                isContained = false;
-                rb.mass = itemMass;
-
-                if (hideWhenContained) elementRenderer.enabled = true;
-
-                if (isGrounded)
+                if (!disableContainment)
                 {
-                    Log($"Starting Despawn timer");
-                    SendCustomEventDelayedSeconds(nameof(_AttemptDespawn), despawnTime);
+                    //Don't let other containers interfere with current container!
+                    if (other.GetComponent<ElementContainer>() != parentContainer) return;
+
+                    Log($"{parentObject.name} has exited Container [{other.transform.parent.name}]");
+
+                    parentContainer = null;
+                    parentObject.transform.parent = null;
+
+                    isContained = false;
+                    rb.mass = itemMass;
+
+                    if (hideWhenContained) elementRenderer.enabled = true;
+
+                    if (isGrounded)
+                    {
+                        Log($"Starting Despawn timer");
+                        SendCustomEventDelayedSeconds(nameof(_AttemptDespawn), despawnTime);
+                    }
                 }
             }
 
@@ -235,6 +245,11 @@ namespace Catacombs.ElementSystem.Runtime
             string elementColorHex = r.ToString("X2") + g.ToString("X2") + b.ToString("X2");
 
             if (!hideDebugsOverride) Debug.Log($"<color=#{elementColorHex}>[{parentObject.name}]</color> {message:G}", this);
+        }
+
+        protected void LogWarning(string message)
+        {
+            if (!hideDebugsOverride) Debug.LogWarning($"[{parentObject.name}] {message}", this);
         }
     }
 }
