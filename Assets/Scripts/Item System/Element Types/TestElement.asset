@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 055ce9bfd4f47f440adde5714a300157, type: 3}
+  m_Name: TestElement
+  m_EditorClassIdentifier: 
+  elementTypeId: 11
+  elementColor: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
+  elementIsProducedByPotion: 0
+  elementIsSpawnedByElementSpawner: 0
+  elementIsSeedPod: 0
+  elementCanSpawnGrownObject: 0
+  canDespawn: 0
+  despawnTime: 30
+  killVelocity: Infinity
+  baseElementSpawnTime: 0
+  baseElementMesh: {fileID: 0}
+  BaseElementCollisionPrefab: {fileID: 0}
+  pickupColliderRadius: 0
+  rbMass: 1
+  rbDrag: 0
+  rbAngularDrag: 0.05
+  elementCanBecomeSeedPod: 1
+  seedPodSpawnChance: 100
+  SeedPodPrefab: {fileID: 0}
+  seedPodPosOffset: {x: 0, y: 0, z: 0}
+  seedPodElementType: 1
+  ElementLeavesPrefab: {fileID: 1164041372635974953, guid: f70261a4d3d58bf4cb1dad530dfd476e,
+    type: 3}
+  canPlantManually: 0
+  GrownObjectAnimator: {fileID: 0}
+  grownObjectType: 0
+  grownObjectElement: 0
+  colliderYPos: 0
+  colliderRadius: 0.05
+  colliderHeight: 0.5
+  GrownObjectGrowthPrefabs: []
+  grownObjectGrowTime: 0
+  ElementSpawnTransforms: {fileID: 0}
+  elementHasPrecipitateForm: 1
+  elementPrecipitateType: 1
+  minimumVelocity: 0.2
+  maximumVelocity: Infinity
+  velocityMultiplier: 0.104
+  shrinkSpeed: 0.001
+  elementPrecipitateAmount: 3
+  elementPrecipitateSpawnChance: 1
+  elementHasUsableEffect: 0
+  elementEffectPrimingTrigger: 0
+  effectPrimingThreshold: 100
+  effectUseTrigger: 0
+  ingestedEffect: 0
+  ingestedEffectStrength: 0
+  ingestedEffectDuration: 0
