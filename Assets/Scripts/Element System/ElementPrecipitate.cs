@@ -122,6 +122,8 @@ namespace Catacombs.ElementSystem.Runtime
 
         protected override void AdditionalTriggerEnter(Collider other)
         {
+            if (!elementInitialized) return;
+
             if (hideWhenContained) trailRend.emitting = false;
 
             if (elementTypeData.elementHasUsableEffect && precipitateIsPrimed)

@@ -1,7 +1,9 @@
 ﻿using System.Linq;
-using UnityEditor;
 using UnityEngine;
-using Boo.Lang;
+using VRC.SDK3.Data;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace Argus.ItemSystem.Editor
 {
@@ -23,10 +25,13 @@ namespace Argus.ItemSystem.Editor
         public ElementTypes[] requiredElementTypes;
     }
 
+#if UNITY_EDITOR
     [CustomEditor(typeof(PotionRecipe))]
     public class PotionRecipeEditor : UnityEditor.Editor
     {
         private ElementTypeManager elementTypeManager;
+
+        private DataList excludedProperties = new DataList();
 
         public override void OnInspectorGUI()
         {
@@ -36,7 +41,7 @@ namespace Argus.ItemSystem.Editor
 
             serializedObject.Update();
 
-            List<string> excludedProperties = new List<string>();
+            //List<string> excludedProperties = new List<string>();
 
             var myBehaviour = target as PotionRecipe;
 
@@ -50,9 +55,20 @@ namespace Argus.ItemSystem.Editor
                 excludedProperties.Remove("updateColor");
             }
 
-            DrawPropertiesExcluding(serializedObject, excludedProperties.ToArray());
+            string[] excludedPropertiesStrings = new string[excludedProperties.Count];
+
+            for (int i = 0; i < excludedProperties.Count; i++)
+            {
+                if (excludedProperties.TryGetValue(i, out DataToken value))
+                {
+                    excludedPropertiesStrings[i] = value.String;
+                }
+            }
+
+            DrawPropertiesExcluding(serializedObject, excludedPropertiesStrings);
 
             serializedObject.ApplyModifiedProperties();
         }
     }
+#endif
 }

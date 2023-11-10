@@ -1,8 +1,10 @@
 ﻿using System.Linq;
 using UdonSharp;
 using UnityEngine;
-using UnityEditor;
 using Argus.ItemSystem.Editor;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace Argus.ItemSystem
 {
@@ -23,12 +25,12 @@ namespace Argus.ItemSystem
         [Space(3)]
         public Transform potionRecipeDataParent;
 
-        private void Start() { SendCustomEventDelayedSeconds(nameof(_CheckInitialized), 1); }
+        private void Start() { SendCustomEventDelayedSeconds(nameof(_CheckInitialized), 10); }
 
         [RecursiveMethod]
         public void _CheckInitialized()
         {
-            if (elementDataObjs[1] != null)
+            if (elementDataObjs[11].elementTypeId != 0)
             {
                 isInitialized = true;
 
@@ -42,8 +44,20 @@ namespace Argus.ItemSystem
 
             SendCustomEventDelayedSeconds(nameof(_CheckInitialized), 1);
         }
+
+        private void Update()
+        {
+            if (isInitialized)
+            {
+                for (int i = 1; i < elementDataObjs.Length; i++)
+                {
+                    Debug.Log($"Element ID test: {elementDataObjs[i].elementTypeId}");
+                }
+            }
+        }
     }
 
+#if UNITY_EDITOR
     [CustomEditor(typeof(ElementTypeManager))]
     public class ElementTypeManagerEditor : UnityEditor.Editor
     {
@@ -274,4 +288,5 @@ namespace Argus.ItemSystem
             EditorGUILayout.EndHorizontal();
         }
     }
+#endif
 }

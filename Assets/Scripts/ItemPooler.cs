@@ -3,13 +3,13 @@ using Argus.ItemSystem.Editor;
 using Catacombs.Base;
 using System;
 using UdonSharp;
-using UnityEditor.Animations;
 using UnityEngine;
 using VRC.SDKBase;
 using VRC.Udon;
 
 namespace Catacombs.ElementSystem.Runtime
 {
+    [DefaultExecutionOrder(-1)]
     public class ItemPooler : UdonSharpBehaviour
     {
         [SerializeField] private ElementTypeManager elementTypeManager;
@@ -27,7 +27,7 @@ namespace Catacombs.ElementSystem.Runtime
 
         [SerializeField] private ElementPrecipitate[] elementPrecipitates;
 
-        void Awake()
+        void Start()
         {
             for (int i = 0; i < baseElements.Length; i++)
             {

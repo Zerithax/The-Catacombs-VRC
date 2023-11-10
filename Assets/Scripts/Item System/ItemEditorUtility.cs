@@ -1,12 +1,15 @@
-﻿using System.Collections;
+﻿#if UNITY_EDITOR
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
 using UnityEngine;
 using Catacombs.ElementSystem.Runtime;
+using UnityEditor;
+#endif
 
 namespace Argus.ItemSystem.Editor
 {
+#if UNITY_EDITOR
     public static class ItemEditorUtility
     {
         //Refresh all items in the database
@@ -56,4 +59,5 @@ namespace Argus.ItemSystem.Editor
             return AllPotions;
         }
     }
+#endif
 }

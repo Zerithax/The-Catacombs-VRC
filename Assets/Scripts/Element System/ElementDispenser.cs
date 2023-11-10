@@ -66,6 +66,8 @@ namespace Catacombs.ElementSystem.Runtime
             if (usePrecipitate) newElement = itemPooler.RequestElementPrecipitate();
             else newElement = itemPooler.RequestBaseElement();
 
+            if (newElement == null) return;
+
             newElement.transform.position = spawnPos;
             newElement.transform.parent = transform;
 

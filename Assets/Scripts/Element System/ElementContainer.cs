@@ -561,7 +561,7 @@ namespace Catacombs.ElementSystem.Runtime
                 //Otherwise compare with both containedLiquids' ElementType and all containedElement ElementTypes
                 else if (potionRecipeData.requiredLiquidType == containedLiquids[0])
                 {
-                    //For every element in existingElements[], check if exists in potionRecipe[], then remove elements & increment foundElements to verify ingredient is present
+                    //For every element in existingElements[], check if exists in potionRecipe[], then remove entry from existingElements & increment foundElements to note ingredient is present
                     for (int j = 0; j < existingElements.Length; j++)
                     {
                         for (int k = 0; k < potionRecipe.Length; k++)

@@ -77,6 +77,11 @@ namespace Catacombs.ElementSystem.Runtime
 
             elementTypeData = elementTypeManager.elementDataObjs[(int)elementTypeId];
 
+            Log($"Growth time will be {elementTypeManager.elementDataObjs[(int)elementTypeId].grownObjectGrowTime}");
+
+            //Log($"Set Element Tpye Data to {(int)elementTypeId} of elementDataObjs:");
+            //Log($"{elementTypeManager.elementDataObjs[(int)elementTypeId]}");
+
             parentObject.name = $"{elementTypeData.name.Remove(elementTypeData.name.Length - 8)}";
 
             elementColor = elementTypeData.elementColor;

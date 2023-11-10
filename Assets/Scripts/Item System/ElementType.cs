@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using Catacombs.Base;
 using Catacombs.ElementSystem.Runtime;
-using UnityEditor.Animations;
-using UnityEditor;
-using Boo.Lang;
 using UnityEngine.EventSystems;
 using UdonSharp;
 using System;
 using System.Linq;
+using VRC.SDK3.Data;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace Argus.ItemSystem.Editor
 {
@@ -118,7 +119,7 @@ namespace Argus.ItemSystem.Editor
 
         [Header("Grown Object Settings")]
         [Tooltip("The AnimatorController for the GrownObject this Element spawns/spawns from")]
-        public AnimatorController GrownObjectAnimator;
+        public RuntimeAnimatorController GrownObjectAnimator;
         [Tooltip("Which script to apply to the GrownObject when spawned")]
         public GrownObjectType grownObjectType;
         [Tooltip("The ElementType to apply to the the GrownObject when spawned")]
@@ -178,10 +179,13 @@ namespace Argus.ItemSystem.Editor
         public float ingestedEffectDuration;
     }
 
+#if UNITY_EDITOR
     [CustomEditor(typeof(ElementType))]
     public class ElementTypeEditor : UnityEditor.Editor
     {
         private ElementTypeManager elementTypeManager;
+
+        private DataList excludedProperties = new DataList();
 
         public override void OnInspectorGUI()
         {
@@ -193,7 +197,7 @@ namespace Argus.ItemSystem.Editor
 
             serializedObject.Update();
 
-            List<string> excludedProperties = new List<string>();
+            //List<string> excludedProperties = new List<string>();
 
             ElementType myBehaviour = target as ElementType;
 
@@ -489,9 +493,20 @@ namespace Argus.ItemSystem.Editor
                     break;
             }
 
-            DrawPropertiesExcluding(serializedObject, excludedProperties.ToArray());
+            string[] excludedPropertiesStrings = new string[excludedProperties.Count];
+
+            for (int i = 0; i < excludedProperties.Count; i++)
+            {
+                if (excludedProperties.TryGetValue(i, out DataToken value))
+                {
+                    excludedPropertiesStrings[i] = value.String;
+                }
+            }
+
+            DrawPropertiesExcluding(serializedObject, excludedPropertiesStrings);
 
             serializedObject.ApplyModifiedProperties();
         }
     }
+#endif
 }

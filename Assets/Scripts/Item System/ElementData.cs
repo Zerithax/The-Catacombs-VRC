@@ -1,11 +1,13 @@
 ﻿using Catacombs.Base;
 using Catacombs.ElementSystem.Runtime;
 using UdonSharp;
-using UnityEditor;
 using UnityEngine;
-using Boo.Lang;
 using System;
 using System.Linq;
+using VRC.SDK3.Data;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace Argus.ItemSystem.Editor
 {
@@ -76,11 +78,14 @@ namespace Argus.ItemSystem.Editor
         public float ingestedEffectDuration;
     }
 
+#if UNITY_EDITOR
     [CustomEditor(typeof(ElementData))]
     public class ElementDataEditor : UnityEditor.Editor
     {
         private ElementTypeManager elementTypeManager;
         private ElementData[] elementTypes;
+
+        private DataList excludedProperties = new DataList();
 
         public override void OnInspectorGUI()
         {
@@ -98,7 +103,7 @@ namespace Argus.ItemSystem.Editor
 
             serializedObject.Update();
 
-            List<string> excludedProperties = new List<string>();
+            //DataList<string> excludedProperties = new list<string>();
 
             ElementData myBehaviour = target as ElementData;
 
@@ -393,9 +398,20 @@ namespace Argus.ItemSystem.Editor
                     break;
             }
 
-            DrawPropertiesExcluding(serializedObject, excludedProperties.ToArray());
+            string[] excludedPropertiesStrings = new string[excludedProperties.Count];
+
+            for (int i = 0; i < excludedProperties.Count; i++)
+            {
+                if (excludedProperties.TryGetValue(i, out DataToken value))
+                {
+                    excludedPropertiesStrings[i] = value.String;
+                }
+            }
+
+            DrawPropertiesExcluding(serializedObject, excludedPropertiesStrings);
 
             serializedObject.ApplyModifiedProperties();
         }
     }
+#endif
 }
