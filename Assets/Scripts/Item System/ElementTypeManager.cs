@@ -51,7 +51,7 @@ namespace Argus.ItemSystem
             {
                 for (int i = 1; i < elementDataObjs.Length; i++)
                 {
-                    Debug.Log($"Element ID test: {elementDataObjs[i].elementTypeId}");
+                    //Debug.Log($"Element ID test: {elementDataObjs[i].elementTypeId}");
                 }
             }
         }
