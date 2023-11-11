@@ -720,133 +720,6 @@ MonoBehaviour:
   - {fileID: 1854844817}
   - {fileID: 1831643763}
   - {fileID: 77611602}
---- !u!1 &177897156
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 177897157}
-  - component: {fileID: 177897158}
-  - component: {fileID: 177897159}
-  m_Layer: 0
-  m_Name: CloverSprout Element
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &177897157
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 177897156}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1292143487}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &177897158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 177897156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03beb95cb6343b944831aa58eda51010, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  _udonSharpBackingUdonBehaviour: {fileID: 177897159}
-  elementTypeId: 10
-  elementColor: {r: 0.5882353, g: 0.25490198, b: 0.26666668, a: 1}
-  elementIsProducedByPotion: 1
-  elementIsSpawnedByElementSpawner: 0
-  elementIsSeedPod: 0
-  elementCanSpawnGrownObject: 1
-  canDespawn: 1
-  despawnTime: 60
-  killVelocity: Infinity
-  baseElementSpawnTime: 0
-  baseElementMesh: {fileID: 0}
-  BaseElementCollisionPrefab: {fileID: 0}
-  pickupColliderRadius: 0
-  rbMass: 0
-  rbDrag: 0
-  rbAngularDrag: 0
-  elementCanBecomeSeedPod: 0
-  seedPodSpawnChance: 0
-  SeedPodPrefab: {fileID: 0}
-  seedPodPosOffset: {x: 0, y: 0, z: 0}
-  seedPodElementType: 0
-  ElementLeavesPrefab: {fileID: 0}
-  canPlantManually: 0
-  GrownObjectAnimator: {fileID: 0}
-  grownObjectType: 1
-  grownObjectElement: 8
-  colliderYPos: 0
-  colliderRadius: 0
-  colliderHeight: 0
-  GrownObjectGrowthPrefabs: []
-  grownObjectGrowTime: 0
-  ElementSpawnTransforms: {fileID: 0}
-  elementHasPrecipitateForm: 1
-  elementPrecipitateType: 2
-  minimumVelocity: 0
-  maximumVelocity: Infinity
-  velocityMultiplier: 0.01
-  shrinkSpeed: 0
-  elementPrecipitateAmount: 0
-  elementPrecipitateSpawnChance: 0
-  elementHasUsableEffect: 1
-  elementEffectPrimingTrigger: 1
-  effectPrimingThreshold: 100
-  effectUseTrigger: 2
-  ingestedEffect: 0
-  ingestedEffectStrength: 0
-  ingestedEffectDuration: 0
---- !u!114 &177897159
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 177897156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45115577ef41a5b4ca741ed302693907, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactTextPlacement: {fileID: 0}
-  interactText: Use
-  interactTextGO: {fileID: 0}
-  proximity: 2
-  SynchronizePosition: 0
-  AllowCollisionOwnershipTransfer: 0
-  Reliable: 0
-  _syncMethod: 2
-  serializedProgramAsset: {fileID: 11400000, guid: b0159582634c445439d53d12ebdb4689,
-    type: 2}
-  programSource: {fileID: 11400000, guid: c11b223b2b16b4d40bf00f1ec3e001e0, type: 2}
-  serializedPublicVariablesBytesString: Ai8AAAAAATIAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAFQAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AAAAAAAYBAAAAAAAAACcBBAAAAHQAeQBwAGUAAWgAAABTAHkAcwB0AGUAbQAuAEMAbwBsAGwAZQBjAHQAaQBvAG4AcwAuAEcAZQBuAGUAcgBpAGMALgBMAGkAcwB0AGAAMQBbAFsAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4ALgBJAG4AdABlAHIAZgBhAGMAZQBzAC4ASQBVAGQAbwBuAFYAYQByAGkAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AXQBdACwAIABtAHMAYwBvAHIAbABpAGIAAQEJAAAAVgBhAHIAaQBhAGIAbABlAHMALwEAAAABaAAAAFMAeQBzAHQAZQBtAC4AQwBvAGwAbABlAGMAdABpAG8AbgBzAC4ARwBlAG4AZQByAGkAYwAuAEwAaQBzAHQAYAAxAFsAWwBWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAEkAbgB0AGUAcgBmAGEAYwBlAHMALgBJAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlACwAIABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgBdAF0ALAAgAG0AcwBjAG8AcgBsAGkAYgABAAAABgEAAAAAAAAAAi8CAAAAAUkAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAGAAMQBbAFsAUwB5AHMAdABlAG0ALgBJAG4AdAAzADIALAAgAG0AcwBjAG8AcgBsAGkAYgBdAF0ALAAgAFYAUgBDAC4AVQBkAG8AbgAuAEMAbwBtAG0AbwBuAAIAAAAGAgAAAAAAAAAnAQQAAAB0AHkAcABlAAEXAAAAUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwAsACAAbQBzAGMAbwByAGwAaQBiACcBCgAAAFMAeQBtAGIAbwBsAE4AYQBtAGUAAR8AAABfAF8AXwBVAGQAbwBuAFMAaABhAHIAcABCAGUAaABhAHYAaQBvAHUAcgBWAGUAcgBzAGkAbwBuAF8AXwBfACcBBAAAAHQAeQBwAGUAARYAAABTAHkAcwB0AGUAbQAuAEkAbgB0ADMAMgAsACAAbQBzAGMAbwByAGwAaQBiABcBBQAAAFYAYQBsAHUAZQACAAAABwUHBQcF
-  publicVariablesUnityEngineObjects: []
-  publicVariablesSerializationDataFormat: 0
 --- !u!1001 &181079222
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1709,6 +1582,136 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff6888b5608b3e4eb95cbc2ee74c8de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &398798808
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 398798809}
+  - component: {fileID: 398798811}
+  - component: {fileID: 398798810}
+  m_Layer: 0
+  m_Name: CloverSeed Element
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &398798809
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398798808}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1292143487}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &398798810
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398798808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45115577ef41a5b4ca741ed302693907, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactTextPlacement: {fileID: 0}
+  interactText: Use
+  interactTextGO: {fileID: 0}
+  proximity: 2
+  SynchronizePosition: 0
+  AllowCollisionOwnershipTransfer: 0
+  Reliable: 0
+  _syncMethod: 2
+  serializedProgramAsset: {fileID: 11400000, guid: b0159582634c445439d53d12ebdb4689,
+    type: 2}
+  programSource: {fileID: 11400000, guid: c11b223b2b16b4d40bf00f1ec3e001e0, type: 2}
+  serializedPublicVariablesBytesString: Ai8AAAAAATIAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAFQAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AAAAAAAYBAAAAAAAAACcBBAAAAHQAeQBwAGUAAWgAAABTAHkAcwB0AGUAbQAuAEMAbwBsAGwAZQBjAHQAaQBvAG4AcwAuAEcAZQBuAGUAcgBpAGMALgBMAGkAcwB0AGAAMQBbAFsAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4ALgBJAG4AdABlAHIAZgBhAGMAZQBzAC4ASQBVAGQAbwBuAFYAYQByAGkAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AXQBdACwAIABtAHMAYwBvAHIAbABpAGIAAQEJAAAAVgBhAHIAaQBhAGIAbABlAHMALwEAAAABaAAAAFMAeQBzAHQAZQBtAC4AQwBvAGwAbABlAGMAdABpAG8AbgBzAC4ARwBlAG4AZQByAGkAYwAuAEwAaQBzAHQAYAAxAFsAWwBWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAEkAbgB0AGUAcgBmAGEAYwBlAHMALgBJAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlACwAIABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgBdAF0ALAAgAG0AcwBjAG8AcgBsAGkAYgABAAAABgEAAAAAAAAAAi8CAAAAAUkAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAGAAMQBbAFsAUwB5AHMAdABlAG0ALgBJAG4AdAAzADIALAAgAG0AcwBjAG8AcgBsAGkAYgBdAF0ALAAgAFYAUgBDAC4AVQBkAG8AbgAuAEMAbwBtAG0AbwBuAAIAAAAGAgAAAAAAAAAnAQQAAAB0AHkAcABlAAEXAAAAUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwAsACAAbQBzAGMAbwByAGwAaQBiACcBCgAAAFMAeQBtAGIAbwBsAE4AYQBtAGUAAR8AAABfAF8AXwBVAGQAbwBuAFMAaABhAHIAcABCAGUAaABhAHYAaQBvAHUAcgBWAGUAcgBzAGkAbwBuAF8AXwBfACcBBAAAAHQAeQBwAGUAARYAAABTAHkAcwB0AGUAbQAuAEkAbgB0ADMAMgAsACAAbQBzAGMAbwByAGwAaQBiABcBBQAAAFYAYQBsAHUAZQACAAAABwUHBQcF
+  publicVariablesUnityEngineObjects: []
+  publicVariablesSerializationDataFormat: 0
+--- !u!114 &398798811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398798808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03beb95cb6343b944831aa58eda51010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  _udonSharpBackingUdonBehaviour: {fileID: 398798810}
+  elementTypeId: 9
+  elementColor: {r: 0.12993948, g: 0.3773585, b: 0.1536917, a: 1}
+  elementIsProducedByPotion: 0
+  elementIsSpawnedByElementSpawner: 1
+  elementIsSeedPod: 1
+  elementCanSpawnGrownObject: 0
+  canDespawn: 1
+  despawnTime: 10
+  killVelocity: Infinity
+  baseElementSpawnTime: 1
+  baseElementMesh: {fileID: 8137266731148065982, guid: ef761f4b6a89ff74d85274b5093edccc,
+    type: 3}
+  BaseElementCollisionPrefab: {fileID: 5769621185703160912, guid: c9230e8bb8ac3574f95d917aa003db04,
+    type: 3}
+  pickupColliderRadius: 0.07
+  rbMass: 0.02
+  rbDrag: 0.4
+  rbAngularDrag: 4
+  elementCanBecomeSeedPod: 0
+  seedPodSpawnChance: 0
+  SeedPodPrefab: {fileID: 910723081663789424, guid: eac8af58ecd9f9c49a435d9ee4806f66,
+    type: 3}
+  seedPodPosOffset: {x: 0.000279, y: -0.008799, z: 0.005195}
+  seedPodElementType: 0
+  ElementLeavesPrefab: {fileID: 0}
+  canPlantManually: 0
+  GrownObjectAnimator: {fileID: 0}
+  grownObjectType: 0
+  grownObjectElement: 0
+  colliderYPos: 0
+  colliderRadius: 0.05
+  colliderHeight: 0.5
+  GrownObjectGrowthPrefabs: []
+  grownObjectGrowTime: 0
+  ElementSpawnTransforms: {fileID: 0}
+  elementHasPrecipitateForm: 1
+  elementPrecipitateType: 1
+  minimumVelocity: 0
+  maximumVelocity: Infinity
+  velocityMultiplier: 0
+  shrinkSpeed: 0.0005
+  elementPrecipitateAmount: 1
+  elementPrecipitateSpawnChance: 1
+  elementHasUsableEffect: 0
+  elementEffectPrimingTrigger: 0
+  effectPrimingThreshold: 0
+  effectUseTrigger: 0
+  ingestedEffect: 0
+  ingestedEffectStrength: 0
+  ingestedEffectDuration: 0
 --- !u!1 &400943423 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1675393744298976041, guid: b90bd303cade7964289f5d7ed20f5d12,
@@ -2042,6 +2045,133 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff6888b5608b3e4eb95cbc2ee74c8de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &535392134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 535392135}
+  - component: {fileID: 535392137}
+  - component: {fileID: 535392136}
+  m_Layer: 0
+  m_Name: CloverSprout Element
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &535392135
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535392134}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1292143487}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &535392136
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535392134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45115577ef41a5b4ca741ed302693907, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactTextPlacement: {fileID: 0}
+  interactText: Use
+  interactTextGO: {fileID: 0}
+  proximity: 2
+  SynchronizePosition: 0
+  AllowCollisionOwnershipTransfer: 0
+  Reliable: 0
+  _syncMethod: 2
+  serializedProgramAsset: {fileID: 11400000, guid: b0159582634c445439d53d12ebdb4689,
+    type: 2}
+  programSource: {fileID: 11400000, guid: c11b223b2b16b4d40bf00f1ec3e001e0, type: 2}
+  serializedPublicVariablesBytesString: Ai8AAAAAATIAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAFQAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AAAAAAAYBAAAAAAAAACcBBAAAAHQAeQBwAGUAAWgAAABTAHkAcwB0AGUAbQAuAEMAbwBsAGwAZQBjAHQAaQBvAG4AcwAuAEcAZQBuAGUAcgBpAGMALgBMAGkAcwB0AGAAMQBbAFsAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4ALgBJAG4AdABlAHIAZgBhAGMAZQBzAC4ASQBVAGQAbwBuAFYAYQByAGkAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AXQBdACwAIABtAHMAYwBvAHIAbABpAGIAAQEJAAAAVgBhAHIAaQBhAGIAbABlAHMALwEAAAABaAAAAFMAeQBzAHQAZQBtAC4AQwBvAGwAbABlAGMAdABpAG8AbgBzAC4ARwBlAG4AZQByAGkAYwAuAEwAaQBzAHQAYAAxAFsAWwBWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAEkAbgB0AGUAcgBmAGEAYwBlAHMALgBJAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlACwAIABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgBdAF0ALAAgAG0AcwBjAG8AcgBsAGkAYgABAAAABgEAAAAAAAAAAi8CAAAAAUkAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAGAAMQBbAFsAUwB5AHMAdABlAG0ALgBJAG4AdAAzADIALAAgAG0AcwBjAG8AcgBsAGkAYgBdAF0ALAAgAFYAUgBDAC4AVQBkAG8AbgAuAEMAbwBtAG0AbwBuAAIAAAAGAgAAAAAAAAAnAQQAAAB0AHkAcABlAAEXAAAAUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwAsACAAbQBzAGMAbwByAGwAaQBiACcBCgAAAFMAeQBtAGIAbwBsAE4AYQBtAGUAAR8AAABfAF8AXwBVAGQAbwBuAFMAaABhAHIAcABCAGUAaABhAHYAaQBvAHUAcgBWAGUAcgBzAGkAbwBuAF8AXwBfACcBBAAAAHQAeQBwAGUAARYAAABTAHkAcwB0AGUAbQAuAEkAbgB0ADMAMgAsACAAbQBzAGMAbwByAGwAaQBiABcBBQAAAFYAYQBsAHUAZQACAAAABwUHBQcF
+  publicVariablesUnityEngineObjects: []
+  publicVariablesSerializationDataFormat: 0
+--- !u!114 &535392137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535392134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03beb95cb6343b944831aa58eda51010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  _udonSharpBackingUdonBehaviour: {fileID: 535392136}
+  elementTypeId: 10
+  elementColor: {r: 0.5882353, g: 0.25490198, b: 0.26666668, a: 1}
+  elementIsProducedByPotion: 1
+  elementIsSpawnedByElementSpawner: 0
+  elementIsSeedPod: 0
+  elementCanSpawnGrownObject: 1
+  canDespawn: 1
+  despawnTime: 60
+  killVelocity: Infinity
+  baseElementSpawnTime: 0
+  baseElementMesh: {fileID: 0}
+  BaseElementCollisionPrefab: {fileID: 0}
+  pickupColliderRadius: 0
+  rbMass: 0
+  rbDrag: 0
+  rbAngularDrag: 0
+  elementCanBecomeSeedPod: 0
+  seedPodSpawnChance: 0
+  SeedPodPrefab: {fileID: 0}
+  seedPodPosOffset: {x: 0, y: 0, z: 0}
+  seedPodElementType: 0
+  ElementLeavesPrefab: {fileID: 0}
+  canPlantManually: 0
+  GrownObjectAnimator: {fileID: 0}
+  grownObjectType: 1
+  grownObjectElement: 8
+  colliderYPos: 0
+  colliderRadius: 0
+  colliderHeight: 0
+  GrownObjectGrowthPrefabs: []
+  grownObjectGrowTime: 0
+  ElementSpawnTransforms: {fileID: 0}
+  elementHasPrecipitateForm: 1
+  elementPrecipitateType: 2
+  minimumVelocity: 0
+  maximumVelocity: Infinity
+  velocityMultiplier: 0.01
+  shrinkSpeed: 0
+  elementPrecipitateAmount: 0
+  elementPrecipitateSpawnChance: 0
+  elementHasUsableEffect: 1
+  elementEffectPrimingTrigger: 1
+  effectPrimingThreshold: 100
+  effectUseTrigger: 2
+  ingestedEffect: 0
+  ingestedEffectStrength: 0
+  ingestedEffectDuration: 0
 --- !u!1001 &548525313
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2237,133 +2367,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 150291ea6dbd4fb478913321534ec1f7, type: 3}
---- !u!1 &551923300
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 551923301}
-  - component: {fileID: 551923302}
-  - component: {fileID: 551923303}
-  m_Layer: 0
-  m_Name: BlueberryJuice Element
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &551923301
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 551923300}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1292143487}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &551923302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 551923300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03beb95cb6343b944831aa58eda51010, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  _udonSharpBackingUdonBehaviour: {fileID: 551923303}
-  elementTypeId: 6
-  elementColor: {r: 0.1499305, g: 0.137362, b: 0.346, a: 1}
-  elementIsProducedByPotion: 1
-  elementIsSpawnedByElementSpawner: 0
-  elementIsSeedPod: 0
-  elementCanSpawnGrownObject: 0
-  canDespawn: 1
-  despawnTime: 30
-  killVelocity: Infinity
-  baseElementSpawnTime: 0
-  baseElementMesh: {fileID: 0}
-  BaseElementCollisionPrefab: {fileID: 0}
-  pickupColliderRadius: 0
-  rbMass: 0
-  rbDrag: 0
-  rbAngularDrag: 0
-  elementCanBecomeSeedPod: 0
-  seedPodSpawnChance: 0
-  SeedPodPrefab: {fileID: 0}
-  seedPodPosOffset: {x: 0, y: 0, z: 0}
-  seedPodElementType: 0
-  ElementLeavesPrefab: {fileID: 0}
-  canPlantManually: 0
-  GrownObjectAnimator: {fileID: 0}
-  grownObjectType: 0
-  grownObjectElement: 0
-  colliderYPos: 0
-  colliderRadius: 0
-  colliderHeight: 0
-  GrownObjectGrowthPrefabs: []
-  grownObjectGrowTime: 0
-  ElementSpawnTransforms: {fileID: 0}
-  elementHasPrecipitateForm: 1
-  elementPrecipitateType: 2
-  minimumVelocity: 0
-  maximumVelocity: Infinity
-  velocityMultiplier: 0.01
-  shrinkSpeed: 0
-  elementPrecipitateAmount: 0
-  elementPrecipitateSpawnChance: 0
-  elementHasUsableEffect: 1
-  elementEffectPrimingTrigger: 1
-  effectPrimingThreshold: 100
-  effectUseTrigger: 1
-  ingestedEffect: 1
-  ingestedEffectStrength: 3
-  ingestedEffectDuration: 30
---- !u!114 &551923303
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 551923300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45115577ef41a5b4ca741ed302693907, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactTextPlacement: {fileID: 0}
-  interactText: Use
-  interactTextGO: {fileID: 0}
-  proximity: 2
-  SynchronizePosition: 0
-  AllowCollisionOwnershipTransfer: 0
-  Reliable: 0
-  _syncMethod: 2
-  serializedProgramAsset: {fileID: 11400000, guid: b0159582634c445439d53d12ebdb4689,
-    type: 2}
-  programSource: {fileID: 11400000, guid: c11b223b2b16b4d40bf00f1ec3e001e0, type: 2}
-  serializedPublicVariablesBytesString: Ai8AAAAAATIAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAFQAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AAAAAAAYBAAAAAAAAACcBBAAAAHQAeQBwAGUAAWgAAABTAHkAcwB0AGUAbQAuAEMAbwBsAGwAZQBjAHQAaQBvAG4AcwAuAEcAZQBuAGUAcgBpAGMALgBMAGkAcwB0AGAAMQBbAFsAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4ALgBJAG4AdABlAHIAZgBhAGMAZQBzAC4ASQBVAGQAbwBuAFYAYQByAGkAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AXQBdACwAIABtAHMAYwBvAHIAbABpAGIAAQEJAAAAVgBhAHIAaQBhAGIAbABlAHMALwEAAAABaAAAAFMAeQBzAHQAZQBtAC4AQwBvAGwAbABlAGMAdABpAG8AbgBzAC4ARwBlAG4AZQByAGkAYwAuAEwAaQBzAHQAYAAxAFsAWwBWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAEkAbgB0AGUAcgBmAGEAYwBlAHMALgBJAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlACwAIABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgBdAF0ALAAgAG0AcwBjAG8AcgBsAGkAYgABAAAABgEAAAAAAAAAAi8CAAAAAUkAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAGAAMQBbAFsAUwB5AHMAdABlAG0ALgBJAG4AdAAzADIALAAgAG0AcwBjAG8AcgBsAGkAYgBdAF0ALAAgAFYAUgBDAC4AVQBkAG8AbgAuAEMAbwBtAG0AbwBuAAIAAAAGAgAAAAAAAAAnAQQAAAB0AHkAcABlAAEXAAAAUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwAsACAAbQBzAGMAbwByAGwAaQBiACcBCgAAAFMAeQBtAGIAbwBsAE4AYQBtAGUAAR8AAABfAF8AXwBVAGQAbwBuAFMAaABhAHIAcABCAGUAaABhAHYAaQBvAHUAcgBWAGUAcgBzAGkAbwBuAF8AXwBfACcBBAAAAHQAeQBwAGUAARYAAABTAHkAcwB0AGUAbQAuAEkAbgB0ADMAMgAsACAAbQBzAGMAbwByAGwAaQBiABcBBQAAAFYAYQBsAHUAZQACAAAABwUHBQcF
-  publicVariablesUnityEngineObjects: []
-  publicVariablesSerializationDataFormat: 0
 --- !u!1 &562855177
 GameObject:
   m_ObjectHideFlags: 0
@@ -2828,6 +2831,133 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 181079222}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &670237049
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 670237050}
+  - component: {fileID: 670237052}
+  - component: {fileID: 670237051}
+  m_Layer: 0
+  m_Name: Oil Element
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &670237050
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670237049}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1292143487}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &670237051
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670237049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45115577ef41a5b4ca741ed302693907, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactTextPlacement: {fileID: 0}
+  interactText: Use
+  interactTextGO: {fileID: 0}
+  proximity: 2
+  SynchronizePosition: 0
+  AllowCollisionOwnershipTransfer: 0
+  Reliable: 0
+  _syncMethod: 2
+  serializedProgramAsset: {fileID: 11400000, guid: b0159582634c445439d53d12ebdb4689,
+    type: 2}
+  programSource: {fileID: 11400000, guid: c11b223b2b16b4d40bf00f1ec3e001e0, type: 2}
+  serializedPublicVariablesBytesString: Ai8AAAAAATIAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAFQAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AAAAAAAYBAAAAAAAAACcBBAAAAHQAeQBwAGUAAWgAAABTAHkAcwB0AGUAbQAuAEMAbwBsAGwAZQBjAHQAaQBvAG4AcwAuAEcAZQBuAGUAcgBpAGMALgBMAGkAcwB0AGAAMQBbAFsAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4ALgBJAG4AdABlAHIAZgBhAGMAZQBzAC4ASQBVAGQAbwBuAFYAYQByAGkAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AXQBdACwAIABtAHMAYwBvAHIAbABpAGIAAQEJAAAAVgBhAHIAaQBhAGIAbABlAHMALwEAAAABaAAAAFMAeQBzAHQAZQBtAC4AQwBvAGwAbABlAGMAdABpAG8AbgBzAC4ARwBlAG4AZQByAGkAYwAuAEwAaQBzAHQAYAAxAFsAWwBWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAEkAbgB0AGUAcgBmAGEAYwBlAHMALgBJAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlACwAIABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgBdAF0ALAAgAG0AcwBjAG8AcgBsAGkAYgABAAAABgEAAAAAAAAAAi8CAAAAAUkAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAGAAMQBbAFsAUwB5AHMAdABlAG0ALgBJAG4AdAAzADIALAAgAG0AcwBjAG8AcgBsAGkAYgBdAF0ALAAgAFYAUgBDAC4AVQBkAG8AbgAuAEMAbwBtAG0AbwBuAAIAAAAGAgAAAAAAAAAnAQQAAAB0AHkAcABlAAEXAAAAUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwAsACAAbQBzAGMAbwByAGwAaQBiACcBCgAAAFMAeQBtAGIAbwBsAE4AYQBtAGUAAR8AAABfAF8AXwBVAGQAbwBuAFMAaABhAHIAcABCAGUAaABhAHYAaQBvAHUAcgBWAGUAcgBzAGkAbwBuAF8AXwBfACcBBAAAAHQAeQBwAGUAARYAAABTAHkAcwB0AGUAbQAuAEkAbgB0ADMAMgAsACAAbQBzAGMAbwByAGwAaQBiABcBBQAAAFYAYQBsAHUAZQACAAAABwUHBQcF
+  publicVariablesUnityEngineObjects: []
+  publicVariablesSerializationDataFormat: 0
+--- !u!114 &670237052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670237049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03beb95cb6343b944831aa58eda51010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  _udonSharpBackingUdonBehaviour: {fileID: 670237051}
+  elementTypeId: 5
+  elementColor: {r: 0.4056604, g: 0.29355898, b: 0.07845318, a: 1}
+  elementIsProducedByPotion: 0
+  elementIsSpawnedByElementSpawner: 0
+  elementIsSeedPod: 0
+  elementCanSpawnGrownObject: 0
+  canDespawn: 1
+  despawnTime: 10
+  killVelocity: Infinity
+  baseElementSpawnTime: 0
+  baseElementMesh: {fileID: 0}
+  BaseElementCollisionPrefab: {fileID: 0}
+  pickupColliderRadius: 0
+  rbMass: 0
+  rbDrag: 0
+  rbAngularDrag: 0
+  elementCanBecomeSeedPod: 0
+  seedPodSpawnChance: 0
+  SeedPodPrefab: {fileID: 0}
+  seedPodPosOffset: {x: 0, y: 0, z: 0}
+  seedPodElementType: 0
+  ElementLeavesPrefab: {fileID: 0}
+  canPlantManually: 0
+  GrownObjectAnimator: {fileID: 0}
+  grownObjectType: 0
+  grownObjectElement: 0
+  colliderYPos: 0
+  colliderRadius: 0
+  colliderHeight: 0
+  GrownObjectGrowthPrefabs: []
+  grownObjectGrowTime: 0
+  ElementSpawnTransforms: {fileID: 0}
+  elementHasPrecipitateForm: 1
+  elementPrecipitateType: 2
+  minimumVelocity: 0.1
+  maximumVelocity: 0.4
+  velocityMultiplier: 0.01
+  shrinkSpeed: 0
+  elementPrecipitateAmount: 0
+  elementPrecipitateSpawnChance: 0
+  elementHasUsableEffect: 0
+  elementEffectPrimingTrigger: 0
+  effectPrimingThreshold: 0
+  effectUseTrigger: 0
+  ingestedEffect: 0
+  ingestedEffectStrength: 0
+  ingestedEffectDuration: 0
 --- !u!1 &675507197
 GameObject:
   m_ObjectHideFlags: 0
@@ -2926,141 +3056,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1156233329}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &714463370
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 714463371}
-  - component: {fileID: 714463372}
-  - component: {fileID: 714463373}
-  m_Layer: 0
-  m_Name: Blueberry Element
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &714463371
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 714463370}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1292143487}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &714463372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 714463370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03beb95cb6343b944831aa58eda51010, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  _udonSharpBackingUdonBehaviour: {fileID: 714463373}
-  elementTypeId: 3
-  elementColor: {r: 0.19607843, g: 0.1764706, b: 0.5019608, a: 1}
-  elementIsProducedByPotion: 0
-  elementIsSpawnedByElementSpawner: 1
-  elementIsSeedPod: 1
-  elementCanSpawnGrownObject: 1
-  canDespawn: 1
-  despawnTime: 10
-  killVelocity: 10
-  baseElementSpawnTime: 1
-  baseElementMesh: {fileID: 7898303678134235034, guid: 2c0d3050e7ab9e54dbb011f7296c66c7,
-    type: 3}
-  BaseElementCollisionPrefab: {fileID: 6517209209624554442, guid: 554890788ad92104aa813dbbaf885061,
-    type: 3}
-  pickupColliderRadius: 0.07
-  rbMass: 0.1
-  rbDrag: 0.4
-  rbAngularDrag: 0.05
-  elementCanBecomeSeedPod: 1
-  seedPodSpawnChance: 100
-  SeedPodPrefab: {fileID: 6647423906080684150, guid: 32b1811c43c122d45a586f72ec67dd1b,
-    type: 3}
-  seedPodPosOffset: {x: 0, y: 0.0142, z: 0}
-  seedPodElementType: 3
-  ElementLeavesPrefab: {fileID: 1164041372635974953, guid: f70261a4d3d58bf4cb1dad530dfd476e,
-    type: 3}
-  canPlantManually: 1
-  GrownObjectAnimator: {fileID: 0}
-  grownObjectType: 1
-  grownObjectElement: 3
-  colliderYPos: 0.25
-  colliderRadius: 0.15
-  colliderHeight: 0.5
-  GrownObjectGrowthPrefabs:
-  - {fileID: 3641895495905796266, guid: c8b12f469ef9157469bfcf918dec5beb, type: 3}
-  - {fileID: 4278128458719230246, guid: 0e4e6b537695a8340a420d1dc473b724, type: 3}
-  - {fileID: 2857445737330349378, guid: ddd384402782b564aace66fe64c574b4, type: 3}
-  grownObjectGrowTime: 10
-  ElementSpawnTransforms: {fileID: 1743217837672615097, guid: 42679ade0fc18214e91d6ad6a3b63ad8,
-    type: 3}
-  elementHasPrecipitateForm: 1
-  elementPrecipitateType: 2
-  minimumVelocity: 0.1
-  maximumVelocity: 0.5
-  velocityMultiplier: 0.01
-  shrinkSpeed: 0.001
-  elementPrecipitateAmount: 3
-  elementPrecipitateSpawnChance: 1
-  elementHasUsableEffect: 0
-  elementEffectPrimingTrigger: 0
-  effectPrimingThreshold: 0
-  effectUseTrigger: 0
-  ingestedEffect: 0
-  ingestedEffectStrength: 0
-  ingestedEffectDuration: 0
---- !u!114 &714463373
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 714463370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45115577ef41a5b4ca741ed302693907, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactTextPlacement: {fileID: 0}
-  interactText: Use
-  interactTextGO: {fileID: 0}
-  proximity: 2
-  SynchronizePosition: 0
-  AllowCollisionOwnershipTransfer: 0
-  Reliable: 0
-  _syncMethod: 2
-  serializedProgramAsset: {fileID: 11400000, guid: b0159582634c445439d53d12ebdb4689,
-    type: 2}
-  programSource: {fileID: 11400000, guid: c11b223b2b16b4d40bf00f1ec3e001e0, type: 2}
-  serializedPublicVariablesBytesString: Ai8AAAAAATIAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAFQAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AAAAAAAYBAAAAAAAAACcBBAAAAHQAeQBwAGUAAWgAAABTAHkAcwB0AGUAbQAuAEMAbwBsAGwAZQBjAHQAaQBvAG4AcwAuAEcAZQBuAGUAcgBpAGMALgBMAGkAcwB0AGAAMQBbAFsAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4ALgBJAG4AdABlAHIAZgBhAGMAZQBzAC4ASQBVAGQAbwBuAFYAYQByAGkAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AXQBdACwAIABtAHMAYwBvAHIAbABpAGIAAQEJAAAAVgBhAHIAaQBhAGIAbABlAHMALwEAAAABaAAAAFMAeQBzAHQAZQBtAC4AQwBvAGwAbABlAGMAdABpAG8AbgBzAC4ARwBlAG4AZQByAGkAYwAuAEwAaQBzAHQAYAAxAFsAWwBWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAEkAbgB0AGUAcgBmAGEAYwBlAHMALgBJAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlACwAIABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgBdAF0ALAAgAG0AcwBjAG8AcgBsAGkAYgABAAAABgEAAAAAAAAAAi8CAAAAAUkAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAGAAMQBbAFsAUwB5AHMAdABlAG0ALgBJAG4AdAAzADIALAAgAG0AcwBjAG8AcgBsAGkAYgBdAF0ALAAgAFYAUgBDAC4AVQBkAG8AbgAuAEMAbwBtAG0AbwBuAAIAAAAGAgAAAAAAAAAnAQQAAAB0AHkAcABlAAEXAAAAUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwAsACAAbQBzAGMAbwByAGwAaQBiACcBCgAAAFMAeQBtAGIAbwBsAE4AYQBtAGUAAR8AAABfAF8AXwBVAGQAbwBuAFMAaABhAHIAcABCAGUAaABhAHYAaQBvAHUAcgBWAGUAcgBzAGkAbwBuAF8AXwBfACcBBAAAAHQAeQBwAGUAARYAAABTAHkAcwB0AGUAbQAuAEkAbgB0ADMAMgAsACAAbQBzAGMAbwByAGwAaQBiABcBBQAAAFYAYQBsAHUAZQACAAAABwUHBQcF
-  publicVariablesUnityEngineObjects: []
-  publicVariablesSerializationDataFormat: 0
 --- !u!1 &715815640 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3329266861823649245, guid: 150291ea6dbd4fb478913321534ec1f7,
@@ -4052,6 +4047,133 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a14830924e656429693a744c0cc7fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &865360005
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 865360006}
+  - component: {fileID: 865360008}
+  - component: {fileID: 865360007}
+  m_Layer: 0
+  m_Name: BlueberryJuice Element
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &865360006
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865360005}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1292143487}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &865360007
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865360005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45115577ef41a5b4ca741ed302693907, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactTextPlacement: {fileID: 0}
+  interactText: Use
+  interactTextGO: {fileID: 0}
+  proximity: 2
+  SynchronizePosition: 0
+  AllowCollisionOwnershipTransfer: 0
+  Reliable: 0
+  _syncMethod: 2
+  serializedProgramAsset: {fileID: 11400000, guid: b0159582634c445439d53d12ebdb4689,
+    type: 2}
+  programSource: {fileID: 11400000, guid: c11b223b2b16b4d40bf00f1ec3e001e0, type: 2}
+  serializedPublicVariablesBytesString: Ai8AAAAAATIAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAFQAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AAAAAAAYBAAAAAAAAACcBBAAAAHQAeQBwAGUAAWgAAABTAHkAcwB0AGUAbQAuAEMAbwBsAGwAZQBjAHQAaQBvAG4AcwAuAEcAZQBuAGUAcgBpAGMALgBMAGkAcwB0AGAAMQBbAFsAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4ALgBJAG4AdABlAHIAZgBhAGMAZQBzAC4ASQBVAGQAbwBuAFYAYQByAGkAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AXQBdACwAIABtAHMAYwBvAHIAbABpAGIAAQEJAAAAVgBhAHIAaQBhAGIAbABlAHMALwEAAAABaAAAAFMAeQBzAHQAZQBtAC4AQwBvAGwAbABlAGMAdABpAG8AbgBzAC4ARwBlAG4AZQByAGkAYwAuAEwAaQBzAHQAYAAxAFsAWwBWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAEkAbgB0AGUAcgBmAGEAYwBlAHMALgBJAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlACwAIABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgBdAF0ALAAgAG0AcwBjAG8AcgBsAGkAYgABAAAABgEAAAAAAAAAAi8CAAAAAUkAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAGAAMQBbAFsAUwB5AHMAdABlAG0ALgBJAG4AdAAzADIALAAgAG0AcwBjAG8AcgBsAGkAYgBdAF0ALAAgAFYAUgBDAC4AVQBkAG8AbgAuAEMAbwBtAG0AbwBuAAIAAAAGAgAAAAAAAAAnAQQAAAB0AHkAcABlAAEXAAAAUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwAsACAAbQBzAGMAbwByAGwAaQBiACcBCgAAAFMAeQBtAGIAbwBsAE4AYQBtAGUAAR8AAABfAF8AXwBVAGQAbwBuAFMAaABhAHIAcABCAGUAaABhAHYAaQBvAHUAcgBWAGUAcgBzAGkAbwBuAF8AXwBfACcBBAAAAHQAeQBwAGUAARYAAABTAHkAcwB0AGUAbQAuAEkAbgB0ADMAMgAsACAAbQBzAGMAbwByAGwAaQBiABcBBQAAAFYAYQBsAHUAZQACAAAABwUHBQcF
+  publicVariablesUnityEngineObjects: []
+  publicVariablesSerializationDataFormat: 0
+--- !u!114 &865360008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865360005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03beb95cb6343b944831aa58eda51010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  _udonSharpBackingUdonBehaviour: {fileID: 865360007}
+  elementTypeId: 6
+  elementColor: {r: 0.1499305, g: 0.137362, b: 0.346, a: 1}
+  elementIsProducedByPotion: 1
+  elementIsSpawnedByElementSpawner: 0
+  elementIsSeedPod: 0
+  elementCanSpawnGrownObject: 0
+  canDespawn: 1
+  despawnTime: 30
+  killVelocity: Infinity
+  baseElementSpawnTime: 0
+  baseElementMesh: {fileID: 0}
+  BaseElementCollisionPrefab: {fileID: 0}
+  pickupColliderRadius: 0
+  rbMass: 0
+  rbDrag: 0
+  rbAngularDrag: 0
+  elementCanBecomeSeedPod: 0
+  seedPodSpawnChance: 0
+  SeedPodPrefab: {fileID: 0}
+  seedPodPosOffset: {x: 0, y: 0, z: 0}
+  seedPodElementType: 0
+  ElementLeavesPrefab: {fileID: 0}
+  canPlantManually: 0
+  GrownObjectAnimator: {fileID: 0}
+  grownObjectType: 0
+  grownObjectElement: 0
+  colliderYPos: 0
+  colliderRadius: 0
+  colliderHeight: 0
+  GrownObjectGrowthPrefabs: []
+  grownObjectGrowTime: 0
+  ElementSpawnTransforms: {fileID: 0}
+  elementHasPrecipitateForm: 1
+  elementPrecipitateType: 2
+  minimumVelocity: 0
+  maximumVelocity: Infinity
+  velocityMultiplier: 0.01
+  shrinkSpeed: 0
+  elementPrecipitateAmount: 0
+  elementPrecipitateSpawnChance: 0
+  elementHasUsableEffect: 1
+  elementEffectPrimingTrigger: 1
+  effectPrimingThreshold: 100
+  effectUseTrigger: 1
+  ingestedEffect: 1
+  ingestedEffectStrength: 3
+  ingestedEffectDuration: 30
 --- !u!1001 &877710902
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4572,133 +4694,6 @@ Transform:
   m_Father: {fileID: 1315366860}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &968232887
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 968232888}
-  - component: {fileID: 968232889}
-  - component: {fileID: 968232890}
-  m_Layer: 0
-  m_Name: TestElement Element
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &968232888
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 968232887}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1292143487}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &968232889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 968232887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03beb95cb6343b944831aa58eda51010, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  _udonSharpBackingUdonBehaviour: {fileID: 968232890}
-  elementTypeId: 11
-  elementColor: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
-  elementIsProducedByPotion: 0
-  elementIsSpawnedByElementSpawner: 0
-  elementIsSeedPod: 0
-  elementCanSpawnGrownObject: 0
-  canDespawn: 0
-  despawnTime: 0
-  killVelocity: 0
-  baseElementSpawnTime: 0
-  baseElementMesh: {fileID: 0}
-  BaseElementCollisionPrefab: {fileID: 0}
-  pickupColliderRadius: 0
-  rbMass: 0
-  rbDrag: 0
-  rbAngularDrag: 0
-  elementCanBecomeSeedPod: 0
-  seedPodSpawnChance: 0
-  SeedPodPrefab: {fileID: 0}
-  seedPodPosOffset: {x: 0, y: 0, z: 0}
-  seedPodElementType: 0
-  ElementLeavesPrefab: {fileID: 0}
-  canPlantManually: 0
-  GrownObjectAnimator: {fileID: 0}
-  grownObjectType: 0
-  grownObjectElement: 0
-  colliderYPos: 0
-  colliderRadius: 0
-  colliderHeight: 0
-  GrownObjectGrowthPrefabs: []
-  grownObjectGrowTime: 0
-  ElementSpawnTransforms: {fileID: 0}
-  elementHasPrecipitateForm: 1
-  elementPrecipitateType: 1
-  minimumVelocity: 0.2
-  maximumVelocity: Infinity
-  velocityMultiplier: 0.104
-  shrinkSpeed: 0
-  elementPrecipitateAmount: 0
-  elementPrecipitateSpawnChance: 0
-  elementHasUsableEffect: 0
-  elementEffectPrimingTrigger: 0
-  effectPrimingThreshold: 0
-  effectUseTrigger: 0
-  ingestedEffect: 0
-  ingestedEffectStrength: 0
-  ingestedEffectDuration: 0
---- !u!114 &968232890
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 968232887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45115577ef41a5b4ca741ed302693907, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactTextPlacement: {fileID: 0}
-  interactText: Use
-  interactTextGO: {fileID: 0}
-  proximity: 2
-  SynchronizePosition: 0
-  AllowCollisionOwnershipTransfer: 0
-  Reliable: 0
-  _syncMethod: 2
-  serializedProgramAsset: {fileID: 11400000, guid: b0159582634c445439d53d12ebdb4689,
-    type: 2}
-  programSource: {fileID: 11400000, guid: c11b223b2b16b4d40bf00f1ec3e001e0, type: 2}
-  serializedPublicVariablesBytesString: Ai8AAAAAATIAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAFQAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AAAAAAAYBAAAAAAAAACcBBAAAAHQAeQBwAGUAAWgAAABTAHkAcwB0AGUAbQAuAEMAbwBsAGwAZQBjAHQAaQBvAG4AcwAuAEcAZQBuAGUAcgBpAGMALgBMAGkAcwB0AGAAMQBbAFsAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4ALgBJAG4AdABlAHIAZgBhAGMAZQBzAC4ASQBVAGQAbwBuAFYAYQByAGkAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AXQBdACwAIABtAHMAYwBvAHIAbABpAGIAAQEJAAAAVgBhAHIAaQBhAGIAbABlAHMALwEAAAABaAAAAFMAeQBzAHQAZQBtAC4AQwBvAGwAbABlAGMAdABpAG8AbgBzAC4ARwBlAG4AZQByAGkAYwAuAEwAaQBzAHQAYAAxAFsAWwBWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAEkAbgB0AGUAcgBmAGEAYwBlAHMALgBJAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlACwAIABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgBdAF0ALAAgAG0AcwBjAG8AcgBsAGkAYgABAAAABgEAAAAAAAAAAi8CAAAAAUkAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAGAAMQBbAFsAUwB5AHMAdABlAG0ALgBJAG4AdAAzADIALAAgAG0AcwBjAG8AcgBsAGkAYgBdAF0ALAAgAFYAUgBDAC4AVQBkAG8AbgAuAEMAbwBtAG0AbwBuAAIAAAAGAgAAAAAAAAAnAQQAAAB0AHkAcABlAAEXAAAAUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwAsACAAbQBzAGMAbwByAGwAaQBiACcBCgAAAFMAeQBtAGIAbwBsAE4AYQBtAGUAAR8AAABfAF8AXwBVAGQAbwBuAFMAaABhAHIAcABCAGUAaABhAHYAaQBvAHUAcgBWAGUAcgBzAGkAbwBuAF8AXwBfACcBBAAAAHQAeQBwAGUAARYAAABTAHkAcwB0AGUAbQAuAEkAbgB0ADMAMgAsACAAbQBzAGMAbwByAGwAaQBiABcBBQAAAFYAYQBsAHUAZQACAAAABwUHBQcF
-  publicVariablesUnityEngineObjects: []
-  publicVariablesSerializationDataFormat: 0
 --- !u!1001 &975904768
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4996,17 +4991,17 @@ MonoBehaviour:
   isInitialized: 0
   elementDataObjs:
   - {fileID: 0}
-  - {fileID: 1585405299}
-  - {fileID: 2137954559}
-  - {fileID: 714463372}
-  - {fileID: 2141578697}
-  - {fileID: 1368671157}
-  - {fileID: 551923302}
-  - {fileID: 1353169341}
-  - {fileID: 1248514064}
-  - {fileID: 2080434526}
-  - {fileID: 177897158}
-  - {fileID: 968232889}
+  - {fileID: 1192618346}
+  - {fileID: 1094694247}
+  - {fileID: 1493630702}
+  - {fileID: 1991982227}
+  - {fileID: 670237052}
+  - {fileID: 865360008}
+  - {fileID: 1766571922}
+  - {fileID: 1186593139}
+  - {fileID: 398798811}
+  - {fileID: 535392137}
+  - {fileID: 1562216432}
   elementDataParent: {fileID: 1292143487}
   potionRecipeObjs:
   - {fileID: 0}
@@ -5372,6 +5367,141 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2097955041}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1094694244
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1094694245}
+  - component: {fileID: 1094694247}
+  - component: {fileID: 1094694246}
+  m_Layer: 0
+  m_Name: Arieberry Element
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1094694245
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094694244}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1292143487}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1094694246
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094694244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45115577ef41a5b4ca741ed302693907, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactTextPlacement: {fileID: 0}
+  interactText: Use
+  interactTextGO: {fileID: 0}
+  proximity: 2
+  SynchronizePosition: 0
+  AllowCollisionOwnershipTransfer: 0
+  Reliable: 0
+  _syncMethod: 2
+  serializedProgramAsset: {fileID: 11400000, guid: b0159582634c445439d53d12ebdb4689,
+    type: 2}
+  programSource: {fileID: 11400000, guid: c11b223b2b16b4d40bf00f1ec3e001e0, type: 2}
+  serializedPublicVariablesBytesString: Ai8AAAAAATIAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAFQAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AAAAAAAYBAAAAAAAAACcBBAAAAHQAeQBwAGUAAWgAAABTAHkAcwB0AGUAbQAuAEMAbwBsAGwAZQBjAHQAaQBvAG4AcwAuAEcAZQBuAGUAcgBpAGMALgBMAGkAcwB0AGAAMQBbAFsAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4ALgBJAG4AdABlAHIAZgBhAGMAZQBzAC4ASQBVAGQAbwBuAFYAYQByAGkAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AXQBdACwAIABtAHMAYwBvAHIAbABpAGIAAQEJAAAAVgBhAHIAaQBhAGIAbABlAHMALwEAAAABaAAAAFMAeQBzAHQAZQBtAC4AQwBvAGwAbABlAGMAdABpAG8AbgBzAC4ARwBlAG4AZQByAGkAYwAuAEwAaQBzAHQAYAAxAFsAWwBWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAEkAbgB0AGUAcgBmAGEAYwBlAHMALgBJAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlACwAIABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgBdAF0ALAAgAG0AcwBjAG8AcgBsAGkAYgABAAAABgEAAAAAAAAAAi8CAAAAAUkAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAGAAMQBbAFsAUwB5AHMAdABlAG0ALgBJAG4AdAAzADIALAAgAG0AcwBjAG8AcgBsAGkAYgBdAF0ALAAgAFYAUgBDAC4AVQBkAG8AbgAuAEMAbwBtAG0AbwBuAAIAAAAGAgAAAAAAAAAnAQQAAAB0AHkAcABlAAEXAAAAUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwAsACAAbQBzAGMAbwByAGwAaQBiACcBCgAAAFMAeQBtAGIAbwBsAE4AYQBtAGUAAR8AAABfAF8AXwBVAGQAbwBuAFMAaABhAHIAcABCAGUAaABhAHYAaQBvAHUAcgBWAGUAcgBzAGkAbwBuAF8AXwBfACcBBAAAAHQAeQBwAGUAARYAAABTAHkAcwB0AGUAbQAuAEkAbgB0ADMAMgAsACAAbQBzAGMAbwByAGwAaQBiABcBBQAAAFYAYQBsAHUAZQACAAAABwUHBQcF
+  publicVariablesUnityEngineObjects: []
+  publicVariablesSerializationDataFormat: 0
+--- !u!114 &1094694247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094694244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03beb95cb6343b944831aa58eda51010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  _udonSharpBackingUdonBehaviour: {fileID: 1094694246}
+  elementTypeId: 2
+  elementColor: {r: 0.3584906, g: 0.01183696, b: 0.15319528, a: 1}
+  elementIsProducedByPotion: 0
+  elementIsSpawnedByElementSpawner: 1
+  elementIsSeedPod: 1
+  elementCanSpawnGrownObject: 1
+  canDespawn: 1
+  despawnTime: 10
+  killVelocity: 10
+  baseElementSpawnTime: 30
+  baseElementMesh: {fileID: 7898303678134235034, guid: 2c0d3050e7ab9e54dbb011f7296c66c7,
+    type: 3}
+  BaseElementCollisionPrefab: {fileID: 6517209209624554442, guid: 554890788ad92104aa813dbbaf885061,
+    type: 3}
+  pickupColliderRadius: 0.07
+  rbMass: 0.1
+  rbDrag: 0.4
+  rbAngularDrag: 0.05
+  elementCanBecomeSeedPod: 1
+  seedPodSpawnChance: 0.1
+  SeedPodPrefab: {fileID: 6647423906080684150, guid: 32b1811c43c122d45a586f72ec67dd1b,
+    type: 3}
+  seedPodPosOffset: {x: 0, y: 0.0142, z: 0}
+  seedPodElementType: 2
+  ElementLeavesPrefab: {fileID: 1164041372635974953, guid: f70261a4d3d58bf4cb1dad530dfd476e,
+    type: 3}
+  canPlantManually: 1
+  GrownObjectAnimator: {fileID: 9100000, guid: e5f4db4bddd0c7549a0f073be026d390, type: 2}
+  grownObjectType: 1
+  grownObjectElement: 2
+  colliderYPos: 0.25
+  colliderRadius: 0.15
+  colliderHeight: 0.5
+  GrownObjectGrowthPrefabs:
+  - {fileID: 3641895495905796266, guid: c8b12f469ef9157469bfcf918dec5beb, type: 3}
+  - {fileID: 4278128458719230246, guid: 0e4e6b537695a8340a420d1dc473b724, type: 3}
+  - {fileID: 2857445737330349378, guid: ddd384402782b564aace66fe64c574b4, type: 3}
+  grownObjectGrowTime: 180
+  ElementSpawnTransforms: {fileID: 1743217837672615097, guid: 42679ade0fc18214e91d6ad6a3b63ad8,
+    type: 3}
+  elementHasPrecipitateForm: 1
+  elementPrecipitateType: 1
+  minimumVelocity: 0
+  maximumVelocity: Infinity
+  velocityMultiplier: 0.01
+  shrinkSpeed: 0.001
+  elementPrecipitateAmount: 2
+  elementPrecipitateSpawnChance: 1
+  elementHasUsableEffect: 0
+  elementEffectPrimingTrigger: 0
+  effectPrimingThreshold: 0
+  effectUseTrigger: 0
+  ingestedEffect: 0
+  ingestedEffectStrength: 0
+  ingestedEffectDuration: 0
 --- !u!1 &1098145119 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1675393744298976041, guid: 6272c3089478b114e9e8a1bd32a870a6,
@@ -5839,6 +5969,274 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff6888b5608b3e4eb95cbc2ee74c8de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1186593136
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1186593137}
+  - component: {fileID: 1186593139}
+  - component: {fileID: 1186593138}
+  m_Layer: 0
+  m_Name: Clover Element
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1186593137
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186593136}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1292143487}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1186593138
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186593136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45115577ef41a5b4ca741ed302693907, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactTextPlacement: {fileID: 0}
+  interactText: Use
+  interactTextGO: {fileID: 0}
+  proximity: 2
+  SynchronizePosition: 0
+  AllowCollisionOwnershipTransfer: 0
+  Reliable: 0
+  _syncMethod: 2
+  serializedProgramAsset: {fileID: 11400000, guid: b0159582634c445439d53d12ebdb4689,
+    type: 2}
+  programSource: {fileID: 11400000, guid: c11b223b2b16b4d40bf00f1ec3e001e0, type: 2}
+  serializedPublicVariablesBytesString: Ai8AAAAAATIAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAFQAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AAAAAAAYBAAAAAAAAACcBBAAAAHQAeQBwAGUAAWgAAABTAHkAcwB0AGUAbQAuAEMAbwBsAGwAZQBjAHQAaQBvAG4AcwAuAEcAZQBuAGUAcgBpAGMALgBMAGkAcwB0AGAAMQBbAFsAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4ALgBJAG4AdABlAHIAZgBhAGMAZQBzAC4ASQBVAGQAbwBuAFYAYQByAGkAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AXQBdACwAIABtAHMAYwBvAHIAbABpAGIAAQEJAAAAVgBhAHIAaQBhAGIAbABlAHMALwEAAAABaAAAAFMAeQBzAHQAZQBtAC4AQwBvAGwAbABlAGMAdABpAG8AbgBzAC4ARwBlAG4AZQByAGkAYwAuAEwAaQBzAHQAYAAxAFsAWwBWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAEkAbgB0AGUAcgBmAGEAYwBlAHMALgBJAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlACwAIABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgBdAF0ALAAgAG0AcwBjAG8AcgBsAGkAYgABAAAABgEAAAAAAAAAAi8CAAAAAUkAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAGAAMQBbAFsAUwB5AHMAdABlAG0ALgBJAG4AdAAzADIALAAgAG0AcwBjAG8AcgBsAGkAYgBdAF0ALAAgAFYAUgBDAC4AVQBkAG8AbgAuAEMAbwBtAG0AbwBuAAIAAAAGAgAAAAAAAAAnAQQAAAB0AHkAcABlAAEXAAAAUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwAsACAAbQBzAGMAbwByAGwAaQBiACcBCgAAAFMAeQBtAGIAbwBsAE4AYQBtAGUAAR8AAABfAF8AXwBVAGQAbwBuAFMAaABhAHIAcABCAGUAaABhAHYAaQBvAHUAcgBWAGUAcgBzAGkAbwBuAF8AXwBfACcBBAAAAHQAeQBwAGUAARYAAABTAHkAcwB0AGUAbQAuAEkAbgB0ADMAMgAsACAAbQBzAGMAbwByAGwAaQBiABcBBQAAAFYAYQBsAHUAZQACAAAABwUHBQcF
+  publicVariablesUnityEngineObjects: []
+  publicVariablesSerializationDataFormat: 0
+--- !u!114 &1186593139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186593136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03beb95cb6343b944831aa58eda51010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  _udonSharpBackingUdonBehaviour: {fileID: 1186593138}
+  elementTypeId: 8
+  elementColor: {r: 0.20392157, g: 0.69411767, b: 0.2509804, a: 1}
+  elementIsProducedByPotion: 0
+  elementIsSpawnedByElementSpawner: 1
+  elementIsSeedPod: 0
+  elementCanSpawnGrownObject: 0
+  canDespawn: 1
+  despawnTime: 10
+  killVelocity: Infinity
+  baseElementSpawnTime: 1
+  baseElementMesh: {fileID: 8137266731148065982, guid: ef761f4b6a89ff74d85274b5093edccc,
+    type: 3}
+  BaseElementCollisionPrefab: {fileID: 5769621185703160912, guid: c9230e8bb8ac3574f95d917aa003db04,
+    type: 3}
+  pickupColliderRadius: 0.07
+  rbMass: 0.02
+  rbDrag: 0.4
+  rbAngularDrag: 4
+  elementCanBecomeSeedPod: 1
+  seedPodSpawnChance: 33.3
+  SeedPodPrefab: {fileID: 0}
+  seedPodPosOffset: {x: 0, y: 0, z: 0}
+  seedPodElementType: 9
+  ElementLeavesPrefab: {fileID: 0}
+  canPlantManually: 0
+  GrownObjectAnimator: {fileID: 9100000, guid: 6f6f8365e7798ac4d983df356aa45b4c, type: 2}
+  grownObjectType: 0
+  grownObjectElement: 0
+  colliderYPos: 0.12
+  colliderRadius: 0.08
+  colliderHeight: 0.35
+  GrownObjectGrowthPrefabs:
+  - {fileID: 6507329483071515177, guid: 5dd3a78256e56854ca4ae64e8b420f11, type: 3}
+  - {fileID: 2708940158376424420, guid: 5a3e21193a6ab4a4fbb6c604e2f8bbc8, type: 3}
+  - {fileID: 1042644658229548207, guid: 0b4b4d9429f00784ca759e4ef5a27435, type: 3}
+  grownObjectGrowTime: 10
+  ElementSpawnTransforms: {fileID: 9166072400649028557, guid: 6d6d036542bc3334e844f395a9cee112,
+    type: 3}
+  elementHasPrecipitateForm: 1
+  elementPrecipitateType: 1
+  minimumVelocity: 0
+  maximumVelocity: Infinity
+  velocityMultiplier: 0
+  shrinkSpeed: 0.0005
+  elementPrecipitateAmount: 1
+  elementPrecipitateSpawnChance: 0.5
+  elementHasUsableEffect: 0
+  elementEffectPrimingTrigger: 0
+  effectPrimingThreshold: 0
+  effectUseTrigger: 0
+  ingestedEffect: 0
+  ingestedEffectStrength: 0
+  ingestedEffectDuration: 0
+--- !u!1 &1192618343
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1192618344}
+  - component: {fileID: 1192618346}
+  - component: {fileID: 1192618345}
+  m_Layer: 0
+  m_Name: Linkberry Element
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1192618344
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192618343}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1292143487}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1192618345
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192618343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45115577ef41a5b4ca741ed302693907, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactTextPlacement: {fileID: 0}
+  interactText: Use
+  interactTextGO: {fileID: 0}
+  proximity: 2
+  SynchronizePosition: 0
+  AllowCollisionOwnershipTransfer: 0
+  Reliable: 0
+  _syncMethod: 2
+  serializedProgramAsset: {fileID: 11400000, guid: b0159582634c445439d53d12ebdb4689,
+    type: 2}
+  programSource: {fileID: 11400000, guid: c11b223b2b16b4d40bf00f1ec3e001e0, type: 2}
+  serializedPublicVariablesBytesString: Ai8AAAAAATIAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAFQAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AAAAAAAYBAAAAAAAAACcBBAAAAHQAeQBwAGUAAWgAAABTAHkAcwB0AGUAbQAuAEMAbwBsAGwAZQBjAHQAaQBvAG4AcwAuAEcAZQBuAGUAcgBpAGMALgBMAGkAcwB0AGAAMQBbAFsAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4ALgBJAG4AdABlAHIAZgBhAGMAZQBzAC4ASQBVAGQAbwBuAFYAYQByAGkAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AXQBdACwAIABtAHMAYwBvAHIAbABpAGIAAQEJAAAAVgBhAHIAaQBhAGIAbABlAHMALwEAAAABaAAAAFMAeQBzAHQAZQBtAC4AQwBvAGwAbABlAGMAdABpAG8AbgBzAC4ARwBlAG4AZQByAGkAYwAuAEwAaQBzAHQAYAAxAFsAWwBWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAEkAbgB0AGUAcgBmAGEAYwBlAHMALgBJAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlACwAIABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgBdAF0ALAAgAG0AcwBjAG8AcgBsAGkAYgABAAAABgEAAAAAAAAAAi8CAAAAAUkAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAGAAMQBbAFsAUwB5AHMAdABlAG0ALgBJAG4AdAAzADIALAAgAG0AcwBjAG8AcgBsAGkAYgBdAF0ALAAgAFYAUgBDAC4AVQBkAG8AbgAuAEMAbwBtAG0AbwBuAAIAAAAGAgAAAAAAAAAnAQQAAAB0AHkAcABlAAEXAAAAUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwAsACAAbQBzAGMAbwByAGwAaQBiACcBCgAAAFMAeQBtAGIAbwBsAE4AYQBtAGUAAR8AAABfAF8AXwBVAGQAbwBuAFMAaABhAHIAcABCAGUAaABhAHYAaQBvAHUAcgBWAGUAcgBzAGkAbwBuAF8AXwBfACcBBAAAAHQAeQBwAGUAARYAAABTAHkAcwB0AGUAbQAuAEkAbgB0ADMAMgAsACAAbQBzAGMAbwByAGwAaQBiABcBBQAAAFYAYQBsAHUAZQACAAAABwUHBQcF
+  publicVariablesUnityEngineObjects: []
+  publicVariablesSerializationDataFormat: 0
+--- !u!114 &1192618346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192618343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03beb95cb6343b944831aa58eda51010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  _udonSharpBackingUdonBehaviour: {fileID: 1192618345}
+  elementTypeId: 1
+  elementColor: {r: 0.9056604, g: 0.53381246, b: 0.16660735, a: 1}
+  elementIsProducedByPotion: 0
+  elementIsSpawnedByElementSpawner: 1
+  elementIsSeedPod: 1
+  elementCanSpawnGrownObject: 1
+  canDespawn: 1
+  despawnTime: 10
+  killVelocity: 10
+  baseElementSpawnTime: 180
+  baseElementMesh: {fileID: 7898303678134235034, guid: 2c0d3050e7ab9e54dbb011f7296c66c7,
+    type: 3}
+  BaseElementCollisionPrefab: {fileID: 6517209209624554442, guid: 554890788ad92104aa813dbbaf885061,
+    type: 3}
+  pickupColliderRadius: 0.07
+  rbMass: 0.1
+  rbDrag: 0.4
+  rbAngularDrag: 0.05
+  elementCanBecomeSeedPod: 1
+  seedPodSpawnChance: 1
+  SeedPodPrefab: {fileID: 6647423906080684150, guid: 32b1811c43c122d45a586f72ec67dd1b,
+    type: 3}
+  seedPodPosOffset: {x: 0, y: 0.0142, z: 0}
+  seedPodElementType: 1
+  ElementLeavesPrefab: {fileID: 1164041372635974953, guid: f70261a4d3d58bf4cb1dad530dfd476e,
+    type: 3}
+  canPlantManually: 1
+  GrownObjectAnimator: {fileID: 9100000, guid: e5f4db4bddd0c7549a0f073be026d390, type: 2}
+  grownObjectType: 1
+  grownObjectElement: 1
+  colliderYPos: 0.25
+  colliderRadius: 0.15
+  colliderHeight: 0.5
+  GrownObjectGrowthPrefabs:
+  - {fileID: 3641895495905796266, guid: c8b12f469ef9157469bfcf918dec5beb, type: 3}
+  - {fileID: 4278128458719230246, guid: 0e4e6b537695a8340a420d1dc473b724, type: 3}
+  - {fileID: 2857445737330349378, guid: ddd384402782b564aace66fe64c574b4, type: 3}
+  grownObjectGrowTime: 20
+  ElementSpawnTransforms: {fileID: 1743217837672615097, guid: 42679ade0fc18214e91d6ad6a3b63ad8,
+    type: 3}
+  elementHasPrecipitateForm: 1
+  elementPrecipitateType: 1
+  minimumVelocity: 0
+  maximumVelocity: Infinity
+  velocityMultiplier: 0.01
+  shrinkSpeed: 0.001
+  elementPrecipitateAmount: 5
+  elementPrecipitateSpawnChance: 1
+  elementHasUsableEffect: 0
+  elementEffectPrimingTrigger: 0
+  effectPrimingThreshold: 0
+  effectUseTrigger: 0
+  ingestedEffect: 0
+  ingestedEffectStrength: 0
+  ingestedEffectDuration: 0
 --- !u!1 &1201863192
 GameObject:
   m_ObjectHideFlags: 0
@@ -6158,139 +6556,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1226910263}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1248514062
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1248514063}
-  - component: {fileID: 1248514064}
-  - component: {fileID: 1248514065}
-  m_Layer: 0
-  m_Name: Clover Element
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1248514063
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1248514062}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1292143487}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1248514064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1248514062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03beb95cb6343b944831aa58eda51010, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  _udonSharpBackingUdonBehaviour: {fileID: 1248514065}
-  elementTypeId: 8
-  elementColor: {r: 0.20392157, g: 0.69411767, b: 0.2509804, a: 1}
-  elementIsProducedByPotion: 0
-  elementIsSpawnedByElementSpawner: 1
-  elementIsSeedPod: 0
-  elementCanSpawnGrownObject: 0
-  canDespawn: 1
-  despawnTime: 10
-  killVelocity: Infinity
-  baseElementSpawnTime: 1
-  baseElementMesh: {fileID: 8137266731148065982, guid: ef761f4b6a89ff74d85274b5093edccc,
-    type: 3}
-  BaseElementCollisionPrefab: {fileID: 5769621185703160912, guid: c9230e8bb8ac3574f95d917aa003db04,
-    type: 3}
-  pickupColliderRadius: 0.07
-  rbMass: 0.02
-  rbDrag: 0.4
-  rbAngularDrag: 4
-  elementCanBecomeSeedPod: 1
-  seedPodSpawnChance: 33.3
-  SeedPodPrefab: {fileID: 0}
-  seedPodPosOffset: {x: 0, y: 0, z: 0}
-  seedPodElementType: 9
-  ElementLeavesPrefab: {fileID: 0}
-  canPlantManually: 0
-  GrownObjectAnimator: {fileID: 0}
-  grownObjectType: 0
-  grownObjectElement: 0
-  colliderYPos: 0.12
-  colliderRadius: 0.08
-  colliderHeight: 0.35
-  GrownObjectGrowthPrefabs:
-  - {fileID: 6507329483071515177, guid: 5dd3a78256e56854ca4ae64e8b420f11, type: 3}
-  - {fileID: 2708940158376424420, guid: 5a3e21193a6ab4a4fbb6c604e2f8bbc8, type: 3}
-  - {fileID: 1042644658229548207, guid: 0b4b4d9429f00784ca759e4ef5a27435, type: 3}
-  grownObjectGrowTime: 10
-  ElementSpawnTransforms: {fileID: 9166072400649028557, guid: 6d6d036542bc3334e844f395a9cee112,
-    type: 3}
-  elementHasPrecipitateForm: 1
-  elementPrecipitateType: 1
-  minimumVelocity: 0
-  maximumVelocity: Infinity
-  velocityMultiplier: 0
-  shrinkSpeed: 0.0005
-  elementPrecipitateAmount: 1
-  elementPrecipitateSpawnChance: 0.5
-  elementHasUsableEffect: 0
-  elementEffectPrimingTrigger: 0
-  effectPrimingThreshold: 0
-  effectUseTrigger: 0
-  ingestedEffect: 0
-  ingestedEffectStrength: 0
-  ingestedEffectDuration: 0
---- !u!114 &1248514065
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1248514062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45115577ef41a5b4ca741ed302693907, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactTextPlacement: {fileID: 0}
-  interactText: Use
-  interactTextGO: {fileID: 0}
-  proximity: 2
-  SynchronizePosition: 0
-  AllowCollisionOwnershipTransfer: 0
-  Reliable: 0
-  _syncMethod: 2
-  serializedProgramAsset: {fileID: 11400000, guid: b0159582634c445439d53d12ebdb4689,
-    type: 2}
-  programSource: {fileID: 11400000, guid: c11b223b2b16b4d40bf00f1ec3e001e0, type: 2}
-  serializedPublicVariablesBytesString: Ai8AAAAAATIAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAFQAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AAAAAAAYBAAAAAAAAACcBBAAAAHQAeQBwAGUAAWgAAABTAHkAcwB0AGUAbQAuAEMAbwBsAGwAZQBjAHQAaQBvAG4AcwAuAEcAZQBuAGUAcgBpAGMALgBMAGkAcwB0AGAAMQBbAFsAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4ALgBJAG4AdABlAHIAZgBhAGMAZQBzAC4ASQBVAGQAbwBuAFYAYQByAGkAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AXQBdACwAIABtAHMAYwBvAHIAbABpAGIAAQEJAAAAVgBhAHIAaQBhAGIAbABlAHMALwEAAAABaAAAAFMAeQBzAHQAZQBtAC4AQwBvAGwAbABlAGMAdABpAG8AbgBzAC4ARwBlAG4AZQByAGkAYwAuAEwAaQBzAHQAYAAxAFsAWwBWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAEkAbgB0AGUAcgBmAGEAYwBlAHMALgBJAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlACwAIABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgBdAF0ALAAgAG0AcwBjAG8AcgBsAGkAYgABAAAABgEAAAAAAAAAAi8CAAAAAUkAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAGAAMQBbAFsAUwB5AHMAdABlAG0ALgBJAG4AdAAzADIALAAgAG0AcwBjAG8AcgBsAGkAYgBdAF0ALAAgAFYAUgBDAC4AVQBkAG8AbgAuAEMAbwBtAG0AbwBuAAIAAAAGAgAAAAAAAAAnAQQAAAB0AHkAcABlAAEXAAAAUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwAsACAAbQBzAGMAbwByAGwAaQBiACcBCgAAAFMAeQBtAGIAbwBsAE4AYQBtAGUAAR8AAABfAF8AXwBVAGQAbwBuAFMAaABhAHIAcABCAGUAaABhAHYAaQBvAHUAcgBWAGUAcgBzAGkAbwBuAF8AXwBfACcBBAAAAHQAeQBwAGUAARYAAABTAHkAcwB0AGUAbQAuAEkAbgB0ADMAMgAsACAAbQBzAGMAbwByAGwAaQBiABcBBQAAAFYAYQBsAHUAZQACAAAABwUHBQcF
-  publicVariablesUnityEngineObjects: []
-  publicVariablesSerializationDataFormat: 0
 --- !u!1 &1268842525 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1675393744298976041, guid: 6272c3089478b114e9e8a1bd32a870a6,
@@ -6336,17 +6601,17 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1585405298}
-  - {fileID: 2137954558}
-  - {fileID: 714463371}
-  - {fileID: 2141578696}
-  - {fileID: 1368671156}
-  - {fileID: 551923301}
-  - {fileID: 1353169340}
-  - {fileID: 1248514063}
-  - {fileID: 2080434525}
-  - {fileID: 177897157}
-  - {fileID: 968232888}
+  - {fileID: 1192618344}
+  - {fileID: 1094694245}
+  - {fileID: 1493630700}
+  - {fileID: 1991982225}
+  - {fileID: 670237050}
+  - {fileID: 865360006}
+  - {fileID: 1766571920}
+  - {fileID: 1186593137}
+  - {fileID: 398798809}
+  - {fileID: 535392135}
+  - {fileID: 1562216430}
   m_Father: {fileID: 1004673763}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6666,136 +6931,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1339866326}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1353169339
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1353169340}
-  - component: {fileID: 1353169341}
-  - component: {fileID: 1353169342}
-  m_Layer: 0
-  m_Name: Linktorch Element
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1353169340
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1353169339}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1292143487}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1353169341
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1353169339}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03beb95cb6343b944831aa58eda51010, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  _udonSharpBackingUdonBehaviour: {fileID: 1353169342}
-  elementTypeId: 7
-  elementColor: {r: 0.58431375, g: 1, b: 1, a: 1}
-  elementIsProducedByPotion: 1
-  elementIsSpawnedByElementSpawner: 0
-  elementIsSeedPod: 0
-  elementCanSpawnGrownObject: 1
-  canDespawn: 0
-  despawnTime: 0
-  killVelocity: 0
-  baseElementSpawnTime: 0
-  baseElementMesh: {fileID: 0}
-  BaseElementCollisionPrefab: {fileID: 0}
-  pickupColliderRadius: 0
-  rbMass: 0
-  rbDrag: 0
-  rbAngularDrag: 0
-  elementCanBecomeSeedPod: 0
-  seedPodSpawnChance: 0
-  SeedPodPrefab: {fileID: 0}
-  seedPodPosOffset: {x: 0, y: 0, z: 0}
-  seedPodElementType: 0
-  ElementLeavesPrefab: {fileID: 0}
-  canPlantManually: 0
-  GrownObjectAnimator: {fileID: 0}
-  grownObjectType: 2
-  grownObjectElement: 7
-  colliderYPos: 0.2125
-  colliderRadius: 0.1
-  colliderHeight: 0.425
-  GrownObjectGrowthPrefabs:
-  - {fileID: 7620740489978170186, guid: b2632fb188151074d8538cab5bbebed3, type: 3}
-  - {fileID: 7407198192950544159, guid: a3cef3e17a1e32e4c99df1c3b717db8e, type: 3}
-  - {fileID: 4352568812240936187, guid: 89411b7e999a52d4ab619b80e538b520, type: 3}
-  grownObjectGrowTime: 20
-  ElementSpawnTransforms: {fileID: 0}
-  elementHasPrecipitateForm: 1
-  elementPrecipitateType: 2
-  minimumVelocity: 0
-  maximumVelocity: 1.3
-  velocityMultiplier: 0.04
-  shrinkSpeed: 0
-  elementPrecipitateAmount: 0
-  elementPrecipitateSpawnChance: 0
-  elementHasUsableEffect: 1
-  elementEffectPrimingTrigger: 2
-  effectPrimingThreshold: 50
-  effectUseTrigger: 2
-  ingestedEffect: 0
-  ingestedEffectStrength: 0
-  ingestedEffectDuration: 0
---- !u!114 &1353169342
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1353169339}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45115577ef41a5b4ca741ed302693907, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactTextPlacement: {fileID: 0}
-  interactText: Use
-  interactTextGO: {fileID: 0}
-  proximity: 2
-  SynchronizePosition: 0
-  AllowCollisionOwnershipTransfer: 0
-  Reliable: 0
-  _syncMethod: 2
-  serializedProgramAsset: {fileID: 11400000, guid: b0159582634c445439d53d12ebdb4689,
-    type: 2}
-  programSource: {fileID: 11400000, guid: c11b223b2b16b4d40bf00f1ec3e001e0, type: 2}
-  serializedPublicVariablesBytesString: Ai8AAAAAATIAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAFQAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AAAAAAAYBAAAAAAAAACcBBAAAAHQAeQBwAGUAAWgAAABTAHkAcwB0AGUAbQAuAEMAbwBsAGwAZQBjAHQAaQBvAG4AcwAuAEcAZQBuAGUAcgBpAGMALgBMAGkAcwB0AGAAMQBbAFsAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4ALgBJAG4AdABlAHIAZgBhAGMAZQBzAC4ASQBVAGQAbwBuAFYAYQByAGkAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AXQBdACwAIABtAHMAYwBvAHIAbABpAGIAAQEJAAAAVgBhAHIAaQBhAGIAbABlAHMALwEAAAABaAAAAFMAeQBzAHQAZQBtAC4AQwBvAGwAbABlAGMAdABpAG8AbgBzAC4ARwBlAG4AZQByAGkAYwAuAEwAaQBzAHQAYAAxAFsAWwBWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAEkAbgB0AGUAcgBmAGEAYwBlAHMALgBJAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlACwAIABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgBdAF0ALAAgAG0AcwBjAG8AcgBsAGkAYgABAAAABgEAAAAAAAAAAi8CAAAAAUkAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAGAAMQBbAFsAUwB5AHMAdABlAG0ALgBJAG4AdAAzADIALAAgAG0AcwBjAG8AcgBsAGkAYgBdAF0ALAAgAFYAUgBDAC4AVQBkAG8AbgAuAEMAbwBtAG0AbwBuAAIAAAAGAgAAAAAAAAAnAQQAAAB0AHkAcABlAAEXAAAAUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwAsACAAbQBzAGMAbwByAGwAaQBiACcBCgAAAFMAeQBtAGIAbwBsAE4AYQBtAGUAAR8AAABfAF8AXwBVAGQAbwBuAFMAaABhAHIAcABCAGUAaABhAHYAaQBvAHUAcgBWAGUAcgBzAGkAbwBuAF8AXwBfACcBBAAAAHQAeQBwAGUAARYAAABTAHkAcwB0AGUAbQAuAEkAbgB0ADMAMgAsACAAbQBzAGMAbwByAGwAaQBiABcBBQAAAFYAYQBsAHUAZQACAAAABwUHBQcF
-  publicVariablesUnityEngineObjects: []
-  publicVariablesSerializationDataFormat: 0
 --- !u!1 &1359604233 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2800183236413200083, guid: b90bd303cade7964289f5d7ed20f5d12,
@@ -6893,133 +7028,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2739858899383546908}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1368671155
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1368671156}
-  - component: {fileID: 1368671157}
-  - component: {fileID: 1368671158}
-  m_Layer: 0
-  m_Name: Oil Element
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1368671156
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1368671155}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1292143487}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1368671157
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1368671155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03beb95cb6343b944831aa58eda51010, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  _udonSharpBackingUdonBehaviour: {fileID: 1368671158}
-  elementTypeId: 5
-  elementColor: {r: 0.4056604, g: 0.29355898, b: 0.07845318, a: 1}
-  elementIsProducedByPotion: 0
-  elementIsSpawnedByElementSpawner: 0
-  elementIsSeedPod: 0
-  elementCanSpawnGrownObject: 0
-  canDespawn: 1
-  despawnTime: 10
-  killVelocity: Infinity
-  baseElementSpawnTime: 0
-  baseElementMesh: {fileID: 0}
-  BaseElementCollisionPrefab: {fileID: 0}
-  pickupColliderRadius: 0
-  rbMass: 0
-  rbDrag: 0
-  rbAngularDrag: 0
-  elementCanBecomeSeedPod: 0
-  seedPodSpawnChance: 0
-  SeedPodPrefab: {fileID: 0}
-  seedPodPosOffset: {x: 0, y: 0, z: 0}
-  seedPodElementType: 0
-  ElementLeavesPrefab: {fileID: 0}
-  canPlantManually: 0
-  GrownObjectAnimator: {fileID: 0}
-  grownObjectType: 0
-  grownObjectElement: 0
-  colliderYPos: 0
-  colliderRadius: 0
-  colliderHeight: 0
-  GrownObjectGrowthPrefabs: []
-  grownObjectGrowTime: 0
-  ElementSpawnTransforms: {fileID: 0}
-  elementHasPrecipitateForm: 1
-  elementPrecipitateType: 2
-  minimumVelocity: 0.1
-  maximumVelocity: 0.4
-  velocityMultiplier: 0.01
-  shrinkSpeed: 0
-  elementPrecipitateAmount: 0
-  elementPrecipitateSpawnChance: 0
-  elementHasUsableEffect: 0
-  elementEffectPrimingTrigger: 0
-  effectPrimingThreshold: 0
-  effectUseTrigger: 0
-  ingestedEffect: 0
-  ingestedEffectStrength: 0
-  ingestedEffectDuration: 0
---- !u!114 &1368671158
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1368671155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45115577ef41a5b4ca741ed302693907, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactTextPlacement: {fileID: 0}
-  interactText: Use
-  interactTextGO: {fileID: 0}
-  proximity: 2
-  SynchronizePosition: 0
-  AllowCollisionOwnershipTransfer: 0
-  Reliable: 0
-  _syncMethod: 2
-  serializedProgramAsset: {fileID: 11400000, guid: b0159582634c445439d53d12ebdb4689,
-    type: 2}
-  programSource: {fileID: 11400000, guid: c11b223b2b16b4d40bf00f1ec3e001e0, type: 2}
-  serializedPublicVariablesBytesString: Ai8AAAAAATIAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAFQAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AAAAAAAYBAAAAAAAAACcBBAAAAHQAeQBwAGUAAWgAAABTAHkAcwB0AGUAbQAuAEMAbwBsAGwAZQBjAHQAaQBvAG4AcwAuAEcAZQBuAGUAcgBpAGMALgBMAGkAcwB0AGAAMQBbAFsAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4ALgBJAG4AdABlAHIAZgBhAGMAZQBzAC4ASQBVAGQAbwBuAFYAYQByAGkAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AXQBdACwAIABtAHMAYwBvAHIAbABpAGIAAQEJAAAAVgBhAHIAaQBhAGIAbABlAHMALwEAAAABaAAAAFMAeQBzAHQAZQBtAC4AQwBvAGwAbABlAGMAdABpAG8AbgBzAC4ARwBlAG4AZQByAGkAYwAuAEwAaQBzAHQAYAAxAFsAWwBWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAEkAbgB0AGUAcgBmAGEAYwBlAHMALgBJAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlACwAIABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgBdAF0ALAAgAG0AcwBjAG8AcgBsAGkAYgABAAAABgEAAAAAAAAAAi8CAAAAAUkAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAGAAMQBbAFsAUwB5AHMAdABlAG0ALgBJAG4AdAAzADIALAAgAG0AcwBjAG8AcgBsAGkAYgBdAF0ALAAgAFYAUgBDAC4AVQBkAG8AbgAuAEMAbwBtAG0AbwBuAAIAAAAGAgAAAAAAAAAnAQQAAAB0AHkAcABlAAEXAAAAUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwAsACAAbQBzAGMAbwByAGwAaQBiACcBCgAAAFMAeQBtAGIAbwBsAE4AYQBtAGUAAR8AAABfAF8AXwBVAGQAbwBuAFMAaABhAHIAcABCAGUAaABhAHYAaQBvAHUAcgBWAGUAcgBzAGkAbwBuAF8AXwBfACcBBAAAAHQAeQBwAGUAARYAAABTAHkAcwB0AGUAbQAuAEkAbgB0ADMAMgAsACAAbQBzAGMAbwByAGwAaQBiABcBBQAAAFYAYQBsAHUAZQACAAAABwUHBQcF
-  publicVariablesUnityEngineObjects: []
-  publicVariablesSerializationDataFormat: 0
 --- !u!1001 &1426815049
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7417,6 +7425,141 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 412938763}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1493630699
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1493630700}
+  - component: {fileID: 1493630702}
+  - component: {fileID: 1493630701}
+  m_Layer: 0
+  m_Name: Blueberry Element
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1493630700
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493630699}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1292143487}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1493630701
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493630699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45115577ef41a5b4ca741ed302693907, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactTextPlacement: {fileID: 0}
+  interactText: Use
+  interactTextGO: {fileID: 0}
+  proximity: 2
+  SynchronizePosition: 0
+  AllowCollisionOwnershipTransfer: 0
+  Reliable: 0
+  _syncMethod: 2
+  serializedProgramAsset: {fileID: 11400000, guid: b0159582634c445439d53d12ebdb4689,
+    type: 2}
+  programSource: {fileID: 11400000, guid: c11b223b2b16b4d40bf00f1ec3e001e0, type: 2}
+  serializedPublicVariablesBytesString: Ai8AAAAAATIAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAFQAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AAAAAAAYBAAAAAAAAACcBBAAAAHQAeQBwAGUAAWgAAABTAHkAcwB0AGUAbQAuAEMAbwBsAGwAZQBjAHQAaQBvAG4AcwAuAEcAZQBuAGUAcgBpAGMALgBMAGkAcwB0AGAAMQBbAFsAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4ALgBJAG4AdABlAHIAZgBhAGMAZQBzAC4ASQBVAGQAbwBuAFYAYQByAGkAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AXQBdACwAIABtAHMAYwBvAHIAbABpAGIAAQEJAAAAVgBhAHIAaQBhAGIAbABlAHMALwEAAAABaAAAAFMAeQBzAHQAZQBtAC4AQwBvAGwAbABlAGMAdABpAG8AbgBzAC4ARwBlAG4AZQByAGkAYwAuAEwAaQBzAHQAYAAxAFsAWwBWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAEkAbgB0AGUAcgBmAGEAYwBlAHMALgBJAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlACwAIABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgBdAF0ALAAgAG0AcwBjAG8AcgBsAGkAYgABAAAABgEAAAAAAAAAAi8CAAAAAUkAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAGAAMQBbAFsAUwB5AHMAdABlAG0ALgBJAG4AdAAzADIALAAgAG0AcwBjAG8AcgBsAGkAYgBdAF0ALAAgAFYAUgBDAC4AVQBkAG8AbgAuAEMAbwBtAG0AbwBuAAIAAAAGAgAAAAAAAAAnAQQAAAB0AHkAcABlAAEXAAAAUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwAsACAAbQBzAGMAbwByAGwAaQBiACcBCgAAAFMAeQBtAGIAbwBsAE4AYQBtAGUAAR8AAABfAF8AXwBVAGQAbwBuAFMAaABhAHIAcABCAGUAaABhAHYAaQBvAHUAcgBWAGUAcgBzAGkAbwBuAF8AXwBfACcBBAAAAHQAeQBwAGUAARYAAABTAHkAcwB0AGUAbQAuAEkAbgB0ADMAMgAsACAAbQBzAGMAbwByAGwAaQBiABcBBQAAAFYAYQBsAHUAZQACAAAABwUHBQcF
+  publicVariablesUnityEngineObjects: []
+  publicVariablesSerializationDataFormat: 0
+--- !u!114 &1493630702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493630699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03beb95cb6343b944831aa58eda51010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  _udonSharpBackingUdonBehaviour: {fileID: 1493630701}
+  elementTypeId: 3
+  elementColor: {r: 0.19607843, g: 0.1764706, b: 0.5019608, a: 1}
+  elementIsProducedByPotion: 0
+  elementIsSpawnedByElementSpawner: 1
+  elementIsSeedPod: 1
+  elementCanSpawnGrownObject: 1
+  canDespawn: 1
+  despawnTime: 10
+  killVelocity: 10
+  baseElementSpawnTime: 1
+  baseElementMesh: {fileID: 7898303678134235034, guid: 2c0d3050e7ab9e54dbb011f7296c66c7,
+    type: 3}
+  BaseElementCollisionPrefab: {fileID: 6517209209624554442, guid: 554890788ad92104aa813dbbaf885061,
+    type: 3}
+  pickupColliderRadius: 0.07
+  rbMass: 0.1
+  rbDrag: 0.4
+  rbAngularDrag: 0.05
+  elementCanBecomeSeedPod: 1
+  seedPodSpawnChance: 100
+  SeedPodPrefab: {fileID: 6647423906080684150, guid: 32b1811c43c122d45a586f72ec67dd1b,
+    type: 3}
+  seedPodPosOffset: {x: 0, y: 0.0142, z: 0}
+  seedPodElementType: 3
+  ElementLeavesPrefab: {fileID: 1164041372635974953, guid: f70261a4d3d58bf4cb1dad530dfd476e,
+    type: 3}
+  canPlantManually: 1
+  GrownObjectAnimator: {fileID: 9100000, guid: e5f4db4bddd0c7549a0f073be026d390, type: 2}
+  grownObjectType: 1
+  grownObjectElement: 3
+  colliderYPos: 0.25
+  colliderRadius: 0.15
+  colliderHeight: 0.5
+  GrownObjectGrowthPrefabs:
+  - {fileID: 3641895495905796266, guid: c8b12f469ef9157469bfcf918dec5beb, type: 3}
+  - {fileID: 4278128458719230246, guid: 0e4e6b537695a8340a420d1dc473b724, type: 3}
+  - {fileID: 2857445737330349378, guid: ddd384402782b564aace66fe64c574b4, type: 3}
+  grownObjectGrowTime: 10
+  ElementSpawnTransforms: {fileID: 1743217837672615097, guid: 42679ade0fc18214e91d6ad6a3b63ad8,
+    type: 3}
+  elementHasPrecipitateForm: 1
+  elementPrecipitateType: 2
+  minimumVelocity: 0.1
+  maximumVelocity: 0.5
+  velocityMultiplier: 0.01
+  shrinkSpeed: 0.001
+  elementPrecipitateAmount: 3
+  elementPrecipitateSpawnChance: 1
+  elementHasUsableEffect: 0
+  elementEffectPrimingTrigger: 0
+  effectPrimingThreshold: 0
+  effectUseTrigger: 0
+  ingestedEffect: 0
+  ingestedEffectStrength: 0
+  ingestedEffectDuration: 0
 --- !u!1 &1498074687 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4317848860270465121, guid: 2dd78965ec2d694428737517006d29ce,
@@ -7550,6 +7693,133 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1831643761}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1562216429
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1562216430}
+  - component: {fileID: 1562216432}
+  - component: {fileID: 1562216431}
+  m_Layer: 0
+  m_Name: TestElement Element
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1562216430
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562216429}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1292143487}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1562216431
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562216429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45115577ef41a5b4ca741ed302693907, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactTextPlacement: {fileID: 0}
+  interactText: Use
+  interactTextGO: {fileID: 0}
+  proximity: 2
+  SynchronizePosition: 0
+  AllowCollisionOwnershipTransfer: 0
+  Reliable: 0
+  _syncMethod: 2
+  serializedProgramAsset: {fileID: 11400000, guid: b0159582634c445439d53d12ebdb4689,
+    type: 2}
+  programSource: {fileID: 11400000, guid: c11b223b2b16b4d40bf00f1ec3e001e0, type: 2}
+  serializedPublicVariablesBytesString: Ai8AAAAAATIAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAFQAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AAAAAAAYBAAAAAAAAACcBBAAAAHQAeQBwAGUAAWgAAABTAHkAcwB0AGUAbQAuAEMAbwBsAGwAZQBjAHQAaQBvAG4AcwAuAEcAZQBuAGUAcgBpAGMALgBMAGkAcwB0AGAAMQBbAFsAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4ALgBJAG4AdABlAHIAZgBhAGMAZQBzAC4ASQBVAGQAbwBuAFYAYQByAGkAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AXQBdACwAIABtAHMAYwBvAHIAbABpAGIAAQEJAAAAVgBhAHIAaQBhAGIAbABlAHMALwEAAAABaAAAAFMAeQBzAHQAZQBtAC4AQwBvAGwAbABlAGMAdABpAG8AbgBzAC4ARwBlAG4AZQByAGkAYwAuAEwAaQBzAHQAYAAxAFsAWwBWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAEkAbgB0AGUAcgBmAGEAYwBlAHMALgBJAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlACwAIABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgBdAF0ALAAgAG0AcwBjAG8AcgBsAGkAYgABAAAABgEAAAAAAAAAAi8CAAAAAUkAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAGAAMQBbAFsAUwB5AHMAdABlAG0ALgBJAG4AdAAzADIALAAgAG0AcwBjAG8AcgBsAGkAYgBdAF0ALAAgAFYAUgBDAC4AVQBkAG8AbgAuAEMAbwBtAG0AbwBuAAIAAAAGAgAAAAAAAAAnAQQAAAB0AHkAcABlAAEXAAAAUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwAsACAAbQBzAGMAbwByAGwAaQBiACcBCgAAAFMAeQBtAGIAbwBsAE4AYQBtAGUAAR8AAABfAF8AXwBVAGQAbwBuAFMAaABhAHIAcABCAGUAaABhAHYAaQBvAHUAcgBWAGUAcgBzAGkAbwBuAF8AXwBfACcBBAAAAHQAeQBwAGUAARYAAABTAHkAcwB0AGUAbQAuAEkAbgB0ADMAMgAsACAAbQBzAGMAbwByAGwAaQBiABcBBQAAAFYAYQBsAHUAZQACAAAABwUHBQcF
+  publicVariablesUnityEngineObjects: []
+  publicVariablesSerializationDataFormat: 0
+--- !u!114 &1562216432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562216429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03beb95cb6343b944831aa58eda51010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  _udonSharpBackingUdonBehaviour: {fileID: 1562216431}
+  elementTypeId: 11
+  elementColor: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
+  elementIsProducedByPotion: 0
+  elementIsSpawnedByElementSpawner: 0
+  elementIsSeedPod: 0
+  elementCanSpawnGrownObject: 0
+  canDespawn: 0
+  despawnTime: 0
+  killVelocity: 0
+  baseElementSpawnTime: 0
+  baseElementMesh: {fileID: 0}
+  BaseElementCollisionPrefab: {fileID: 0}
+  pickupColliderRadius: 0
+  rbMass: 0
+  rbDrag: 0
+  rbAngularDrag: 0
+  elementCanBecomeSeedPod: 0
+  seedPodSpawnChance: 0
+  SeedPodPrefab: {fileID: 0}
+  seedPodPosOffset: {x: 0, y: 0, z: 0}
+  seedPodElementType: 0
+  ElementLeavesPrefab: {fileID: 0}
+  canPlantManually: 0
+  GrownObjectAnimator: {fileID: 0}
+  grownObjectType: 0
+  grownObjectElement: 0
+  colliderYPos: 0
+  colliderRadius: 0
+  colliderHeight: 0
+  GrownObjectGrowthPrefabs: []
+  grownObjectGrowTime: 0
+  ElementSpawnTransforms: {fileID: 0}
+  elementHasPrecipitateForm: 1
+  elementPrecipitateType: 1
+  minimumVelocity: 0.2
+  maximumVelocity: Infinity
+  velocityMultiplier: 0.104
+  shrinkSpeed: 0
+  elementPrecipitateAmount: 0
+  elementPrecipitateSpawnChance: 0
+  elementHasUsableEffect: 0
+  elementEffectPrimingTrigger: 0
+  effectPrimingThreshold: 0
+  effectUseTrigger: 0
+  ingestedEffect: 0
+  ingestedEffectStrength: 0
+  ingestedEffectDuration: 0
 --- !u!1 &1562587097 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5967408865025828197, guid: 658b7f5d491d8a442829c0ddd6ec6788,
@@ -7665,141 +7935,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff6888b5608b3e4eb95cbc2ee74c8de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1585405297
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1585405298}
-  - component: {fileID: 1585405299}
-  - component: {fileID: 1585405300}
-  m_Layer: 0
-  m_Name: Linkberry Element
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1585405298
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1585405297}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1292143487}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1585405299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1585405297}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03beb95cb6343b944831aa58eda51010, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  _udonSharpBackingUdonBehaviour: {fileID: 1585405300}
-  elementTypeId: 1
-  elementColor: {r: 0.9056604, g: 0.53381246, b: 0.16660735, a: 1}
-  elementIsProducedByPotion: 0
-  elementIsSpawnedByElementSpawner: 1
-  elementIsSeedPod: 1
-  elementCanSpawnGrownObject: 1
-  canDespawn: 1
-  despawnTime: 10
-  killVelocity: 10
-  baseElementSpawnTime: 180
-  baseElementMesh: {fileID: 7898303678134235034, guid: 2c0d3050e7ab9e54dbb011f7296c66c7,
-    type: 3}
-  BaseElementCollisionPrefab: {fileID: 6517209209624554442, guid: 554890788ad92104aa813dbbaf885061,
-    type: 3}
-  pickupColliderRadius: 0.07
-  rbMass: 0.1
-  rbDrag: 0.4
-  rbAngularDrag: 0.05
-  elementCanBecomeSeedPod: 1
-  seedPodSpawnChance: 1
-  SeedPodPrefab: {fileID: 6647423906080684150, guid: 32b1811c43c122d45a586f72ec67dd1b,
-    type: 3}
-  seedPodPosOffset: {x: 0, y: 0.0142, z: 0}
-  seedPodElementType: 1
-  ElementLeavesPrefab: {fileID: 1164041372635974953, guid: f70261a4d3d58bf4cb1dad530dfd476e,
-    type: 3}
-  canPlantManually: 1
-  GrownObjectAnimator: {fileID: 0}
-  grownObjectType: 1
-  grownObjectElement: 1
-  colliderYPos: 0.25
-  colliderRadius: 0.15
-  colliderHeight: 0.5
-  GrownObjectGrowthPrefabs:
-  - {fileID: 3641895495905796266, guid: c8b12f469ef9157469bfcf918dec5beb, type: 3}
-  - {fileID: 4278128458719230246, guid: 0e4e6b537695a8340a420d1dc473b724, type: 3}
-  - {fileID: 2857445737330349378, guid: ddd384402782b564aace66fe64c574b4, type: 3}
-  grownObjectGrowTime: 20
-  ElementSpawnTransforms: {fileID: 1743217837672615097, guid: 42679ade0fc18214e91d6ad6a3b63ad8,
-    type: 3}
-  elementHasPrecipitateForm: 1
-  elementPrecipitateType: 1
-  minimumVelocity: 0
-  maximumVelocity: Infinity
-  velocityMultiplier: 0.01
-  shrinkSpeed: 0.001
-  elementPrecipitateAmount: 5
-  elementPrecipitateSpawnChance: 1
-  elementHasUsableEffect: 0
-  elementEffectPrimingTrigger: 0
-  effectPrimingThreshold: 0
-  effectUseTrigger: 0
-  ingestedEffect: 0
-  ingestedEffectStrength: 0
-  ingestedEffectDuration: 0
---- !u!114 &1585405300
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1585405297}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45115577ef41a5b4ca741ed302693907, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactTextPlacement: {fileID: 0}
-  interactText: Use
-  interactTextGO: {fileID: 0}
-  proximity: 2
-  SynchronizePosition: 0
-  AllowCollisionOwnershipTransfer: 0
-  Reliable: 0
-  _syncMethod: 2
-  serializedProgramAsset: {fileID: 11400000, guid: b0159582634c445439d53d12ebdb4689,
-    type: 2}
-  programSource: {fileID: 11400000, guid: c11b223b2b16b4d40bf00f1ec3e001e0, type: 2}
-  serializedPublicVariablesBytesString: Ai8AAAAAATIAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAFQAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AAAAAAAYBAAAAAAAAACcBBAAAAHQAeQBwAGUAAWgAAABTAHkAcwB0AGUAbQAuAEMAbwBsAGwAZQBjAHQAaQBvAG4AcwAuAEcAZQBuAGUAcgBpAGMALgBMAGkAcwB0AGAAMQBbAFsAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4ALgBJAG4AdABlAHIAZgBhAGMAZQBzAC4ASQBVAGQAbwBuAFYAYQByAGkAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AXQBdACwAIABtAHMAYwBvAHIAbABpAGIAAQEJAAAAVgBhAHIAaQBhAGIAbABlAHMALwEAAAABaAAAAFMAeQBzAHQAZQBtAC4AQwBvAGwAbABlAGMAdABpAG8AbgBzAC4ARwBlAG4AZQByAGkAYwAuAEwAaQBzAHQAYAAxAFsAWwBWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAEkAbgB0AGUAcgBmAGEAYwBlAHMALgBJAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlACwAIABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgBdAF0ALAAgAG0AcwBjAG8AcgBsAGkAYgABAAAABgEAAAAAAAAAAi8CAAAAAUkAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAGAAMQBbAFsAUwB5AHMAdABlAG0ALgBJAG4AdAAzADIALAAgAG0AcwBjAG8AcgBsAGkAYgBdAF0ALAAgAFYAUgBDAC4AVQBkAG8AbgAuAEMAbwBtAG0AbwBuAAIAAAAGAgAAAAAAAAAnAQQAAAB0AHkAcABlAAEXAAAAUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwAsACAAbQBzAGMAbwByAGwAaQBiACcBCgAAAFMAeQBtAGIAbwBsAE4AYQBtAGUAAR8AAABfAF8AXwBVAGQAbwBuAFMAaABhAHIAcABCAGUAaABhAHYAaQBvAHUAcgBWAGUAcgBzAGkAbwBuAF8AXwBfACcBBAAAAHQAeQBwAGUAARYAAABTAHkAcwB0AGUAbQAuAEkAbgB0ADMAMgAsACAAbQBzAGMAbwByAGwAaQBiABcBBQAAAFYAYQBsAHUAZQACAAAABwUHBQcF
-  publicVariablesUnityEngineObjects: []
-  publicVariablesSerializationDataFormat: 0
 --- !u!1 &1586755337 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5650124687156510808, guid: c7b124d198870024fb0026f5cb75a8ed,
@@ -7901,6 +8036,136 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 260915985}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1766571919
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1766571920}
+  - component: {fileID: 1766571922}
+  - component: {fileID: 1766571921}
+  m_Layer: 0
+  m_Name: Linktorch Element
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1766571920
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766571919}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1292143487}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1766571921
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766571919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45115577ef41a5b4ca741ed302693907, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactTextPlacement: {fileID: 0}
+  interactText: Use
+  interactTextGO: {fileID: 0}
+  proximity: 2
+  SynchronizePosition: 0
+  AllowCollisionOwnershipTransfer: 0
+  Reliable: 0
+  _syncMethod: 2
+  serializedProgramAsset: {fileID: 11400000, guid: b0159582634c445439d53d12ebdb4689,
+    type: 2}
+  programSource: {fileID: 11400000, guid: c11b223b2b16b4d40bf00f1ec3e001e0, type: 2}
+  serializedPublicVariablesBytesString: Ai8AAAAAATIAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAFQAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AAAAAAAYBAAAAAAAAACcBBAAAAHQAeQBwAGUAAWgAAABTAHkAcwB0AGUAbQAuAEMAbwBsAGwAZQBjAHQAaQBvAG4AcwAuAEcAZQBuAGUAcgBpAGMALgBMAGkAcwB0AGAAMQBbAFsAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4ALgBJAG4AdABlAHIAZgBhAGMAZQBzAC4ASQBVAGQAbwBuAFYAYQByAGkAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AXQBdACwAIABtAHMAYwBvAHIAbABpAGIAAQEJAAAAVgBhAHIAaQBhAGIAbABlAHMALwEAAAABaAAAAFMAeQBzAHQAZQBtAC4AQwBvAGwAbABlAGMAdABpAG8AbgBzAC4ARwBlAG4AZQByAGkAYwAuAEwAaQBzAHQAYAAxAFsAWwBWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAEkAbgB0AGUAcgBmAGEAYwBlAHMALgBJAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlACwAIABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgBdAF0ALAAgAG0AcwBjAG8AcgBsAGkAYgABAAAABgEAAAAAAAAAAi8CAAAAAUkAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAGAAMQBbAFsAUwB5AHMAdABlAG0ALgBJAG4AdAAzADIALAAgAG0AcwBjAG8AcgBsAGkAYgBdAF0ALAAgAFYAUgBDAC4AVQBkAG8AbgAuAEMAbwBtAG0AbwBuAAIAAAAGAgAAAAAAAAAnAQQAAAB0AHkAcABlAAEXAAAAUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwAsACAAbQBzAGMAbwByAGwAaQBiACcBCgAAAFMAeQBtAGIAbwBsAE4AYQBtAGUAAR8AAABfAF8AXwBVAGQAbwBuAFMAaABhAHIAcABCAGUAaABhAHYAaQBvAHUAcgBWAGUAcgBzAGkAbwBuAF8AXwBfACcBBAAAAHQAeQBwAGUAARYAAABTAHkAcwB0AGUAbQAuAEkAbgB0ADMAMgAsACAAbQBzAGMAbwByAGwAaQBiABcBBQAAAFYAYQBsAHUAZQACAAAABwUHBQcF
+  publicVariablesUnityEngineObjects: []
+  publicVariablesSerializationDataFormat: 0
+--- !u!114 &1766571922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766571919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03beb95cb6343b944831aa58eda51010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  _udonSharpBackingUdonBehaviour: {fileID: 1766571921}
+  elementTypeId: 7
+  elementColor: {r: 0.58431375, g: 1, b: 1, a: 1}
+  elementIsProducedByPotion: 1
+  elementIsSpawnedByElementSpawner: 0
+  elementIsSeedPod: 0
+  elementCanSpawnGrownObject: 1
+  canDespawn: 0
+  despawnTime: 0
+  killVelocity: 0
+  baseElementSpawnTime: 0
+  baseElementMesh: {fileID: 0}
+  BaseElementCollisionPrefab: {fileID: 0}
+  pickupColliderRadius: 0
+  rbMass: 0
+  rbDrag: 0
+  rbAngularDrag: 0
+  elementCanBecomeSeedPod: 0
+  seedPodSpawnChance: 0
+  SeedPodPrefab: {fileID: 0}
+  seedPodPosOffset: {x: 0, y: 0, z: 0}
+  seedPodElementType: 0
+  ElementLeavesPrefab: {fileID: 0}
+  canPlantManually: 0
+  GrownObjectAnimator: {fileID: 9100000, guid: c34e2722fe8f4e544ba600aec6e6d8c2, type: 2}
+  grownObjectType: 2
+  grownObjectElement: 7
+  colliderYPos: 0.2125
+  colliderRadius: 0.1
+  colliderHeight: 0.425
+  GrownObjectGrowthPrefabs:
+  - {fileID: 7620740489978170186, guid: b2632fb188151074d8538cab5bbebed3, type: 3}
+  - {fileID: 7407198192950544159, guid: a3cef3e17a1e32e4c99df1c3b717db8e, type: 3}
+  - {fileID: 4352568812240936187, guid: 89411b7e999a52d4ab619b80e538b520, type: 3}
+  grownObjectGrowTime: 20
+  ElementSpawnTransforms: {fileID: 0}
+  elementHasPrecipitateForm: 1
+  elementPrecipitateType: 2
+  minimumVelocity: 0
+  maximumVelocity: 1.3
+  velocityMultiplier: 0.04
+  shrinkSpeed: 0
+  elementPrecipitateAmount: 0
+  elementPrecipitateSpawnChance: 0
+  elementHasUsableEffect: 1
+  elementEffectPrimingTrigger: 2
+  effectPrimingThreshold: 50
+  effectUseTrigger: 2
+  ingestedEffect: 0
+  ingestedEffectStrength: 0
+  ingestedEffectDuration: 0
 --- !u!1 &1774076931 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1447690598607725664, guid: 40c06952e3af6be44a8a760f1f92bf38,
@@ -9438,6 +9703,133 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1974964151}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1991982224
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1991982225}
+  - component: {fileID: 1991982227}
+  - component: {fileID: 1991982226}
+  m_Layer: 0
+  m_Name: Water Element
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1991982225
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991982224}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1292143487}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1991982226
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991982224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45115577ef41a5b4ca741ed302693907, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactTextPlacement: {fileID: 0}
+  interactText: Use
+  interactTextGO: {fileID: 0}
+  proximity: 2
+  SynchronizePosition: 0
+  AllowCollisionOwnershipTransfer: 0
+  Reliable: 0
+  _syncMethod: 2
+  serializedProgramAsset: {fileID: 11400000, guid: b0159582634c445439d53d12ebdb4689,
+    type: 2}
+  programSource: {fileID: 11400000, guid: c11b223b2b16b4d40bf00f1ec3e001e0, type: 2}
+  serializedPublicVariablesBytesString: Ai8AAAAAATIAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAFQAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AAAAAAAYBAAAAAAAAACcBBAAAAHQAeQBwAGUAAWgAAABTAHkAcwB0AGUAbQAuAEMAbwBsAGwAZQBjAHQAaQBvAG4AcwAuAEcAZQBuAGUAcgBpAGMALgBMAGkAcwB0AGAAMQBbAFsAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4ALgBJAG4AdABlAHIAZgBhAGMAZQBzAC4ASQBVAGQAbwBuAFYAYQByAGkAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AXQBdACwAIABtAHMAYwBvAHIAbABpAGIAAQEJAAAAVgBhAHIAaQBhAGIAbABlAHMALwEAAAABaAAAAFMAeQBzAHQAZQBtAC4AQwBvAGwAbABlAGMAdABpAG8AbgBzAC4ARwBlAG4AZQByAGkAYwAuAEwAaQBzAHQAYAAxAFsAWwBWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAEkAbgB0AGUAcgBmAGEAYwBlAHMALgBJAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlACwAIABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgBdAF0ALAAgAG0AcwBjAG8AcgBsAGkAYgABAAAABgEAAAAAAAAAAi8CAAAAAUkAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAGAAMQBbAFsAUwB5AHMAdABlAG0ALgBJAG4AdAAzADIALAAgAG0AcwBjAG8AcgBsAGkAYgBdAF0ALAAgAFYAUgBDAC4AVQBkAG8AbgAuAEMAbwBtAG0AbwBuAAIAAAAGAgAAAAAAAAAnAQQAAAB0AHkAcABlAAEXAAAAUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwAsACAAbQBzAGMAbwByAGwAaQBiACcBCgAAAFMAeQBtAGIAbwBsAE4AYQBtAGUAAR8AAABfAF8AXwBVAGQAbwBuAFMAaABhAHIAcABCAGUAaABhAHYAaQBvAHUAcgBWAGUAcgBzAGkAbwBuAF8AXwBfACcBBAAAAHQAeQBwAGUAARYAAABTAHkAcwB0AGUAbQAuAEkAbgB0ADMAMgAsACAAbQBzAGMAbwByAGwAaQBiABcBBQAAAFYAYQBsAHUAZQACAAAABwUHBQcF
+  publicVariablesUnityEngineObjects: []
+  publicVariablesSerializationDataFormat: 0
+--- !u!114 &1991982227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991982224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03beb95cb6343b944831aa58eda51010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  _udonSharpBackingUdonBehaviour: {fileID: 1991982226}
+  elementTypeId: 4
+  elementColor: {r: 0.30588236, g: 0.6666667, b: 0.972549, a: 1}
+  elementIsProducedByPotion: 0
+  elementIsSpawnedByElementSpawner: 0
+  elementIsSeedPod: 0
+  elementCanSpawnGrownObject: 0
+  canDespawn: 1
+  despawnTime: 10
+  killVelocity: Infinity
+  baseElementSpawnTime: 0
+  baseElementMesh: {fileID: 0}
+  BaseElementCollisionPrefab: {fileID: 0}
+  pickupColliderRadius: 0
+  rbMass: 0
+  rbDrag: 0
+  rbAngularDrag: 0
+  elementCanBecomeSeedPod: 0
+  seedPodSpawnChance: 0
+  SeedPodPrefab: {fileID: 0}
+  seedPodPosOffset: {x: 0, y: 0, z: 0}
+  seedPodElementType: 0
+  ElementLeavesPrefab: {fileID: 0}
+  canPlantManually: 0
+  GrownObjectAnimator: {fileID: 0}
+  grownObjectType: 0
+  grownObjectElement: 0
+  colliderYPos: 0
+  colliderRadius: 0
+  colliderHeight: 0
+  GrownObjectGrowthPrefabs: []
+  grownObjectGrowTime: 0
+  ElementSpawnTransforms: {fileID: 0}
+  elementHasPrecipitateForm: 1
+  elementPrecipitateType: 2
+  minimumVelocity: 0.75
+  maximumVelocity: Infinity
+  velocityMultiplier: 0.08
+  shrinkSpeed: 0
+  elementPrecipitateAmount: 0
+  elementPrecipitateSpawnChance: 0
+  elementHasUsableEffect: 0
+  elementEffectPrimingTrigger: 0
+  effectPrimingThreshold: 0
+  effectUseTrigger: 0
+  ingestedEffect: 0
+  ingestedEffectStrength: 0
+  ingestedEffectDuration: 0
 --- !u!1001 &1999134283
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9759,136 +10151,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 548525313}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2080434524
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2080434525}
-  - component: {fileID: 2080434526}
-  - component: {fileID: 2080434527}
-  m_Layer: 0
-  m_Name: CloverSeed Element
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2080434525
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2080434524}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1292143487}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2080434526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2080434524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03beb95cb6343b944831aa58eda51010, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  _udonSharpBackingUdonBehaviour: {fileID: 2080434527}
-  elementTypeId: 9
-  elementColor: {r: 0.12993948, g: 0.3773585, b: 0.1536917, a: 1}
-  elementIsProducedByPotion: 0
-  elementIsSpawnedByElementSpawner: 1
-  elementIsSeedPod: 1
-  elementCanSpawnGrownObject: 0
-  canDespawn: 1
-  despawnTime: 10
-  killVelocity: Infinity
-  baseElementSpawnTime: 1
-  baseElementMesh: {fileID: 8137266731148065982, guid: ef761f4b6a89ff74d85274b5093edccc,
-    type: 3}
-  BaseElementCollisionPrefab: {fileID: 5769621185703160912, guid: c9230e8bb8ac3574f95d917aa003db04,
-    type: 3}
-  pickupColliderRadius: 0.07
-  rbMass: 0.02
-  rbDrag: 0.4
-  rbAngularDrag: 4
-  elementCanBecomeSeedPod: 0
-  seedPodSpawnChance: 0
-  SeedPodPrefab: {fileID: 910723081663789424, guid: eac8af58ecd9f9c49a435d9ee4806f66,
-    type: 3}
-  seedPodPosOffset: {x: 0.000279, y: -0.008799, z: 0.005195}
-  seedPodElementType: 0
-  ElementLeavesPrefab: {fileID: 0}
-  canPlantManually: 0
-  GrownObjectAnimator: {fileID: 0}
-  grownObjectType: 0
-  grownObjectElement: 0
-  colliderYPos: 0
-  colliderRadius: 0.05
-  colliderHeight: 0.5
-  GrownObjectGrowthPrefabs: []
-  grownObjectGrowTime: 0
-  ElementSpawnTransforms: {fileID: 0}
-  elementHasPrecipitateForm: 1
-  elementPrecipitateType: 1
-  minimumVelocity: 0
-  maximumVelocity: Infinity
-  velocityMultiplier: 0
-  shrinkSpeed: 0.0005
-  elementPrecipitateAmount: 1
-  elementPrecipitateSpawnChance: 1
-  elementHasUsableEffect: 0
-  elementEffectPrimingTrigger: 0
-  effectPrimingThreshold: 0
-  effectUseTrigger: 0
-  ingestedEffect: 0
-  ingestedEffectStrength: 0
-  ingestedEffectDuration: 0
---- !u!114 &2080434527
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2080434524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45115577ef41a5b4ca741ed302693907, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactTextPlacement: {fileID: 0}
-  interactText: Use
-  interactTextGO: {fileID: 0}
-  proximity: 2
-  SynchronizePosition: 0
-  AllowCollisionOwnershipTransfer: 0
-  Reliable: 0
-  _syncMethod: 2
-  serializedProgramAsset: {fileID: 11400000, guid: b0159582634c445439d53d12ebdb4689,
-    type: 2}
-  programSource: {fileID: 11400000, guid: c11b223b2b16b4d40bf00f1ec3e001e0, type: 2}
-  serializedPublicVariablesBytesString: Ai8AAAAAATIAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAFQAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AAAAAAAYBAAAAAAAAACcBBAAAAHQAeQBwAGUAAWgAAABTAHkAcwB0AGUAbQAuAEMAbwBsAGwAZQBjAHQAaQBvAG4AcwAuAEcAZQBuAGUAcgBpAGMALgBMAGkAcwB0AGAAMQBbAFsAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4ALgBJAG4AdABlAHIAZgBhAGMAZQBzAC4ASQBVAGQAbwBuAFYAYQByAGkAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AXQBdACwAIABtAHMAYwBvAHIAbABpAGIAAQEJAAAAVgBhAHIAaQBhAGIAbABlAHMALwEAAAABaAAAAFMAeQBzAHQAZQBtAC4AQwBvAGwAbABlAGMAdABpAG8AbgBzAC4ARwBlAG4AZQByAGkAYwAuAEwAaQBzAHQAYAAxAFsAWwBWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAEkAbgB0AGUAcgBmAGEAYwBlAHMALgBJAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlACwAIABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgBdAF0ALAAgAG0AcwBjAG8AcgBsAGkAYgABAAAABgEAAAAAAAAAAi8CAAAAAUkAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAGAAMQBbAFsAUwB5AHMAdABlAG0ALgBJAG4AdAAzADIALAAgAG0AcwBjAG8AcgBsAGkAYgBdAF0ALAAgAFYAUgBDAC4AVQBkAG8AbgAuAEMAbwBtAG0AbwBuAAIAAAAGAgAAAAAAAAAnAQQAAAB0AHkAcABlAAEXAAAAUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwAsACAAbQBzAGMAbwByAGwAaQBiACcBCgAAAFMAeQBtAGIAbwBsAE4AYQBtAGUAAR8AAABfAF8AXwBVAGQAbwBuAFMAaABhAHIAcABCAGUAaABhAHYAaQBvAHUAcgBWAGUAcgBzAGkAbwBuAF8AXwBfACcBBAAAAHQAeQBwAGUAARYAAABTAHkAcwB0AGUAbQAuAEkAbgB0ADMAMgAsACAAbQBzAGMAbwByAGwAaQBiABcBBQAAAFYAYQBsAHUAZQACAAAABwUHBQcF
-  publicVariablesUnityEngineObjects: []
-  publicVariablesSerializationDataFormat: 0
 --- !u!4 &2083547500 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3329266861823649233, guid: 150291ea6dbd4fb478913321534ec1f7,
@@ -10217,268 +10479,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2122621843}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2137954557
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2137954558}
-  - component: {fileID: 2137954559}
-  - component: {fileID: 2137954560}
-  m_Layer: 0
-  m_Name: Arieberry Element
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2137954558
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2137954557}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1292143487}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2137954559
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2137954557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03beb95cb6343b944831aa58eda51010, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  _udonSharpBackingUdonBehaviour: {fileID: 2137954560}
-  elementTypeId: 2
-  elementColor: {r: 0.3584906, g: 0.01183696, b: 0.15319528, a: 1}
-  elementIsProducedByPotion: 0
-  elementIsSpawnedByElementSpawner: 1
-  elementIsSeedPod: 1
-  elementCanSpawnGrownObject: 1
-  canDespawn: 1
-  despawnTime: 10
-  killVelocity: 10
-  baseElementSpawnTime: 30
-  baseElementMesh: {fileID: 7898303678134235034, guid: 2c0d3050e7ab9e54dbb011f7296c66c7,
-    type: 3}
-  BaseElementCollisionPrefab: {fileID: 6517209209624554442, guid: 554890788ad92104aa813dbbaf885061,
-    type: 3}
-  pickupColliderRadius: 0.07
-  rbMass: 0.1
-  rbDrag: 0.4
-  rbAngularDrag: 0.05
-  elementCanBecomeSeedPod: 1
-  seedPodSpawnChance: 0.1
-  SeedPodPrefab: {fileID: 6647423906080684150, guid: 32b1811c43c122d45a586f72ec67dd1b,
-    type: 3}
-  seedPodPosOffset: {x: 0, y: 0.0142, z: 0}
-  seedPodElementType: 2
-  ElementLeavesPrefab: {fileID: 1164041372635974953, guid: f70261a4d3d58bf4cb1dad530dfd476e,
-    type: 3}
-  canPlantManually: 1
-  GrownObjectAnimator: {fileID: 0}
-  grownObjectType: 1
-  grownObjectElement: 2
-  colliderYPos: 0.25
-  colliderRadius: 0.15
-  colliderHeight: 0.5
-  GrownObjectGrowthPrefabs:
-  - {fileID: 3641895495905796266, guid: c8b12f469ef9157469bfcf918dec5beb, type: 3}
-  - {fileID: 4278128458719230246, guid: 0e4e6b537695a8340a420d1dc473b724, type: 3}
-  - {fileID: 2857445737330349378, guid: ddd384402782b564aace66fe64c574b4, type: 3}
-  grownObjectGrowTime: 180
-  ElementSpawnTransforms: {fileID: 1743217837672615097, guid: 42679ade0fc18214e91d6ad6a3b63ad8,
-    type: 3}
-  elementHasPrecipitateForm: 1
-  elementPrecipitateType: 1
-  minimumVelocity: 0
-  maximumVelocity: Infinity
-  velocityMultiplier: 0.01
-  shrinkSpeed: 0.001
-  elementPrecipitateAmount: 2
-  elementPrecipitateSpawnChance: 1
-  elementHasUsableEffect: 0
-  elementEffectPrimingTrigger: 0
-  effectPrimingThreshold: 0
-  effectUseTrigger: 0
-  ingestedEffect: 0
-  ingestedEffectStrength: 0
-  ingestedEffectDuration: 0
---- !u!114 &2137954560
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2137954557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45115577ef41a5b4ca741ed302693907, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactTextPlacement: {fileID: 0}
-  interactText: Use
-  interactTextGO: {fileID: 0}
-  proximity: 2
-  SynchronizePosition: 0
-  AllowCollisionOwnershipTransfer: 0
-  Reliable: 0
-  _syncMethod: 2
-  serializedProgramAsset: {fileID: 11400000, guid: b0159582634c445439d53d12ebdb4689,
-    type: 2}
-  programSource: {fileID: 11400000, guid: c11b223b2b16b4d40bf00f1ec3e001e0, type: 2}
-  serializedPublicVariablesBytesString: Ai8AAAAAATIAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAFQAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AAAAAAAYBAAAAAAAAACcBBAAAAHQAeQBwAGUAAWgAAABTAHkAcwB0AGUAbQAuAEMAbwBsAGwAZQBjAHQAaQBvAG4AcwAuAEcAZQBuAGUAcgBpAGMALgBMAGkAcwB0AGAAMQBbAFsAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4ALgBJAG4AdABlAHIAZgBhAGMAZQBzAC4ASQBVAGQAbwBuAFYAYQByAGkAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AXQBdACwAIABtAHMAYwBvAHIAbABpAGIAAQEJAAAAVgBhAHIAaQBhAGIAbABlAHMALwEAAAABaAAAAFMAeQBzAHQAZQBtAC4AQwBvAGwAbABlAGMAdABpAG8AbgBzAC4ARwBlAG4AZQByAGkAYwAuAEwAaQBzAHQAYAAxAFsAWwBWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAEkAbgB0AGUAcgBmAGEAYwBlAHMALgBJAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlACwAIABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgBdAF0ALAAgAG0AcwBjAG8AcgBsAGkAYgABAAAABgEAAAAAAAAAAi8CAAAAAUkAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAGAAMQBbAFsAUwB5AHMAdABlAG0ALgBJAG4AdAAzADIALAAgAG0AcwBjAG8AcgBsAGkAYgBdAF0ALAAgAFYAUgBDAC4AVQBkAG8AbgAuAEMAbwBtAG0AbwBuAAIAAAAGAgAAAAAAAAAnAQQAAAB0AHkAcABlAAEXAAAAUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwAsACAAbQBzAGMAbwByAGwAaQBiACcBCgAAAFMAeQBtAGIAbwBsAE4AYQBtAGUAAR8AAABfAF8AXwBVAGQAbwBuAFMAaABhAHIAcABCAGUAaABhAHYAaQBvAHUAcgBWAGUAcgBzAGkAbwBuAF8AXwBfACcBBAAAAHQAeQBwAGUAARYAAABTAHkAcwB0AGUAbQAuAEkAbgB0ADMAMgAsACAAbQBzAGMAbwByAGwAaQBiABcBBQAAAFYAYQBsAHUAZQACAAAABwUHBQcF
-  publicVariablesUnityEngineObjects: []
-  publicVariablesSerializationDataFormat: 0
---- !u!1 &2141578695
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2141578696}
-  - component: {fileID: 2141578697}
-  - component: {fileID: 2141578698}
-  m_Layer: 0
-  m_Name: Water Element
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2141578696
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2141578695}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1292143487}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2141578697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2141578695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03beb95cb6343b944831aa58eda51010, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  _udonSharpBackingUdonBehaviour: {fileID: 2141578698}
-  elementTypeId: 4
-  elementColor: {r: 0.30588236, g: 0.6666667, b: 0.972549, a: 1}
-  elementIsProducedByPotion: 0
-  elementIsSpawnedByElementSpawner: 0
-  elementIsSeedPod: 0
-  elementCanSpawnGrownObject: 0
-  canDespawn: 1
-  despawnTime: 10
-  killVelocity: Infinity
-  baseElementSpawnTime: 0
-  baseElementMesh: {fileID: 0}
-  BaseElementCollisionPrefab: {fileID: 0}
-  pickupColliderRadius: 0
-  rbMass: 0
-  rbDrag: 0
-  rbAngularDrag: 0
-  elementCanBecomeSeedPod: 0
-  seedPodSpawnChance: 0
-  SeedPodPrefab: {fileID: 0}
-  seedPodPosOffset: {x: 0, y: 0, z: 0}
-  seedPodElementType: 0
-  ElementLeavesPrefab: {fileID: 0}
-  canPlantManually: 0
-  GrownObjectAnimator: {fileID: 0}
-  grownObjectType: 0
-  grownObjectElement: 0
-  colliderYPos: 0
-  colliderRadius: 0
-  colliderHeight: 0
-  GrownObjectGrowthPrefabs: []
-  grownObjectGrowTime: 0
-  ElementSpawnTransforms: {fileID: 0}
-  elementHasPrecipitateForm: 1
-  elementPrecipitateType: 2
-  minimumVelocity: 0.75
-  maximumVelocity: Infinity
-  velocityMultiplier: 0.08
-  shrinkSpeed: 0
-  elementPrecipitateAmount: 0
-  elementPrecipitateSpawnChance: 0
-  elementHasUsableEffect: 0
-  elementEffectPrimingTrigger: 0
-  effectPrimingThreshold: 0
-  effectUseTrigger: 0
-  ingestedEffect: 0
-  ingestedEffectStrength: 0
-  ingestedEffectDuration: 0
---- !u!114 &2141578698
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2141578695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45115577ef41a5b4ca741ed302693907, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactTextPlacement: {fileID: 0}
-  interactText: Use
-  interactTextGO: {fileID: 0}
-  proximity: 2
-  SynchronizePosition: 0
-  AllowCollisionOwnershipTransfer: 0
-  Reliable: 0
-  _syncMethod: 2
-  serializedProgramAsset: {fileID: 11400000, guid: b0159582634c445439d53d12ebdb4689,
-    type: 2}
-  programSource: {fileID: 11400000, guid: c11b223b2b16b4d40bf00f1ec3e001e0, type: 2}
-  serializedPublicVariablesBytesString: Ai8AAAAAATIAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAFQAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AAAAAAAYBAAAAAAAAACcBBAAAAHQAeQBwAGUAAWgAAABTAHkAcwB0AGUAbQAuAEMAbwBsAGwAZQBjAHQAaQBvAG4AcwAuAEcAZQBuAGUAcgBpAGMALgBMAGkAcwB0AGAAMQBbAFsAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4ALgBJAG4AdABlAHIAZgBhAGMAZQBzAC4ASQBVAGQAbwBuAFYAYQByAGkAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AXQBdACwAIABtAHMAYwBvAHIAbABpAGIAAQEJAAAAVgBhAHIAaQBhAGIAbABlAHMALwEAAAABaAAAAFMAeQBzAHQAZQBtAC4AQwBvAGwAbABlAGMAdABpAG8AbgBzAC4ARwBlAG4AZQByAGkAYwAuAEwAaQBzAHQAYAAxAFsAWwBWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAEkAbgB0AGUAcgBmAGEAYwBlAHMALgBJAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlACwAIABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgBdAF0ALAAgAG0AcwBjAG8AcgBsAGkAYgABAAAABgEAAAAAAAAAAi8CAAAAAUkAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAGAAMQBbAFsAUwB5AHMAdABlAG0ALgBJAG4AdAAzADIALAAgAG0AcwBjAG8AcgBsAGkAYgBdAF0ALAAgAFYAUgBDAC4AVQBkAG8AbgAuAEMAbwBtAG0AbwBuAAIAAAAGAgAAAAAAAAAnAQQAAAB0AHkAcABlAAEXAAAAUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwAsACAAbQBzAGMAbwByAGwAaQBiACcBCgAAAFMAeQBtAGIAbwBsAE4AYQBtAGUAAR8AAABfAF8AXwBVAGQAbwBuAFMAaABhAHIAcABCAGUAaABhAHYAaQBvAHUAcgBWAGUAcgBzAGkAbwBuAF8AXwBfACcBBAAAAHQAeQBwAGUAARYAAABTAHkAcwB0AGUAbQAuAEkAbgB0ADMAMgAsACAAbQBzAGMAbwByAGwAaQBiABcBBQAAAFYAYQBsAHUAZQACAAAABwUHBQcF
-  publicVariablesUnityEngineObjects: []
-  publicVariablesSerializationDataFormat: 0
 --- !u!4 &470514045485566202 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1961576444960737158, guid: b0ce3a546fa1eeb43bad43292ac59d95,
@@ -12021,34 +12021,34 @@ MonoBehaviour:
     ID: 141
   - gameObject: {fileID: 423610124}
     ID: 142
+  - gameObject: {fileID: 1094694244}
+    ID: 143
+  - gameObject: {fileID: 1493630699}
+    ID: 144
+  - gameObject: {fileID: 865360005}
+    ID: 145
+  - gameObject: {fileID: 1186593136}
+    ID: 146
+  - gameObject: {fileID: 398798808}
+    ID: 147
+  - gameObject: {fileID: 535392134}
+    ID: 148
+  - gameObject: {fileID: 1192618343}
+    ID: 149
+  - gameObject: {fileID: 1766571919}
+    ID: 150
+  - gameObject: {fileID: 670237049}
+    ID: 151
+  - gameObject: {fileID: 1562216429}
+    ID: 152
+  - gameObject: {fileID: 1991982224}
+    ID: 153
   - gameObject: {fileID: 87836082}
     ID: 154
   - gameObject: {fileID: 1201863192}
     ID: 155
   - gameObject: {fileID: 1364432090}
     ID: 156
-  - gameObject: {fileID: 2137954557}
-    ID: 157
-  - gameObject: {fileID: 714463370}
-    ID: 158
-  - gameObject: {fileID: 551923300}
-    ID: 159
-  - gameObject: {fileID: 1248514062}
-    ID: 160
-  - gameObject: {fileID: 2080434524}
-    ID: 161
-  - gameObject: {fileID: 177897156}
-    ID: 162
-  - gameObject: {fileID: 1585405297}
-    ID: 163
-  - gameObject: {fileID: 1353169339}
-    ID: 164
-  - gameObject: {fileID: 1368671155}
-    ID: 165
-  - gameObject: {fileID: 968232887}
-    ID: 166
-  - gameObject: {fileID: 2141578695}
-    ID: 167
   portraitCameraPositionOffset: {x: 0, y: 0, z: 0}
   portraitCameraRotationOffset: {x: 0, y: 1, z: 0, w: -0.00000004371139}
 --- !u!1001 &7642894503511948948
