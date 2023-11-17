@@ -107,31 +107,27 @@ public class ElevatorLift : UdonSharpBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void LiftEntered(LocalPlayerTracker playerTracker)
     {
-        LocalPlayerTracker playerTracker = other.GetComponent<LocalPlayerTracker>();
-        if (playerTracker != null)
+        Debug.Log($"[{name}] Entered!");
+
+        //If the elevator isn't actively running, activate it and save the collision time
+        if (!elevatorLerping)
         {
-            Debug.Log($"[{name}] Entered!");
-
-            //If the elevator isn't actively running, activate it and save the collision time
-            if (!elevatorLerping)
-            {
-                elevatorLerping = true;
-                elevatorPlayerCollisionTime = Time.time + playerResponseDelay;
-            }
-
-            if (useStation)
-            {
-                Vector3 enterPos = playerTracker.localPlayer.GetPosition();
-                Quaternion enterRot = playerTracker.localPlayer.GetRotation();
-
-                liftStation.UseStation(playerTracker.localPlayer);
-                playerTracker.localPlayer.TeleportTo(enterPos, enterRot);
-            }
-
-            if (editorOverride) playerTracker.localPlayer.TeleportTo(new Vector3(transform.position.x, liftMinHeight, transform.position.z) + transform.forward, transform.rotation);
+            elevatorLerping = true;
+            elevatorPlayerCollisionTime = Time.time + playerResponseDelay;
         }
+
+        if (useStation)
+        {
+            Vector3 enterPos = playerTracker.Owner.GetPosition();
+            Quaternion enterRot = playerTracker.Owner.GetRotation();
+
+            liftStation.UseStation(playerTracker.Owner);
+            playerTracker.Owner.TeleportTo(enterPos, enterRot);
+        }
+
+        if (editorOverride) playerTracker.Owner.TeleportTo(new Vector3(transform.position.x, liftMinHeight, transform.position.z) + transform.forward, transform.rotation);
     }
 
     private void OnTriggerExit(Collider other)
@@ -143,11 +139,11 @@ public class ElevatorLift : UdonSharpBehaviour
             {
                 Debug.Log($"[{name}] Exited!");
 
-                Vector3 enterPos = playerTracker.localPlayer.GetPosition();
-                Quaternion enterRot = playerTracker.localPlayer.GetRotation();
+                Vector3 enterPos = playerTracker.Owner.GetPosition();
+                Quaternion enterRot = playerTracker.Owner.GetRotation();
 
-                liftStation.ExitStation(playerTracker.localPlayer);
-                playerTracker.localPlayer.TeleportTo(enterPos, enterRot);
+                liftStation.ExitStation(playerTracker.Owner);
+                playerTracker.Owner.TeleportTo(enterPos, enterRot);
             }
         }
     }

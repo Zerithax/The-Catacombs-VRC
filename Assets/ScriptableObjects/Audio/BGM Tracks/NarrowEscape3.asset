@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e5a67faeb3011d40a360e6d896b980b, type: 3}
+  m_Name: NarrowEscape3
+  m_EditorClassIdentifier: 
+  trackName: NarrowEscape3
+  clip: {fileID: 8300000, guid: 9086ae84a1dc34f43ad29b8a515fc6b9, type: 3}
+  clipURL: https://cdn.discordapp.com/attachments/878889399214047262/1174160102538874930/Coal_Mine_BG_3.mp3?ex=656694cf&is=65541fcf&hm=c93f194b204b1e8f79b31a000efbedb7505c40a29881d84878b2b6e648676ceb&
