@@ -36,16 +36,6 @@ namespace Catacombs.ElementSystem.Runtime
             if (isRooted && !matured)
             {
                 curGrowthTime += Time.deltaTime;
-/*
-                Log($"Element Type Manager's objects test:");
-                Log($"{elementTypeManager.elementDataObjs[1]}");
-                Log($"{elementTypeManager.elementDataObjs[2]}");*/
-
-                ElementData tempRef = elementTypeManager.elementDataObjs[(int)elementTypeId];
-
-                //Log($"{tempRef.name} val is {tempRef.elementTypeId}");
-
-                //Log($"curGrowthTime = {curGrowthTime} vs {elementTypeManager.elementDataObjs[(int)elementTypeId].grownObjectGrowTime} ({elementTypeData.name})");
 
                 float totalGrowthStages = elementTypeData.GrownObjectGrowthPrefabs.Length - 1;
                 float growthPeriod = elementTypeData.grownObjectGrowTime;

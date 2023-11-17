@@ -52,7 +52,6 @@ namespace Catacombs.ElementSystem.Runtime
             elementRenderer = parentObject.GetComponent<Renderer>();
 
             //If this object already exists within the first second of scene init, manually PullElementType()
-            if (Time.time < 1) _PullElementType();
         }
 
         private void Update()
@@ -76,8 +75,6 @@ namespace Catacombs.ElementSystem.Runtime
             }
 
             elementTypeData = elementTypeManager.elementDataObjs[(int)elementTypeId];
-
-            Log($"Growth time will be {elementTypeManager.elementDataObjs[(int)elementTypeId].grownObjectGrowTime}");
 
             //Log($"Set Element Tpye Data to {(int)elementTypeId} of elementDataObjs:");
             //Log($"{elementTypeManager.elementDataObjs[(int)elementTypeId]}");

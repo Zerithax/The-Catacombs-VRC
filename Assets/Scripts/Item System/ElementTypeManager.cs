@@ -3,6 +3,7 @@ using UdonSharp;
 using UnityEngine;
 using Argus.ItemSystem.Editor;
 #if UNITY_EDITOR
+using UdonSharpEditor;
 using UnityEditor;
 #endif
 
@@ -25,12 +26,12 @@ namespace Argus.ItemSystem
         [Space(3)]
         public Transform potionRecipeDataParent;
 
-        private void Start() { SendCustomEventDelayedSeconds(nameof(_CheckInitialized), 10); }
+        private void Start() { SendCustomEventDelayedSeconds(nameof(_CheckInitialized), 5); }
 
         [RecursiveMethod]
         public void _CheckInitialized()
         {
-            if (elementDataObjs[11].elementTypeId != 0)
+            if (elementDataObjs[1].grownObjectGrowTime != 0)
             {
                 isInitialized = true;
 
@@ -45,7 +46,7 @@ namespace Argus.ItemSystem
             SendCustomEventDelayedSeconds(nameof(_CheckInitialized), 1);
         }
 
-        private void Update()
+        /*private void Update()
         {
             if (isInitialized)
             {
@@ -54,7 +55,7 @@ namespace Argus.ItemSystem
                     Debug.Log($"Element ID test: {elementDataObjs[i].elementTypeId}");
                 }
             }
-        }
+        }*/
     }
 
 #if UNITY_EDITOR
@@ -107,13 +108,13 @@ namespace Argus.ItemSystem
                         //Make sure to start at 1 so we ignore the None field added in line 87
                         for (int i = 1; i < elementTypes.Count; i++)
                         {
-                            //Generate a GameObject, AddComponent<ElementData>(), then fill it out with the ElementType data
+                            //Generate a GameObject, AddUdonSharpComponent<ElementData>(), then fill it out with the ElementType data
                             GameObject newElementData = new GameObject();
 
                             EditorUtility.SetDirty(newElementData);
 
                             newElementData.transform.SetParent(elementTypeManager.elementDataParent.transform, true);
-                            elementDataObjs[i] = newElementData.AddComponent<ElementData>();
+                            elementDataObjs[i] = newElementData.AddUdonSharpComponent<ElementData>();
                             newElementData.name = $"{elementTypes[i].elementTypeId:G} Element";
 
                             //Element info
@@ -260,10 +261,10 @@ namespace Argus.ItemSystem
                                 continue;
                             }
 
-                            //Generate a GameObject, AddComponent<PotionRecipeData>(), then fill it out with the PotionRecipe data
+                            //Generate a GameObject, AddUdonSharpComponent<PotionRecipeData>(), then fill it out with the PotionRecipe data
                             GameObject newPotionData = new GameObject();
                             newPotionData.transform.SetParent(elementTypeManager.potionRecipeDataParent.transform, true);
-                            potionDataObjs[i] = newPotionData.AddComponent<PotionRecipeData>();
+                            potionDataObjs[i] = newPotionData.AddUdonSharpComponent<PotionRecipeData>();
                             newPotionData.name = $"{potionRecipes[i].potionRecipeId:G} Potion";
 
                             potionDataObjs[i].potionColor = elementTypeManager.elementDataObjs[(int)potionRecipes[i].potionRecipeId].elementColor;

@@ -56,7 +56,7 @@ MonoBehaviour:
   minimumVelocity: 0
   maximumVelocity: Infinity
   velocityMultiplier: 0
-  shrinkSpeed: 0.0005
+  shrinkSpeed: 0.05
   elementPrecipitateAmount: 1
   elementPrecipitateSpawnChance: 0.5
   elementHasUsableEffect: 0

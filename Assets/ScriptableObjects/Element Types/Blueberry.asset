@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 055ce9bfd4f47f440adde5714a300157, type: 3}
-  m_Name: Arieberry
+  m_Name: Blueberry
   m_EditorClassIdentifier: 
-  elementTypeId: 2
-  elementColor: {r: 0.3584906, g: 0.01183696, b: 0.15319528, a: 1}
+  elementTypeId: 3
+  elementColor: {r: 0.19607843, g: 0.1764706, b: 0.5019608, a: 1}
   elementIsProducedByPotion: 0
   elementIsSpawnedByElementSpawner: 1
   elementIsSeedPod: 1
@@ -21,7 +21,7 @@ MonoBehaviour:
   canDespawn: 1
   despawnTime: 10
   killVelocity: 10
-  baseElementSpawnTime: 30
+  baseElementSpawnTime: 1
   baseElementMesh: {fileID: 7898303678134235034, guid: 2c0d3050e7ab9e54dbb011f7296c66c7,
     type: 3}
   BaseElementCollisionPrefab: {fileID: 6517209209624554442, guid: 554890788ad92104aa813dbbaf885061,
@@ -31,17 +31,17 @@ MonoBehaviour:
   rbDrag: 0.4
   rbAngularDrag: 0.05
   elementCanBecomeSeedPod: 1
-  seedPodSpawnChance: 0.1
+  seedPodSpawnChance: 100
   SeedPodPrefab: {fileID: 6647423906080684150, guid: 32b1811c43c122d45a586f72ec67dd1b,
     type: 3}
   seedPodPosOffset: {x: 0, y: 0.0142, z: 0}
-  seedPodElementType: 2
+  seedPodElementType: 3
   ElementLeavesPrefab: {fileID: 1164041372635974953, guid: f70261a4d3d58bf4cb1dad530dfd476e,
     type: 3}
   canPlantManually: 1
   GrownObjectAnimator: {fileID: 9100000, guid: e5f4db4bddd0c7549a0f073be026d390, type: 2}
   grownObjectType: 1
-  grownObjectElement: 2
+  grownObjectElement: 3
   colliderYPos: 0.25
   colliderRadius: 0.15
   colliderHeight: 0.5
@@ -49,16 +49,16 @@ MonoBehaviour:
   - {fileID: 3641895495905796266, guid: c8b12f469ef9157469bfcf918dec5beb, type: 3}
   - {fileID: 4278128458719230246, guid: 0e4e6b537695a8340a420d1dc473b724, type: 3}
   - {fileID: 2857445737330349378, guid: ddd384402782b564aace66fe64c574b4, type: 3}
-  grownObjectGrowTime: 180
+  grownObjectGrowTime: 10
   ElementSpawnTransforms: {fileID: 1743217837672615097, guid: 42679ade0fc18214e91d6ad6a3b63ad8,
     type: 3}
   elementHasPrecipitateForm: 1
-  elementPrecipitateType: 1
-  minimumVelocity: 0
-  maximumVelocity: Infinity
+  elementPrecipitateType: 2
+  minimumVelocity: 0.1
+  maximumVelocity: 0.5
   velocityMultiplier: 0.01
-  shrinkSpeed: 0.001
-  elementPrecipitateAmount: 2
+  shrinkSpeed: 0.025
+  elementPrecipitateAmount: 3
   elementPrecipitateSpawnChance: 1
   elementHasUsableEffect: 0
   elementEffectPrimingTrigger: 0

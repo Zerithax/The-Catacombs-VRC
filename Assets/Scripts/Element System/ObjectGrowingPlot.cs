@@ -27,21 +27,30 @@ namespace Catacombs.ElementSystem.Runtime
                 grownObjects = new GrownObject[maxObjects];
             }
             //If the plot starts with existing objects, PullElementType on each (consequentially starting up their animations)
-            else
-            {
-                int i;
-                for (i = 0; i < grownObjects.Length; i++)
-                {
-                    if (grownObjects[i] != null)
-                    {
-                        grownObjects[i]._PullElementType();
-                    }
-                    else break;
-                }
+            else _CheckElementManager();
+        }
 
-                //Disable Indicator if plot starts full
-                if (i == grownObjects.Length) plotAnimator.Play("GrowthPlotDie");
+        [RecursiveMethod]
+        public void _CheckElementManager()
+        {
+            if (!elementTypeManager.isInitialized)
+            {
+                SendCustomEventDelayedSeconds(nameof(_CheckElementManager), 0.2f);
+                return;
             }
+
+            int i;
+            for (i = 0; i < grownObjects.Length; i++)
+            {
+                if (grownObjects[i] != null)
+                {
+                    grownObjects[i]._PullElementType();
+                }
+                else break;
+            }
+
+            //Disable Indicator if plot starts full
+            if (i == grownObjects.Length) plotAnimator.Play("GrowthPlotDie");
         }
 
         public bool RoomToAddObject(Vector3 grownObjectPos)
